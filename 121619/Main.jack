@@ -1,0 +1,47 @@
+class Main {
+
+    function void main() {
+        //var int i, r;
+        var Map A;
+        var int P1dead;
+        var IBlock I;
+        var JBlock J;
+        var LBlock L;
+        var OBlock O;
+        var SBlock S;
+        var TBlock T;
+        var ZBlock Z;
+        let A = Map.new();
+        
+        //choose one from below
+        let I = IBlock.new(A);
+        //let J = JBlock.new(A);
+        //let L = LBlock.new(A);
+        //let O = OBlock.new(A);
+        //let S = SBlock.new(A);
+        //let T = TBlock.new(A);
+        //let Z = ZBlock.new(A);
+        do A.printCells();
+        /* ded or nah
+        do Sys.wait(1000);
+        do Output.moveCursor(0,0);
+        let P1dead = A.proc();
+        if(P1dead = 1)
+        {
+            do Output.moveCursor(0,0);
+            do Output.printString("YOU ARE DEAD");
+        }
+        else
+        {
+            do Output.moveCursor(0, 0);
+            do Output.printString("HERE YOU GO");
+            do Output.moveCursor(1,0);
+            do A.printCells();
+        }
+        */
+        do A.dispose();      
+        return;
+    }
+
+    
+}

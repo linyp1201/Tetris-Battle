@@ -1,0 +1,20 @@
+class ZBlock{
+    field int r,c;
+
+    constructor ZBlock new(Map A)
+    {
+        let r = 0;
+        let c = 4;
+        do A.set(r,c);
+        do A.set(r,c+1);
+        do A.set(r+1,c+1);
+        do A.set(r+1, c+2);
+        return this;
+    }
+
+    method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+    }
+
+}
