@@ -13,8 +13,108 @@ class IBlock{
     }
 
     method void dispose() {
-      do Memory.deAlloc(this);
-      return;
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    // Put into IBlock.jack
+
+    method void I_rotate(map M, int r, int c)
+    {	
+        var int type;
+
+        if ( M.cell[r*10+ (c+1)]= 1 )
+        {
+            let type= 0;	// lying
+        }	
+    
+        if ( M.cell[(r-1)*10+ c]= 1 )
+        {
+            let type= 1;	// standing
+        }	
+          
+        if (type= 0)
+        {	
+            if (r>3)
+            {
+                // cannot collide w/ others
+                if ( M.cell[(r-1)*10+ c]= 1 ) or ( M.cell[(r-2)*10+ c]= 1 ) or ( M.cell[(r-3)*10+ c]= 1 )
+                  break;
+
+                // implement
+                do M.reset(r, c+1);
+                do M.reset(r, c+2);
+                do M.reset(r, c+3);
+                do M.set(r-1, c);
+                do M.set(r-2, c);
+                do M.set(r-3, c);
+            }
+            else	// r= 0, 1, 2, 3	
+            {
+                // cannot collide w/ others
+                var int temp;
+                let temp= r-1;
+                while (temp> 0)
+                {
+                  if( M.cell[temp*10+ c]= 1 )
+                    break;
+                  let temp= temp-1;
+                }
+                if (temp> 0)
+                  break;
+
+                // implement
+                do M.reset(r, c+1);
+                do M.reset(r, c+2);
+                do M.reset(r, c+3);
+                do M.set(0, c);
+                do M.set(1, c);
+                do M.set(2, c);
+                do M.set(3, c);
+            }
+        }
+
+        if (type= 1)
+        {
+            if (c< 6)
+            {
+                // cannot collide w/ others
+                if ( M.cell[r*10+ (c+1)]= 1 ) or ( M.cell[r*10+ (c+2)]= 1 ) or ( M.cell[r*10+ (c+3)]= 1 )
+                    break;
+
+                // implement
+                do M.reset(r-1, c);
+                do M.reset(r-2, c);
+                do M.reset(r-3, c);
+                do M.set(r, c+1);
+                do M.set(r, c+2);
+                do M.set(r, c+3);
+            }
+            else	// c= 6, 7, 8, 9	
+            {
+                // cannot collide w/ others
+                var int temp;
+                let temp= c+1;
+                while (temp< 10)
+                {
+                    if( M.cell[r*10+ temp]= 1 )
+                        break;
+                    let temp= temp+1;
+                }
+                if (temp< 10)
+                    break;
+
+                // implement
+                do M.reset(r-1, c);
+                do M.reset(r-2, c);
+                do M.reset(r-3, c);		
+                do M.set(r, 6);
+                do M.set(r, 7);
+                do M.set(r, 8);
+                do M.set(r, 9);
+            }
+        }
+
     }
 
 }
