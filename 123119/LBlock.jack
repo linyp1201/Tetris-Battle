@@ -1,0 +1,20 @@
+class LBlock{
+    field int r,c;
+    //the position of this one should be considered carefully or be redefined
+    constructor LBlock new(Map A)
+    {
+        let r = 1;
+        let c = 4;
+        do A.set(r,c);
+        do A.set(r,c+1);
+        do A.set(r,c+2);
+        do A.set(r-1, c+2);
+        return this;
+    }
+
+    method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+    }
+
+}

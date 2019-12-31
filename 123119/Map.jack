@@ -1,0 +1,183 @@
+class Map{
+    field Array cells;
+    field int dead;
+
+    constructor Map new()
+    {
+        let cells = Array.new(200);
+        let dead = 0;
+        //cells[i][j] = cells[i*10+j]
+        return this;
+    }
+
+    method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+    }
+
+    method void set(int row, int column) //set (r, c) as 1
+    {
+        let cells[row*10+column] = 1;
+        return;
+    }
+
+	method void reset(int row, int column) //set (r, c) as 0
+	{
+        let cells[row*10+column] = 0;
+        return;
+    }
+
+	method int read(int row, int column)
+	{
+		var int k;
+		let k = cells[row*10+column];
+		return k;
+	}
+
+    method int proc()
+    {
+        var int i, row, j;
+        var int count;
+        var int done;
+        var boolean FULL;
+        
+        
+        let count = 0;
+        let row = 19;
+        let done = 0;
+        /* count */
+        while(row > 0)
+        {
+            if(done = 0)
+            {
+                let FULL = RowIsFull(row);
+                
+                if(FULL)
+                {
+                    let count = count + 1;
+                }
+                else
+                {
+                    let done = 1;
+                }
+            }
+            let row = row - 1;
+        }
+        
+        /* move */
+        let i = 19;
+        while(i>(19-count-1))
+        {
+            let j = 0;
+            while(j<10)
+            {
+                if(i-count > -1)
+                {
+                    let cells[i*10+j] = cells[(i-count)*10+j];
+                    let cells[(i-count)*10+j] = 0;
+                }
+                else
+                {
+                    let cells[i*10+j] = 0;     
+                }
+                let j = j+1;
+            }
+            let i = i-1;
+        }
+		return count;
+        /* ded or nah
+        let i = 0;
+        while(i<10)
+        {
+            let dead = dead|cells[i];
+            let i = i+1;
+        }
+        return dead; //dead = 0(alive), dead = 1(dead)
+		*/
+    }
+
+	
+    method boolean RowIsFull(int r)
+    {
+        var int i;
+        var int isFull;
+        let i = r*10;
+        let isFull = 1;
+        while(i<((r+1)*10))
+        {
+            let isFull = isFull & cells[i];
+            let i = i+1;
+        }
+        return isFull;
+    }
+
+    method void printCells() /* for debug */
+    {
+        var int i;
+        let i = 0;
+        while(i<200)
+        {
+            do Output.printInt(cells[i]);
+            if((Map.pa(i)+1) = 10)
+            {
+                do Output.println();
+            }
+            else
+            {
+                do Output.printString(" ");
+            }
+            let i = i+1;
+        }
+        return;
+    }
+
+    function int pa(int k) /* % function */
+    {
+        var int q, r;
+        let q = k/10;
+        let q = q*10;
+        let r = k - q;
+        return r;
+    }
+
+    method void showMap(int player)
+    {
+        /* shows map */
+        var int space, blockSize, frameSize;
+        var int y, x;
+        var int i, j, curX, curY;
+        let x = 60;
+        let y = 8;
+        let space = 3;
+        let blockSize = 8;
+        let frameSize = 4;
+        if(player = 2)
+        {
+            let x = 300;
+        }
+
+        let curX = x + frameSize + space;
+        let curY = y + frameSize + space;
+        let i = 0;
+
+        while(i < 20)
+        {
+            let j = 0;
+            while(j < 10)
+            {
+                if(cells[i*10+j] = 1)
+                {
+                    do Screen.setColor(true);
+                    do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
+                }
+                let curX = curX + blockSize + space;
+                let j = j + 1;
+            }
+            let curX = x + frameSize + space;
+            let curY = curY + blockSize + space;
+            let i = i + 1;
+        }
+
+        return;
+    }
+}
