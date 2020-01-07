@@ -17,4 +17,80 @@ class ZBlock{
       return;
     }
 
+    // Put into ZBlock.jack
+
+    method void Z_rotate(map M, int r, int c)
+    {	
+      var int type;		
+          
+      if (r> 0) and (c> 0) and (c< 9)
+      {
+        if ( M.cell[r*10+ c]= 1 ) and ( M.cell[(r-1)*10+ (c-1)]= 1 ) and ( M.cell[(r-1)*10+ c]= 1 ) and ( M.cell[r*10+ (c+1)]= 1 )
+          let type= 0;
+      }
+
+      if (r> 0) and (r< 19) and (c> 0)
+      {
+        if ( M.cell[r*10+ c]= 1 ) and ( M.cell[(r-1)*10+ c]= 1 ) and ( M.cell[r*10+ (c-1)]= 1 ) and ( M.cell[(r+1)*10+ (c-1)]= 1 )
+          let type= 1;
+      }
+
+      if (type= 0)
+      {	
+        if (r= 19)
+        {
+          // cannot collide w/ others
+          if ( M.cell[(r-2)*10+ c]= 1 ) or ( M.cell[r*10+ (c-1)]= 1 )
+            break;
+
+          // implement
+          do M.reset(r, c);
+          do M.reset(r, c+1);
+          do M.set(r-2, c);
+          do M.set(r, c-1);
+        }
+        else
+        {
+          // cannot collide w/ others
+          if ( M.cell[r*10+ (c-1)]= 1 ) or ( M.cell[(r+1)*10+ (c-1)= 1 )
+            break;
+
+          // implement
+          do M.reset(r-1, c-1);
+          do M.reset(r, c+1);
+          do M.set(r, c-1);
+          do M.set(r+1, c-1);
+        }
+      }
+
+      if (type= 1)
+      {	
+        if (c= 9)
+        {
+          // cannot collide w/ others
+          if ( M.cell[(r-1)*10+ (c-2)]= 1 ) or ( M.cell[(r-1)*10+ (c-1)]= 1 )
+            break;
+
+          // implement
+          do M.reset(r-1, c);
+          do M.reset(r+1, c-1);
+          do M.set(r-1, c-2);
+          do M.set(r-1, c-1);
+        }
+        else
+        {
+          // cannot collide w/ others
+          if ( M.cell[(r-1)*10+ (c-1)]= 1 ) or ( M.cell[r*10+ (c+1)]= 1 )
+            break;
+
+          // implement
+          do M.reset(r, c-1);
+          do M.reset(r+1, c-1);
+          do M.set(r-1, c-1);
+          do M.set(r, c+1);
+        }
+      }
+
+    }
+
 }
