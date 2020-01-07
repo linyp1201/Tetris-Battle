@@ -1,0 +1,13 @@
+class Playa {
+
+	field int id;
+	field String name;
+
+	constructor Playa new (int ID, String name)
+	{
+		let ID = ID;
+		let name = name;
+		return this;
+	}
+
+}
