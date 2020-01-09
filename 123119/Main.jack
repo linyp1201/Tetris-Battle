@@ -1,45 +1,269 @@
 class Main {
+    
+    static Array comboTable;
 
-    function void main() {
-        //var int i, r;
-        var Map A;
-        var int P1dead;
-        var IBlock I;
-        var JBlock J;
-        var LBlock L;
-        var OBlock O;
-        var SBlock S;
-        var TBlock T;
-        var ZBlock Z;
-        let A = Map.new();
+    function void initialize(){
         
-        //choose one from below
-        let I = IBlock.new(A);
-        //let J = JBlock.new(A);
-        //let L = LBlock.new(A);
-        //let O = OBlock.new(A);
-        //let S = SBlock.new(A);
-        //let T = TBlock.new(A);
-        //let Z = ZBlock.new(A);
-        do A.printCells();
-        /* ded or nah
-        do Sys.wait(1000);
-        do Output.moveCursor(0,0);
-        let P1dead = A.proc();
-        if(P1dead = 1)
-        {
-            do Output.moveCursor(0,0);
-            do Output.printString("YOU ARE DEAD");
+        /* ComboTable */
+        let comboTable = Array.new(8);
+        let comboTable[1] = 1;
+        let comboTable[2] = 1;
+        let comboTable[3] = 2;
+        let comboTable[4] = 2;
+        let comboTable[5] = 3;
+        let comboTable[6] = 3;
+        let comboTable[7] = 4;
+
+        return;
+    }
+
+    function int Move(int ID, Map map, Block block){
+        var int key;
+        
+        let key = Keyboard.keyPressed();
+        if(ID = 0 & key = 131){ //up:rotate
+            do block.rotate(map);
         }
-        else
-        {
-            do Output.moveCursor(0, 0);
-            do Output.printString("HERE YOU GO");
-            do Output.moveCursor(1,0);
-            do A.printCells();
+        if(ID = 1 & key = 87){ //up:rotate
+            do block.rotate(map);
         }
-        */
-        do A.dispose();      
+        if(ID = 0 & key = 130){ //left
+            do block.left(map);
+        }
+        if(ID = 1 & key = 65){ //left
+            do block.left(map);
+        }
+        if(ID = 0 & key = 133){ //down
+            do block.down(map);
+        }
+        if(ID = 1 & key = 83){ //down
+            do block.down(map);
+        }
+        if(ID = 0 & key = 132){ //right
+            do block.right(map);
+        }
+        if(ID = 1 & key = 68){ //right
+            do block.right(map);
+        }
+        do block.down(map);
+        if(block.toBottom(map)){
+            return map.proc();
+        }
+        else{
+            return -1;
+        }
+    }
+
+    function Array Shuffle(int newSeed){
+        var Array next;
+        var int index;
+        var int num;
+        let next = Array.new(7);
+        let num = 6;
+        while(num > -1){
+            do Random.setSeed(newSeed + num);
+            let index = Random.randRange(6);
+            if(next[index] = 0){
+                let next[index] = num;
+                let num = num - 1;
+            }
+        }
+        return next;
+    }
+
+    function void Play(String pn0, String pn1){
+        
+        /* To implement:
+        void addLinesSent()//
+        void resetLinesReceived()
+        void addLinesReceived(int lines)
+        int getLinesReceived()//
+        void resetCombo()
+        void incCombo()
+        int getCombo()//
+        void incKO()
+        int getKO() AAAAAAAAAAA*/
+
+        /* A Game */
+        var Playa P0;
+        var Playa P1;//
+        var Map map0;
+        var Map map1;//
+        var Array nextSet0;
+        var Array nextSet1;//
+        var Block block0;
+        var Block block1;//
+        var Block nextBlock0;
+        var Block nextBlock1;//
+        var int bIndex0;
+        var int bIndex1;//
+        var int tmpSent0;
+        var int tmpSent1;//
+        var int temp;
+        
+        var boolean KO;
+        var Clock timer;
+
+        do Display.gameScreen();
+
+        let timer = Clock.new();
+        let KO = false;
+
+        let P0 = Playa.new(0, pn0);
+        let P1 = Playa.new(1, pn1);//
+        let map0 = Map.new();
+        let map1 = Map.new();//
+        let nextSet0 = Array.new(7);
+        let nextSet1 = Array.new(7);//
+        let bIndex0 = 1;
+        let bIndex1 = 1;//
+
+        let nextSet0 = Main.Shuffle(timer.getTime());
+        let nextSet1 = Main.Shuffle(timer.getTime() + 12345);//
+        let block0 = Block.new(nextSet0[0]);
+        let block1 = Block.new(nextSet1[0]);//
+        let nextBlock0 = Block.new(nextSet0[1]);
+        let nextBlock1 = Block.new(nextSet1[1]);//
+
+        while(timer.getTime() < 120 & ~KO){
+
+            /* showMap */
+            do map0.showMap(0);
+            do map1.showMap(1);
+            /* showNextBlock */
+            do Display.showNext(0, bIndex0);
+            do Display.showNext(1, bIndex1);
+
+            /* One Move */ //Move returns int >=0 if block goes to bottom and returns -1 if not
+            let tmpSent0 = Main.Move(0, map0, block0);
+            if(tmpSent0 > -1){
+                do P0.addLinesSent(tmpSent0);
+            }
+            let tmpSent1 = Main.Move(1, map1, block1);
+            if(tmpSent1 > -1){
+                do P1.addLinesSent(tmpSent1);
+            }
+
+            /* If toBottom, Calculate combo & sent/received lines ; else add received */ //garbage not yet implemented
+            if(tmpSent0 > -1){
+                let bIndex0 = bIndex0 + 1;
+                if(tmpSent0 = 0){
+                    do P0.resetCombo();
+                }
+                do P0.incCombo();
+                if(P0.getLinesReceived() > tmpSent0){
+                    do P0.getGarbage(P0.getLinesReceived() - tmpSent0);
+                }
+                else{
+                    let tmpSent0 = tmpSent0 - P0.getLinesReceived();
+                }
+                do P0.resetLinesReceived();
+            }
+            if(tmpSent1 > -1){
+                let bIndex1 = bIndex1 + 1;
+                if(tmpSent1 = 1){
+                    do P1.resetCombo();
+                }
+                do P1.incCombo();
+                if(P1.getLinesReceived() > tmpSent1){
+                    do P1.getGarbage(P1.getLinesReceived() - tmpSent1);
+                }
+                else{
+                    let tmpSent1 = tmpSent1 - P1.getLinesReceived();
+                }
+                do P1.resetLinesReceived();
+            }
+
+            if(tmpSent0 > 0){ //combo added here
+                let temp = P0.getCombo();
+                if(temp > 7){
+                    let temp = 7;
+                }
+                do P1.addLinesReceived(tmpSent0 + comboTable[temp]);
+            }
+            if(tmpSent1 > 0){
+                let temp = P1.getCombo();
+                if(temp > 7){
+                    let temp = 7;
+                }
+                do P0.addLinesReceived(tmpSent1 + comboTable[temp]);
+            }
+
+            /* tick */
+            do timer.tick(1000);
+
+            /* Shuffle if needed */
+            if(bIndex0 > 6){
+                let nextSet0 = Main.Shuffle(timer.getTime());
+                let bIndex0 = 0;
+            }
+            if(bIndex1 > 6){
+                let nextSet1 = Main.Shuffle(timer.getTime() + 12345);
+                let bIndex1 = 0;
+            }
+
+            /* renew block & nextBlock */ //noo not here the case where block didnt drop fucking fuck
+            do Memory.deAlloc(block0);
+            do Memory.deAlloc(block1);
+            let block0 = nextBlock0;
+            let block1 = nextBlock1;
+            let nextBlock0 = Block.new(nextSet0[bIndex0]);
+            let nextBlock1 = Block.new(nextSet1[bIndex1]);
+
+            /* check if KO */ //spawn and clearGarbage not yet implemented
+            if(block0.spawn(map0) = false){
+                do P1.incKO();
+                do P0.clearGarbage();
+            }
+            if(block1.spawn(map1) = false){
+                do P0.incKO();
+                do P1.clearGarbage();
+            }
+            let KO = (P0.getKO() > 4 | P1.getKO() > 4);
+        }
+        return;
+    }
+
+    function boolean TitleScreen(){
+        var String pn0;
+        var String pn1;
+        var int endGame;
+        var int curOption;
+        var char key;
+
+        let curOption = 0;
+        let endGame = 0;
+        let pn0 = String.new(20);
+        let pn1 = String.new(20);
+        let key = 0;
+
+        while(~(key = 128)){
+            let curOption = 1 - curOption;
+            do Display.titleScreen(curOption);
+            let key = Keyboard.readChar();
+        }
+
+        if(curOption = 0){
+            do Screen.clearScreen();
+            do Output.moveCursor(11, 22);
+            let pn0 = Keyboard.readLine("PLAYER ZERO NAME : ");
+            do Output.moveCursor(14, 22);
+            let pn1 = Keyboard.readLine("PLAYER ONE NAME : ");
+            do Main.Play(pn0, pn1);
+        }
+        else{
+            let endGame = 1;
+        }
+
+        return endGame;
+    }
+
+    function void main(){
+        var int endGame;
+        let endGame = 0;
+        while(endGame = 0){
+            let endGame = Main.TitleScreen();
+        }     
         return;
     }
 

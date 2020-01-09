@@ -1,10 +1,75 @@
 function Playa.new 0
-push constant 2
+push constant 7
 call Memory.alloc 1
 pop pointer 0
 push argument 0
 pop argument 0
 push argument 1
 pop argument 1
+push constant 0
+pop this 2
+push constant 0
+pop this 3
+push constant 0
+pop this 4
+push constant 0
+pop this 5
+push constant 0
+pop this 6
 push pointer 0
+return
+function Playa.addLinesSent 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.resetLinesReceived 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.addLinesReceived 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.getLinesReceived 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.resetCombo 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.incCombo 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.getCombo 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.incKO 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.getKO 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.getGarbage 0
+push argument 0
+pop pointer 0
+push constant 0
+return
+function Playa.clearGarbage 0
+push argument 0
+pop pointer 0
+push constant 0
 return

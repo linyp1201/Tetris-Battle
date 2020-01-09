@@ -1,14 +1,792 @@
-function Main.main 9
-call Map.new 0
+function Main.initialize 0
+push constant 8
+call Array.new 1
+pop static 0
+push constant 1
+push static 0
+add
+push constant 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 2
+push static 0
+add
+push constant 1
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 3
+push static 0
+add
+push constant 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 4
+push static 0
+add
+push constant 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 5
+push static 0
+add
+push constant 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 6
+push static 0
+add
+push constant 3
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 7
+push static 0
+add
+push constant 4
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push constant 0
+return
+function Main.Move 1
+call Keyboard.keyPressed 0
 pop local 0
+push argument 0
+push constant 0
+eq
 push local 0
-call IBlock.new 1
+and
+push constant 131
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 2
+push argument 1
+call Block.rotate 2
+pop temp 0
+label IF_FALSE0
+push argument 0
+push constant 1
+eq
+push local 0
+and
+push constant 87
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 2
+push argument 1
+call Block.rotate 2
+pop temp 0
+label IF_FALSE1
+push argument 0
+push constant 0
+eq
+push local 0
+and
+push constant 130
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 2
+push argument 1
+call Block.left 2
+pop temp 0
+label IF_FALSE2
+push argument 0
+push constant 1
+eq
+push local 0
+and
+push constant 65
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push argument 2
+push argument 1
+call Block.left 2
+pop temp 0
+label IF_FALSE3
+push argument 0
+push constant 0
+eq
+push local 0
+and
+push constant 133
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push argument 2
+push argument 1
+call Block.down 2
+pop temp 0
+label IF_FALSE4
+push argument 0
+push constant 1
+eq
+push local 0
+and
+push constant 83
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push argument 2
+push argument 1
+call Block.down 2
+pop temp 0
+label IF_FALSE5
+push argument 0
+push constant 0
+eq
+push local 0
+and
+push constant 132
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push argument 2
+push argument 1
+call Block.right 2
+pop temp 0
+label IF_FALSE6
+push argument 0
+push constant 1
+eq
+push local 0
+and
+push constant 68
+eq
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push argument 2
+push argument 1
+call Block.right 2
+pop temp 0
+label IF_FALSE7
+push argument 2
+push argument 1
+call Block.down 2
+pop temp 0
+push argument 2
+push argument 1
+call Block.toBottom 2
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push argument 1
+call Map.proc 1
+return
+goto IF_END8
+label IF_FALSE8
+push constant 1
+neg
+return
+label IF_END8
+function Main.Shuffle 3
+push constant 7
+call Array.new 1
+pop local 0
+push constant 6
 pop local 2
+label WHILE_EXP0
+push local 2
+push constant 1
+neg
+gt
+not
+if-goto WHILE_END0
+push argument 0
+push local 2
+add
+call Random.setSeed 1
+pop temp 0
+push constant 6
+call Random.randRange 1
+pop local 1
+push local 1
 push local 0
-call Map.printCells 1
+add
+pop pointer 1
+push that 0
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+push local 0
+add
+push local 2
+pop temp 0
+pop pointer 1
+push temp 0
+pop that 0
+push local 2
+push constant 1
+sub
+pop local 2
+label IF_FALSE0
+goto WHILE_EXP0
+label WHILE_END0
+push local 0
+return
+function Main.Play 17
+call Display.gameScreen 0
+pop temp 0
+call Clock.new 0
+pop local 16
+push constant 0
+pop local 15
+push constant 0
+push argument 0
+call Playa.new 2
+pop local 0
+push constant 1
+push argument 1
+call Playa.new 2
+pop local 1
+call Map.new 0
+pop local 2
+call Map.new 0
+pop local 3
+push constant 7
+call Array.new 1
+pop local 4
+push constant 7
+call Array.new 1
+pop local 5
+push constant 1
+pop local 10
+push constant 1
+pop local 11
+push local 16
+call Clock.getTime 1
+call Main.Shuffle 1
+pop local 4
+push local 16
+call Clock.getTime 1
+push constant 12345
+add
+call Main.Shuffle 1
+pop local 5
+push constant 0
+push local 4
+add
+pop pointer 1
+push that 0
+call Block.new 1
+pop local 6
+push constant 0
+push local 5
+add
+pop pointer 1
+push that 0
+call Block.new 1
+pop local 7
+push constant 1
+push local 4
+add
+pop pointer 1
+push that 0
+call Block.new 1
+pop local 8
+push constant 1
+push local 5
+add
+pop pointer 1
+push that 0
+call Block.new 1
+pop local 9
+label WHILE_EXP0
+push local 16
+call Clock.getTime 1
+push constant 120
+lt
+push local 15
+not
+and
+not
+if-goto WHILE_END0
+push local 2
+push constant 0
+call Map.showMap 2
+pop temp 0
+push local 3
+push constant 1
+call Map.showMap 2
+pop temp 0
+push constant 0
+push local 10
+call Display.showNext 2
+pop temp 0
+push constant 1
+push local 11
+call Display.showNext 2
+pop temp 0
+push constant 0
+push local 2
+push local 6
+call Main.Move 3
+pop local 12
+push local 12
+push constant 1
+neg
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 0
+push local 12
+call Playa.addLinesSent 2
+pop temp 0
+label IF_FALSE0
+push constant 1
+push local 3
+push local 7
+call Main.Move 3
+pop local 13
+push local 13
+push constant 1
+neg
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 1
+push local 13
+call Playa.addLinesSent 2
+pop temp 0
+label IF_FALSE1
+push local 12
+push constant 1
+neg
+gt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 10
+push constant 1
+add
+pop local 10
+push local 12
+push constant 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push local 0
+call Playa.resetCombo 1
+pop temp 0
+label IF_FALSE3
+push local 0
+call Playa.incCombo 1
 pop temp 0
 push local 0
-call Map.dispose 1
+call Playa.getLinesReceived 1
+push local 12
+gt
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push local 0
+push local 0
+call Playa.getLinesReceived 1
+push local 12
+sub
+call Playa.getGarbage 2
 pop temp 0
+goto IF_END4
+label IF_FALSE4
+push local 12
+push local 0
+call Playa.getLinesReceived 1
+sub
+pop local 12
+label IF_END4
+push local 0
+call Playa.resetLinesReceived 1
+pop temp 0
+label IF_FALSE2
+push local 13
+push constant 1
+neg
+gt
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push local 11
+push constant 1
+add
+pop local 11
+push local 13
+push constant 1
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push local 1
+call Playa.resetCombo 1
+pop temp 0
+label IF_FALSE6
+push local 1
+call Playa.incCombo 1
+pop temp 0
+push local 1
+call Playa.getLinesReceived 1
+push local 13
+gt
+if-goto IF_TRUE7
+goto IF_FALSE7
+label IF_TRUE7
+push local 1
+push local 1
+call Playa.getLinesReceived 1
+push local 13
+sub
+call Playa.getGarbage 2
+pop temp 0
+goto IF_END7
+label IF_FALSE7
+push local 13
+push local 1
+call Playa.getLinesReceived 1
+sub
+pop local 13
+label IF_END7
+push local 1
+call Playa.resetLinesReceived 1
+pop temp 0
+label IF_FALSE5
+push local 12
+push constant 0
+gt
+if-goto IF_TRUE8
+goto IF_FALSE8
+label IF_TRUE8
+push local 0
+call Playa.getCombo 1
+pop local 14
+push local 14
+push constant 7
+gt
+if-goto IF_TRUE9
+goto IF_FALSE9
+label IF_TRUE9
+push constant 7
+pop local 14
+label IF_FALSE9
+push local 1
+push local 12
+push local 14
+push static 0
+add
+pop pointer 1
+push that 0
+add
+call Playa.addLinesReceived 2
+pop temp 0
+label IF_FALSE8
+push local 13
+push constant 0
+gt
+if-goto IF_TRUE10
+goto IF_FALSE10
+label IF_TRUE10
+push local 1
+call Playa.getCombo 1
+pop local 14
+push local 14
+push constant 7
+gt
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push constant 7
+pop local 14
+label IF_FALSE11
+push local 0
+push local 13
+push local 14
+push static 0
+add
+pop pointer 1
+push that 0
+add
+call Playa.addLinesReceived 2
+pop temp 0
+label IF_FALSE10
+push local 16
+push constant 1000
+call Clock.tick 2
+pop temp 0
+push local 10
+push constant 6
+gt
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
+push local 16
+call Clock.getTime 1
+call Main.Shuffle 1
+pop local 4
+push constant 0
+pop local 10
+label IF_FALSE12
+push local 11
+push constant 6
+gt
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
+push local 16
+call Clock.getTime 1
+push constant 12345
+add
+call Main.Shuffle 1
+pop local 5
+push constant 0
+pop local 11
+label IF_FALSE13
+push local 6
+call Memory.deAlloc 1
+pop temp 0
+push local 7
+call Memory.deAlloc 1
+pop temp 0
+push local 8
+pop local 6
+push local 9
+pop local 7
+push local 10
+push local 4
+add
+pop pointer 1
+push that 0
+call Block.new 1
+pop local 8
+push local 11
+push local 5
+add
+pop pointer 1
+push that 0
+call Block.new 1
+pop local 9
+push local 6
+push local 2
+call Block.spawn 2
+push constant 0
+eq
+if-goto IF_TRUE14
+goto IF_FALSE14
+label IF_TRUE14
+push local 1
+call Playa.incKO 1
+pop temp 0
+push local 0
+call Playa.clearGarbage 1
+pop temp 0
+label IF_FALSE14
+push local 7
+push local 3
+call Block.spawn 2
+push constant 0
+eq
+if-goto IF_TRUE15
+goto IF_FALSE15
+label IF_TRUE15
+push local 0
+call Playa.incKO 1
+pop temp 0
+push local 1
+call Playa.clearGarbage 1
+pop temp 0
+label IF_FALSE15
+push local 0
+call Playa.getKO 1
+push constant 4
+gt
+push local 1
+call Playa.getKO 1
+or
+push constant 4
+gt
+pop local 15
+goto WHILE_EXP0
+label WHILE_END0
+push constant 0
+return
+function Main.TitleScreen 5
+push constant 0
+pop local 3
+push constant 0
+pop local 2
+push constant 20
+call String.new 1
+pop local 0
+push constant 20
+call String.new 1
+pop local 1
+push constant 0
+pop local 4
+label WHILE_EXP0
+push local 4
+push constant 128
+eq
+not
+not
+if-goto WHILE_END0
+push constant 1
+push local 3
+sub
+pop local 3
+push local 3
+call Display.titleScreen 1
+pop temp 0
+call Keyboard.readChar 0
+pop local 4
+goto WHILE_EXP0
+label WHILE_END0
+push local 3
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+call Screen.clearScreen 0
+pop temp 0
+push constant 11
+push constant 22
+call Output.moveCursor 2
+pop temp 0
+push constant 19
+call String.new 1
+push constant 80
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 89
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 90
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 79
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 77
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Keyboard.readLine 1
+pop local 0
+push constant 14
+push constant 22
+call Output.moveCursor 2
+pop temp 0
+push constant 18
+call String.new 1
+push constant 80
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 89
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 79
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 77
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 58
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Keyboard.readLine 1
+pop local 1
+push local 0
+push local 1
+call Main.Play 2
+pop temp 0
+goto IF_END0
+label IF_FALSE0
+push constant 1
+pop local 2
+label IF_END0
+push local 2
+return
+function Main.main 1
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 0
+eq
+not
+if-goto WHILE_END0
+call Main.TitleScreen 0
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
 push constant 0
 return

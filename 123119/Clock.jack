@@ -1,0 +1,21 @@
+class Clock{
+	field int time;
+
+	constructor Clock new(){
+		let time = 0;
+		return this;
+	}
+
+	method void tick(int dur){
+		/* dur in seconds (changeable for speeding up) */
+		do Sys.wait(dur);
+		let time = time + dur/1000;
+		return;
+	}
+
+	method int getTime(){
+		/* returns time */
+		return time;
+	}
+
+}

@@ -2,12 +2,71 @@ class Playa {
 
 	field int id;
 	field String name;
+	field int linesSent;
+	field int linesReceived;
+	field int KO;
+	field int combo;
+	field int stackHeight;
 
-	constructor Playa new (int ID, String name)
+	constructor Playa new(int ID, String name)
 	{
 		let ID = ID;
 		let name = name;
+		let linesSent = 0;
+		let linesReceived = 0;
+		let KO = 0;
+		let combo = 0;
+		let stackHeight = 0;
 		return this;
 	}
+
+	method void addLinesSent(int lines){
+		// add lines to linesSent
+		return;
+	}
+
+    method void resetLinesReceived(){
+    	// linesReceived = 0
+    	return;
+    }
+    method void addLinesReceived(int lines){
+    	// add lines to linesReceived
+    	return;
+    }
+    method int getLinesReceived(){
+    	// return linesReceived
+    	return 0;
+    }
+
+    method void resetCombo(){
+    	// combo = 0
+    	return;
+    }
+    method void incCombo(){
+    	// combo += 1
+    	return;
+    }
+    method int getCombo(){
+    	// return combo;
+    	return 0;
+    }
+
+    method void incKO(){
+    	// KO +=1
+    	return;
+    }
+    method int getKO(){
+    	// return KO
+    	return 0;
+    }
+
+    method void getGarbage(){
+    	// process getting garbage
+    	return;
+    }
+    method void clearGarbage(){
+    	// process clearing garbage after KO
+    	return;
+    }
 
 }

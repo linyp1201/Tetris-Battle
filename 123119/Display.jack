@@ -1,12 +1,23 @@
 class Display{
 
-	function void titleScreen()
+	function void titleScreen(int curOption)
 	{
 		/* shows title screen */
-		//to modify
 		do Screen.clearScreen();
-		do Output.moveCursor(8, 24);
-		do Output.printString("I AM TITLE SCREEN");
+		do Output.moveCursor(8, 25);
+		do Output.printString("TETRIS BATTLE");
+		if(curOption = 0){
+			do Output.moveCursor(11, 28);
+			do Output.printString("> Play");
+			do Output.moveCursor(14, 30);
+			do Output.printString("Quit");
+		}
+		else{
+			do Output.moveCursor(11, 30);
+			do Output.printString("Play");
+			do Output.moveCursor(14, 28);
+			do Output.printString("> Quit");
+		}
 		return;
 	}
 
@@ -47,6 +58,30 @@ class Display{
 		return;
 	}
 	
+	function void showBlock(int player, int row, int col)
+	{
+		/* shows blocks */
+		var int space, blockSize, frameSize;
+        var int curX, curY;
+        let space = 3;
+        let blockSize = 8;
+        let frameSize = 4;
+        let curX = 67;
+        let curY = 15;
+        if(player = 2)
+        {
+            let curX = 307;
+        }
+
+        let curY = curY + (blockSize + space) * row;
+        let curX = curX + (blockSize + space) * col;
+        
+        do Screen.setColor(true);
+        do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
+
+        return;
+	}
+
 	function void showNext(int player, int type)
 	{
 		var int space, blockSize;
