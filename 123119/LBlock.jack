@@ -17,4 +17,156 @@ class LBlock{
       return;
     }
 
+    // Put into LBlock.jack
+
+    method void L_rotate(map M, int r, int c)
+    {	
+      var int type;
+      
+      if (r> 0) and (r< 19) and (c< 9)
+      {
+        if ( M.cell[(r-1)*10+ c]= 1 ) and ( M.cell[(r-1)*10+ (c+1)]= 1 ) and ( M.cell[r*10+ (c+1)]= 1 ) and ( M.cell[(r+1)*10+ (c+1)]= 1 )
+          let type= 0;
+      }
+          
+      if (r< 19) and (c> 0) and (c< 9)
+      {
+        if ( M.cell[r*10+ (c+1)]= 1 ) and ( M.cell[(r+1)*10+ (c-1)]= 1 ) and ( M.cell[(r+1)*10+ c]= 1 ) and ( M.cell[(r+1)*10+ (c+1)]= 1 )
+          let type= 1;
+      }			
+          
+      if (r> 0) and (r< 19) and (c> 0)
+      {
+        if ( M.cell[(r-1)*10+ (c-1)]= 1 ) and ( M.cell[r*10+ (c-1)]= 1 ) and ( M.cell[(r+1)*10+ (c-1)]= 1 ) and ( M.cell[(r+1)*10+ c]= 1 )
+          let type= 2;
+      }
+
+      if (r> 0) and (c> 0) and (c< 9)
+      {
+        if ( M.cell[(r-1)*10+ (c-1)]= 1 ) and ( M.cell[(r-1)*10+ c]= 1 ) and ( M.cell[(r-1)*10+ (c+1)]= 1 ) and ( M.cell[r*10+ (c-1)]= 1 )
+          let type= 3;
+      }
+
+      if (type= 0)
+      {	
+        if (c= 0)
+        {
+          // cannot collide w/ others
+          if ( M.cell[r*10+ 2]= 1 ) or ( M.cell[(r+1)*10+ 0]= 1 ) or ( M.cell[(r+1)*10+ 2]= 1 )
+            break;
+
+          // implement
+          do M.reset(r-1, 0);
+          do M.reset(r-1, 1);
+          do M.reset(r, 1);
+          do M.set(r, 2);
+          do M.set(r+1, 0);
+          do M.set(r+1, 2);
+        }
+        else
+        {
+          // cannot collide w/ others
+          if ( M.cell[(r+1)*10+ (c-1)]= 1 ) or ( M.cell[(r+1)*10+ c]= 1 )
+            break;
+
+          // implement
+          do M.reset(r-1, c);
+          do M.reset(r-1, c+1);
+          do M.set(r+1, c-1);
+          do M.set(r+1, c);
+        }
+      }
+
+      if (type= 1)
+      {	
+        if (r= 0)
+        {
+          // cannot collide w/ others
+          if ( M.cell[0*10+ (c-1)]= 1 ) or ( M.cell[2*10+ (c-1)]= 1 ) or ( M.cell[2*10+ c]= 1 )
+            break;
+
+          // implement
+          do M.reset(0, c+1);
+          do M.reset(1, c);
+          do M.reset(1, c+1);
+          do M.set(0, c-1);
+          do M.set(2, c-1);
+          do M.set(2, c);
+        }
+        else
+        {
+          // cannot collide w/ others
+          if ( M.cell[(r-1)*10+ (c-1)]= 1 ) or ( M.cell[r*10+ (c-1)]= 1 )
+            break;
+
+          // implement
+          do M.reset(r, c+1);
+          do M.reset(r+1, c+1);
+          do M.set(r-1, c-1);
+          do M.set(r, c-1);
+        }
+      }
+
+      if (type= 2)
+      {	
+        if (c= 9)
+          // cannot collide w/ others
+          if ( M.cell[(r-1)*10+ 7]= 1 ) or ( M.cell[(r-1)*10+ 9]= 1 ) or ( M.cell[r*10+ 7]= 1 )
+            break;
+
+          // implement
+          do M.reset(r, 8);
+          do M.reset(r+1, 8);
+          do M.reset(r+1, 9);
+          do M.set(r-1, 7);
+          do M.set(r-1, 9);
+          do M.set(r, 7);
+        }
+        else
+        {
+          // cannot collide w/ others
+          if ( M.cell[(r-1)*10+ c]= 1 ) or ( M.cell[(r-1)*10+ (c+1)]= 1 )
+            break;
+
+          // implement
+          do M.reset(r+1, c-1);
+          do M.reset(r+1, c);
+          do M.set(r-1, c);
+          do M.set(r-1, c+1);
+        }
+      }
+
+      if (type= 3)
+      {	
+        if (r= 19)
+        {
+          // cannot collide w/ others
+          if ( M.cell[17*10+ c]= 1 ) or ( M.cell[17*10+ (c+1)]= 1 ) or ( M.cell[19*10+ (c+1)]= 1 )
+            break;
+
+          // implement
+          do M.reset(18, c-1);
+          do M.reset(18, c);
+          do M.reset(19, c-1);
+          do M.set(17, c);
+          do M.set(17, c+1);
+          do M.set(19, c+1);
+        }
+        else
+        {
+          // cannot collide w/ others
+          if ( M.cell[r*10+ (c+1)]= 1 ) or ( M.cell[(r+1)*10+ (c+1)]= 1 )
+            break;
+
+          // implement
+          do M.reset(r-1, c-1);
+          do M.reset(r, c-1);
+          do M.set(r, c+1);
+          do M.set(r+1, c+1);
+        }
+      }
+
+
+    }
+
 }
