@@ -34,7 +34,7 @@ class Map{
 		return k;
 	}
 
-    method int proc()
+    method int proc() /*returns how many lines to be eliminated*/
     {
         var int i, row, j;
         var int count;
@@ -85,7 +85,11 @@ class Map{
             let i = i-1;
         }
 		return count;
-        /* ded or nah
+    }
+
+    method boolean dead()
+    {
+        var int i;
         let i = 0;
         while(i<10)
         {
@@ -93,9 +97,7 @@ class Map{
             let i = i+1;
         }
         return dead; //dead = 0(alive), dead = 1(dead)
-		*/
     }
-
 	
     method boolean RowIsFull(int r)
     {
@@ -168,10 +170,6 @@ class Map{
                 if(cells[i*10+j] = 1)
                 {
                     do Screen.setColor(true);
-                    do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
-                }
-                else{
-                    do Screen.setColor(false);
                     do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
                 }
                 let curX = curX + blockSize + space;

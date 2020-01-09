@@ -205,6 +205,33 @@ goto WHILE_EXP1
 label WHILE_END1
 push local 3
 return
+function Map.dead 1
+push argument 0
+pop pointer 0
+push constant 0
+pop local 0
+label WHILE_EXP0
+push local 0
+push constant 10
+lt
+not
+if-goto WHILE_END0
+push this 1
+push local 0
+push this 0
+add
+pop pointer 1
+push that 0
+or
+pop this 1
+push local 0
+push constant 1
+add
+pop local 0
+goto WHILE_EXP0
+label WHILE_END0
+push this 1
+return
 function Map.RowIsFull 2
 push argument 0
 pop pointer 0
@@ -379,22 +406,7 @@ push local 1
 add
 call Screen.drawRectangle 4
 pop temp 0
-goto IF_END1
 label IF_FALSE1
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push local 7
-push local 8
-push local 7
-push local 1
-add
-push local 8
-push local 1
-add
-call Screen.drawRectangle 4
-pop temp 0
-label IF_END1
 push local 7
 push local 1
 add
