@@ -293,6 +293,230 @@ call Output.printString 1
 pop temp 0
 push constant 0
 return
+function Display.endScreen 3
+push constant 1
+pop local 2
+call Screen.clearScreen 0
+pop temp 0
+push argument 0
+call Playa.getKO 1
+push argument 1
+call Playa.getKO 1
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 0
+pop local 0
+push constant 0
+pop local 2
+label IF_FALSE0
+push argument 0
+call Playa.getKO 1
+push argument 1
+call Playa.getKO 1
+lt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+pop local 0
+push constant 0
+pop local 2
+label IF_FALSE1
+push argument 0
+call Playa.getKO 1
+push argument 1
+call Playa.getKO 1
+eq
+push argument 0
+call Playa.getlinesSent 1
+and
+push argument 1
+call Playa.getlinesSent 1
+gt
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push argument 0
+pop local 0
+push constant 0
+pop local 2
+label IF_FALSE2
+push argument 0
+call Playa.getKO 1
+push argument 1
+call Playa.getKO 1
+eq
+push argument 0
+call Playa.getlinesSent 1
+and
+push argument 1
+call Playa.getlinesSent 1
+lt
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push argument 1
+pop local 0
+push constant 0
+pop local 2
+label IF_FALSE3
+push argument 0
+call Playa.getKO 1
+push argument 1
+call Playa.getKO 1
+eq
+push argument 0
+call Playa.getlinesSent 1
+and
+push argument 1
+call Playa.getlinesSent 1
+eq
+push argument 2
+call Map.getHeight 1
+and
+push argument 3
+call Map.getHeight 1
+lt
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push argument 0
+pop local 0
+push constant 0
+pop local 2
+label IF_FALSE4
+push argument 0
+call Playa.getKO 1
+push argument 1
+call Playa.getKO 1
+eq
+push argument 0
+call Playa.getlinesSent 1
+and
+push argument 1
+call Playa.getlinesSent 1
+eq
+push argument 2
+call Map.getHeight 1
+and
+push argument 3
+call Map.getHeight 1
+gt
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push argument 1
+pop local 0
+push constant 0
+pop local 2
+label IF_FALSE5
+push local 2
+push constant 0
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push constant 10
+push constant 28
+call Output.moveCursor 2
+pop temp 0
+push constant 7
+call String.new 1
+push constant 80
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 89
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push local 0
+call Playa.getID 1
+call Output.printInt 1
+pop temp 0
+push local 0
+call Playa.getName 1
+pop local 1
+push constant 11
+push constant 32
+push local 1
+call String.length 1
+sub
+push constant 2
+call Math.divide 2
+call Output.moveCursor 2
+pop temp 0
+push local 0
+call Playa.getName 1
+call Output.printstring 1
+pop temp 0
+push constant 12
+push constant 29
+call Output.moveCursor 2
+pop temp 0
+push constant 6
+call String.new 1
+push constant 32
+call String.appendChar 2
+push constant 87
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+call Output.printstring 1
+pop temp 0
+goto IF_END6
+label IF_FALSE6
+push constant 10
+push constant 26
+call Output.moveCursor 2
+pop temp 0
+push constant 12
+call String.new 1
+push constant 73
+call String.appendChar 2
+push constant 84
+call String.appendChar 2
+push constant 39
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 32
+call String.appendChar 2
+push constant 68
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 65
+call String.appendChar 2
+push constant 87
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+label IF_END6
+push constant 0
+return
 function Display.showBlock 5
 push constant 3
 pop local 0

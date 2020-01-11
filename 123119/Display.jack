@@ -34,7 +34,7 @@ class Display{
 
 		do Screen.clearScreen();
 
-		//P1
+		//p0
 		do Screen.setColor(true);
 		do Screen.drawRectangle(x, y, x+121, y+231);
 		do Screen.drawRectangle(x+128, y+16, x+181, y+69);
@@ -44,7 +44,7 @@ class Display{
 		do Output.moveCursor(1, 24);
 		do Output.printString("Next");
 
-		//P2
+		//p1
 		let x = 300;
 		do Screen.setColor(true);
 		do Screen.drawRectangle(x, y, x+121, y+231);
@@ -55,6 +55,55 @@ class Display{
 		do Output.moveCursor(1, 54);
 		do Output.printString("Next");
 
+		return;
+	}
+
+	function void endScreen(Playa p0, Playa p1, Map map0, Map map1){
+		var Playa winner;
+		var String name;
+		var int draw;
+
+		let draw = 1;
+		do Screen.clearScreen();
+
+		if(p0.getKO() > p1.getKO()){
+			let winner = p0;
+			let draw = 0;
+		}
+		if(p0.getKO() < p1.getKO()){
+			let winner = p1;
+			let draw = 0;
+		}
+		if(p0.getKO() = p1.getKO() & p0.getlinesSent() > p1.getlinesSent()){
+			let winner = p0;
+			let draw = 0;
+		}
+		if(p0.getKO() = p1.getKO() & p0.getlinesSent() < p1.getlinesSent()){
+			let winner = p1;
+			let draw = 0;
+		}
+		if(p0.getKO() = p1.getKO() & p0.getlinesSent() = p1.getlinesSent() & map0.getHeight() < map1.getHeight()){
+			let winner = p0;
+			let draw = 0;
+		}
+		if(p0.getKO() = p1.getKO() & p0.getlinesSent() = p1.getlinesSent() & map0.getHeight() > map1.getHeight()){
+			let winner = p1;
+			let draw = 0;
+		}
+		if(draw = 0){
+			do Output.moveCursor(10, 28);
+			do Output.printString("PLAYER ");
+			do Output.printInt(winner.getID());
+			let name = winner.getName();
+			do Output.moveCursor(11, (32 - name.length() / 2));
+			do Output.printstring(winner.getName());
+			do Output.moveCursor(12, 29);
+			do Output.printstring(" WINS!");
+		}
+		else{
+			do Output.moveCursor(10, 26);
+			do Output.printString("IT'S A DRAW!");
+		}
 		return;
 	}
 	

@@ -18,6 +18,9 @@ class Main {
     }
 
     function int Move(int ID, Map map, Block block){
+
+        /* returns map.proc if block goes to bottom */
+        
         var int key;
         
         let key = Keyboard.keyPressed();
@@ -45,7 +48,11 @@ class Main {
         if(ID = 1 & key = 68){ //right
             do block.right(map);
         }
-        do block.down(map);
+
+        if(timer.getTime() = 500){
+            do block.down(map);
+        }
+
         if(block.toBottom(map)){
             return map.proc();
         }
@@ -61,7 +68,8 @@ class Main {
         let next = Array.new(7);
         let num = 6;
         while(num > -1){
-            do Random.setSeed(newSeed + num);
+            let newSeed = newSeed + 9;
+            do Random.setSeed(newSeed);
             let index = Random.randRange(6);
             if(next[index] = 0){
                 let next[index] = num;
@@ -72,19 +80,9 @@ class Main {
     }
 
     function void Play(String pn0, String pn1){
-        
-        /* To implement:
-        void addLinesSent()//
-        void resetLinesReceived()
-        void addLinesReceived(int lines)
-        int getLinesReceived()//
-        void resetCombo()
-        void incCombo()
-        int getCombo()//
-        void incKO()
-        int getKO() AAAAAAAAAAA*/
 
         /* A Game */
+
         var Playa P0;
         var Playa P1;//
         var Map map0;
@@ -100,15 +98,13 @@ class Main {
         var int tmpSent0;
         var int tmpSent1;//
         var int temp;
-        
         var boolean KO;
         var Clock timer;
+        var int stop;
 
-        do Display.gameScreen();
-
+        let stop = 0;
         let timer = Clock.new();
         let KO = false;
-
         let P0 = Playa.new(0, pn0);
         let P1 = Playa.new(1, pn1);//
         let map0 = Map.new();
@@ -119,13 +115,15 @@ class Main {
         let bIndex1 = 1;//
 
         let nextSet0 = Main.Shuffle(timer.getTime());
-        let nextSet1 = Main.Shuffle(timer.getTime() + 12345);//
+        let nextSet1 = Main.Shuffle(timer.getTime() + 1);//
         let block0 = Block.new(nextSet0[0]);
         let block1 = Block.new(nextSet1[0]);//
         let nextBlock0 = Block.new(nextSet0[1]);
         let nextBlock1 = Block.new(nextSet1[1]);//
 
-        while(timer.getTime() < 120 & ~KO){
+        do Display.gameScreen();
+
+        while(stop < 240 & (~KO)){
 
             /* showMap */
             do map0.showMap(0);
@@ -134,7 +132,7 @@ class Main {
             do Display.showNext(0, bIndex0);
             do Display.showNext(1, bIndex1);
 
-            /* One Move */ //Move returns int >=0 if block goes to bottom and returns -1 if not
+            /* One Move */
             let tmpSent0 = Main.Move(0, map0, block0);
             if(tmpSent0 > -1){
                 do P0.addLinesSent(tmpSent0);
@@ -144,15 +142,24 @@ class Main {
                 do P1.addLinesSent(tmpSent1);
             }
 
-            /* If toBottom, Calculate combo & sent/received lines ; else add received */ //garbage not yet implemented
+            if(timer.getTime() = 500){
+                do timer.setTime(0);
+                let stop = stop + 1;
+            }
+
+            /* If toBottom, Calculate combo & sent/received lines ; else add received */
             if(tmpSent0 > -1){
                 let bIndex0 = bIndex0 + 1;
+                do Memory.deAlloc(block0);
+                let block0 = nextBlock0;
+                let nextBlock0 = Block.new(nextSet0[bIndex0]);
                 if(tmpSent0 = 0){
                     do P0.resetCombo();
                 }
                 do P0.incCombo();
                 if(P0.getLinesReceived() > tmpSent0){
-                    do P0.getGarbage(P0.getLinesReceived() - tmpSent0);
+                    do P0.addLinesReceived(-tmpSent0);
+                    do P0.getGarbage(map0);
                 }
                 else{
                     let tmpSent0 = tmpSent0 - P0.getLinesReceived();
@@ -161,12 +168,16 @@ class Main {
             }
             if(tmpSent1 > -1){
                 let bIndex1 = bIndex1 + 1;
+                do Memory.deAlloc(block1);
+                let block1 = nextBlock1;
+                let nextBlock1 = Block.new(nextSet1[bIndex1]);
                 if(tmpSent1 = 1){
                     do P1.resetCombo();
                 }
                 do P1.incCombo();
                 if(P1.getLinesReceived() > tmpSent1){
-                    do P1.getGarbage(P1.getLinesReceived() - tmpSent1);
+                    do P1.addLinesReceived(-tmpSent1);
+                    do P1.getGarbage(map1);
                 }
                 else{
                     let tmpSent1 = tmpSent1 - P1.getLinesReceived();
@@ -190,34 +201,26 @@ class Main {
             }
 
             /* tick */
-            do timer.tick(1000);
+            do timer.tick(1);
 
             /* Shuffle if needed */
-            if(bIndex0 > 6){
+            if(bIndex0 > 5){
                 let nextSet0 = Main.Shuffle(timer.getTime());
                 let bIndex0 = 0;
             }
-            if(bIndex1 > 6){
-                let nextSet1 = Main.Shuffle(timer.getTime() + 12345);
+            if(bIndex1 > 5){
+                let nextSet1 = Main.Shuffle(timer.getTime() + 1);
                 let bIndex1 = 0;
             }
 
-            /* renew block & nextBlock */ //noo not here the case where block didnt drop fucking fuck
-            do Memory.deAlloc(block0);
-            do Memory.deAlloc(block1);
-            let block0 = nextBlock0;
-            let block1 = nextBlock1;
-            let nextBlock0 = Block.new(nextSet0[bIndex0]);
-            let nextBlock1 = Block.new(nextSet1[bIndex1]);
-
-            /* check if KO */ //spawn and clearGarbage not yet implemented
-            if(block0.spawn(map0) = false){
+            /* check if KO */ 
+            if(map0.dead() = true){
                 do P1.incKO();
-                do P0.clearGarbage();
+                do P0.clearGarbage(map0);
             }
-            if(block1.spawn(map1) = false){
+            if(map1.dead() = true){
                 do P0.incKO();
-                do P1.clearGarbage();
+                do P1.clearGarbage(map1);
             }
             let KO = (P0.getKO() > 4 | P1.getKO() > 4);
         }
@@ -231,7 +234,7 @@ class Main {
         var int curOption;
         var char key;
 
-        let curOption = 0;
+        let curOption = 1;
         let endGame = 0;
         let pn0 = String.new(20);
         let pn1 = String.new(20);

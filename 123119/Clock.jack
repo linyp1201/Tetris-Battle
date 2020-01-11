@@ -13,6 +13,11 @@ class Clock{
 		return;
 	}
 
+	method void setTime(int newTime){
+		let time = newTime;
+		return;
+	}
+
 	method int getTime(){
 		/* returns time */
 		return time;
