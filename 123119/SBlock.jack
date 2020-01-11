@@ -19,9 +19,13 @@ class SBlock{
 
     // Put into SBlock.jack
 
-    method void S_rotate(map M, int r, int c)
+    method void S_rotate(Map M, Block B)
     {	
       var int type;		
+      var int r; 
+      let r = B.getR();
+      var int c; 
+      let c = B.getC();
           
       if (r> 0) and (c> 0) and (c< 9)
       {
@@ -48,6 +52,8 @@ class SBlock{
           do M.reset(r-1, c+1);
           do M.set(r-2, c-1);
           do M.set(r-1, c-1);
+
+          do B.setR(18);
 
           // after 500ms or click down:
           // do M.reset(r-2, c-1);
@@ -98,6 +104,8 @@ class SBlock{
           do M.reset(r, c);
           do M.set(r-1, c);
           do M.set(r, c-2);
+
+          do B.setC(8);
 
           // after 500ms or click down:
           // do M.reset(r-1, c-1);

@@ -62,7 +62,7 @@ class Playa {
 
     method int getGarbage(Map M){
 		if((linesReceived + M.getHeight()) >= 20)
-			return -1; //dead
+			return -1; //omae wa mou shindeiru
 		
     	return 1;
     }

@@ -126,6 +126,7 @@ class Map{
             {
                 let h = Map.pa(which);
                 let h = 20 - h;
+                return h;
             }
         }
         return h;

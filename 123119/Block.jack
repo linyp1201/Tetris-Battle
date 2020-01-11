@@ -275,6 +275,22 @@ class Block{
     method ZBlock getZ() {
         return Z;
     }
+
+    method int getR(){
+        return r;
+    }
+
+    method int getC(){
+        return c;
+    }
+
+    method void setR(int num){
+        let r= num;
+    }
+
+    method void setC(int num){
+        let c= num;
+    }
 }
 
     
