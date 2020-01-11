@@ -1,7 +1,7 @@
 class Map{
     field Array cells;
     field int dead;
-
+    
     constructor Map new()
     {
         let cells = Array.new(200);
@@ -34,14 +34,15 @@ class Map{
 		return k;
 	}
 
-    method int proc() /*returns how many lines to be eliminated*/
+    method int proc() /* returns how many lines to be eliminated */
     {
-        var int i, row, j;
+        var int row;
         var int count;
         var int done;
+        var int tmp;
+        var int i,j;
         var boolean FULL;
-        
-        
+    
         let count = 0;
         let row = 19;
         let done = 0;
@@ -63,30 +64,72 @@ class Map{
             }
             let row = row - 1;
         }
-        
         /* move */
+        let tmp = count;
+        while(tmp > 0)
+        {
+            let i = 19;
+            while(i > 0)
+            {
+                let j = 0;
+                while(j<10)
+                {
+                    let cells[i*10+j] = cells[i*10+j-10];
+                    let j = j + 1;
+                }
+                let i = i - 1;
+            }
+            let j = 0;
+            while(j<10)
+            {
+                let cells[j] = 0;
+                let j = j + 1;
+            }
+            let tmp = tmp - 1;
+        }
+		return count;
+    }
+    /*
+    function void eliminate()
+    {
+        var int  i ,j;
         let i = 19;
-        while(i>(19-count-1))
+        while(i > 0)
         {
             let j = 0;
             while(j<10)
             {
-                if(i-count > -1)
-                {
-                    let cells[i*10+j] = cells[(i-count)*10+j];
-                    let cells[(i-count)*10+j] = 0;
-                }
-                else
-                {
-                    let cells[i*10+j] = 0;     
-                }
-                let j = j+1;
+                let cells[i*10+j] = cells[i*10+j-10];
+                let j = j + 1;
             }
-            let i = i-1;
+            let i = i - 1;
         }
-		return count;
+        let j = 0;
+        while(j<10)
+        {
+            let cells[j] = 0;
+            let j = j + 1;
+        }
+        
+        return;
     }
+    */
 
+    method int getHeight()
+    {
+        var int which;
+        var int h;
+        let which = 0;
+        while(which < 200)
+        {
+            if(cells[which] > 0)
+            {
+                let h = Map.pa(which);
+                let h = 20 - h;
+            }
+        }
+        return h;
+    }
     method boolean dead()
     {
         var int i;

@@ -1,5 +1,5 @@
 function Playa.new 0
-push constant 7
+push constant 8
 call Memory.alloc 1
 pop pointer 0
 push argument 0
@@ -16,7 +16,17 @@ push constant 0
 pop this 5
 push constant 0
 pop this 6
+call Map.new 0
+pop this 7
 push pointer 0
+return
+function Playa.dispose 0
+push argument 0
+pop pointer 0
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
+push constant 0
 return
 function Playa.addLinesSent 0
 push argument 0

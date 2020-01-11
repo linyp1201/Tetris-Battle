@@ -6,8 +6,8 @@ class Playa {
 	field int linesReceived;
 	field int KO;
 	field int combo;
-	field int stackHeight;
-
+	field int garbageHeight;
+	
 	constructor Playa new(int ID, String name)
 	{
 		let ID = ID;
@@ -20,53 +20,81 @@ class Playa {
 		return this;
 	}
 
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+
 	method void addLinesSent(int lines){
-		// add lines to linesSent
+		let linesSent = linesSent + lines;
 		return;
 	}
 
     method void resetLinesReceived(){
-    	// linesReceived = 0
+    	let linesReceived = 0;
     	return;
     }
     method void addLinesReceived(int lines){
-    	// add lines to linesReceived
+    	let linesReceived = linesReceived + lines;
     	return;
     }
     method int getLinesReceived(){
-    	// return linesReceived
-    	return 0;
+    	return linesReceived;
     }
 
     method void resetCombo(){
-    	// combo = 0
-    	return;
+    	let combo = 0;
     }
     method void incCombo(){
-    	// combo += 1
-    	return;
+    	let combo = combo + 1;
     }
     method int getCombo(){
-    	// return combo;
-    	return 0;
+    	return combo;
     }
 
     method void incKO(){
-    	// KO +=1
+    	let KO = KO + 1;
     	return;
     }
     method int getKO(){
-    	// return KO
-    	return 0;
+    	return KO;
     }
 
-    method void getGarbage(){
-    	// process getting garbage
-    	return;
+    method int getGarbage(Map M){
+		if((linesReceived + M.getHeight()) >= 20)
+			return -1; //dead
+		
+    	return 1;
     }
     method void clearGarbage(){
-    	// process clearing garbage after KO
+		/* 林芸平是先知吧！！！*/
+		var int tmp;
+    	let tmp = garbageHeight;
+        while(tmp > 0)
+        {
+            let i = 19;
+            while(i > 0)
+            {
+                let j = 0;
+                while(j<10)
+                {
+                    let cells[i*10+j] = cells[i*10+j-10];
+                    let j = j + 1;
+                }
+                let i = i - 1;
+            }
+            let j = 0;
+            while(j<10)
+            {
+                let cells[j] = 0;
+                let j = j + 1;
+            }
+            let tmp = tmp - 1;
+		}
+		garbageHeight = 0;
     	return;
-    }
+	}
+	
+	
 
 }
