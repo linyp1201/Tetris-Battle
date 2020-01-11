@@ -227,6 +227,8 @@ push constant 20
 push local 1
 sub
 pop local 1
+push local 1
+return
 label IF_FALSE0
 goto WHILE_EXP0
 label WHILE_END0
