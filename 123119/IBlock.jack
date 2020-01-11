@@ -48,6 +48,11 @@ class IBlock{
                 do M.set(r-1, c);
                 do M.set(r-2, c);
                 do M.set(r-3, c);
+
+                // after 500ms or click down:
+                // do M.reset(r-3, c);
+                // do M.set(r+1, c);
+                // outside loop r+1               
             }
             else	// r= 0, 1, 2, 3	
             {
@@ -71,6 +76,11 @@ class IBlock{
                 do M.set(1, c);
                 do M.set(2, c);
                 do M.set(3, c);
+
+                // after 500ms or click down:
+                //do M.reset(0, c);
+                //do M.set(4, c);
+                // outside loop r+1 
             }
         }
 
@@ -89,6 +99,19 @@ class IBlock{
                 do M.set(r, c+1);
                 do M.set(r, c+2);
                 do M.set(r, c+3);
+
+                // after 500ms or click down:
+                // do M.reset(r, c);
+                // do M.reset(r, c+1);
+                // do M.reset(r, c+2);
+                // do M.reset(r, c+3);
+                // do M.set(r+1, c);
+                // do M.set(r+1, c+1);
+                // do M.set(r+1, c+2);
+                // do M.set(r+1, c+3);
+                // outside loop r+1 
+
+                
             }
             else	// c= 6, 7, 8, 9	
             {
@@ -112,6 +135,17 @@ class IBlock{
                 do M.set(r, 7);
                 do M.set(r, 8);
                 do M.set(r, 9);
+
+                // after 500ms or click down:
+                // do M.reset(r, 6);
+                // do M.reset(r, 7);
+                // do M.reset(r, 8);
+                // do M.reset(r, 9);
+                // do M.set(r+1, 6);
+                // do M.set(r+1, 7);
+                // do M.set(r+1, 8);
+                // do M.set(r+1, 9);
+                // outside loop r+1 
             }
         }
 

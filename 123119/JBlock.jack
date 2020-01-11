@@ -60,6 +60,17 @@ class JBlock{
                 do M.reset(r, 1);
                 do M.set(r, 0);
                 do M.set(r+1, 2);
+
+                // after 500ms or click down:
+                // do M.reset(r, 0);
+                // do M.reset(r+1, 0);
+                // do M.reset(r+1, 1);
+                // do M.reset(r+1 ,2);
+                // do M.set(r+1, 0);
+                // do M.set(r+2, 1);
+                // do M.set(r+2, 1);
+                // do M.set(r+2 ,2);
+                // outside loop r+1 
             }
             else
             {
@@ -72,6 +83,17 @@ class JBlock{
                 do M.reset(r, c+1);
                 do M.set(r, c-1);
                 do M.set(r+1, c-1);
+
+                // after 500ms or click down:
+                // do M.reset(r, c-1);
+                // do M.reset(r+1, c-1);
+                // do M.reset(r+1, c);
+                // do M.reset(r+1 ,c+1);
+                // do M.reset(r+1, c-1);
+                // do M.reset(r+2, c-1);
+                // do M.reset(r+2, c);
+                // do M.reset(r+2 ,c+1);
+                // outside loop r+1 
             }
         }
 
@@ -88,6 +110,17 @@ class JBlock{
                 do M.reset(1, c+1);
                 do M.set(0, c);
                 do M.set(2, c-1);
+
+                // after 500ms or click down:
+                // do M.reset(0, c-1);
+                // do M.reset(0, c);
+                // do M.reset(1, c-1);
+                // do M.reset(2 ,c-1);
+                // do M.set(1, c-1);
+                // do M.set(1, c);
+                // do M.set(2, c-1);
+                // do M.set(3 ,c-1);
+                // outside loop r+1 
             }
             else
             {
@@ -100,6 +133,17 @@ class JBlock{
                 do M.reset(r+1, c+1);
                 do M.set(r-1, c-1);
                 do M.set(r-1, c);
+
+                // after 500ms or click down:
+                // do M.reset(r-1, c-1);
+                // do M.reset(r-1, c);
+                // do M.reset(r, c-1);
+                // do M.reset(r+1 ,c-1);
+                // do M.set(r, c-1);
+                // do M.set(r, c);
+                // do M.set(r+1, c-1);
+                // do M.set(r+2 ,c-1);
+                // outside loop r+1 
             }
         }
 
@@ -116,6 +160,18 @@ class JBlock{
                 do M.reset(r+1, 8);
                 do M.set(r, 9);
                 do M.set(r-1, 7);
+
+                // after 500ms or click down:
+                // do M.reset(r-1, 7);
+                // do M.reset(r-1, 8);
+                // do M.reset(r-1, 9);
+                // do M.reset(r ,9);
+                // do M.set(r, 7);
+                // do M.set(r, 8);
+                // do M.set(r, 9);
+                // do M.set(r+1 ,9);
+                // outside loop r+1
+
             }
             else
             {
@@ -128,6 +184,17 @@ class JBlock{
                 do M.reset(r+1, c-1);
                 do M.set(r-1, c+1);
                 do M.set(r, c+1);
+
+                // after 500ms or click down:
+                // do M.reset(r-1, c-1);
+                // do M.reset(r-1, c);
+                // do M.reset(r-1, c+1);
+                // do M.reset(r ,c+1);
+                // do M.set(r, c-1);
+                // do M.set(r, c);
+                // do M.set(r, c+1);
+                // do M.set(r+1 ,c+1);
+                // outside loop r+1
             }
         }
 
@@ -144,6 +211,7 @@ class JBlock{
                 do M.reset(18, c);
                 do M.set(19, c);
                 do M.set(17, c+1);
+
             }
             else
             {
@@ -156,6 +224,17 @@ class JBlock{
                 do M.reset(r-1, c);
                 do M.set(r+1, c);
                 do M.set(r+1, c+1);
+
+                // after 500ms or click down:
+                // do M.reset(r-1, c+1);
+                // do M.reset(r, c+1);
+                // do M.reset(r+1, c+1);
+                // do M.reset(r+1 ,c);
+                // do M.set(r, c-1);
+                // do M.set(r+1, c);
+                // do M.set(r+2, c+1);
+                // do M.set(r+2 ,c);
+                // outside loop r+1
             }
         }
     }
