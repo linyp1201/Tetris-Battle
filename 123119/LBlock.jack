@@ -1,6 +1,6 @@
 class LBlock{
     field int r,c;
-    //the position of this one should be considered carefully or be redefined
+    //the position of this one should be considered carefully | be redefined
     constructor LBlock new(Map A)
     {
         let r = 1;
@@ -19,32 +19,36 @@ class LBlock{
 
     // Put into LBlock.jack
 
-    method void L_rotate(map M, int r, int c)
+    method void L_rotate(Map M, Block B)
     {	
       var int type;
+      var int r; 
+      var int c; 
+      let r = B.getR();
+      let c = B.getC();
       
-      if (r> 0) and (r< 19) and (c< 9)
+      if ((r> 0) & (r< 19) & (c< 9))
       {
-        if ( M.cell[(r-1)*10+ c]= 1 ) and ( M.cell[(r-1)*10+ (c+1)]= 1 ) and ( M.cell[r*10+ (c+1)]= 1 ) and ( M.cell[(r+1)*10+ (c+1)]= 1 )
-          let type= 0;
+        if (( M.read(r-1, c)= 1 ) & ( M.read(r-1 ,c+1)= 1 ) & ( M.read(r ,c+1)= 1 ) & ( M.read(r+1 ,c+1)= 1 ))
+          {let type= 0;}
       }
           
-      if (r< 19) and (c> 0) and (c< 9)
+      if ((r< 19) & (c> 0) & (c< 9))
       {
-        if ( M.cell[r*10+ (c+1)]= 1 ) and ( M.cell[(r+1)*10+ (c-1)]= 1 ) and ( M.cell[(r+1)*10+ c]= 1 ) and ( M.cell[(r+1)*10+ (c+1)]= 1 )
-          let type= 1;
+        if (( M.read(r ,c+1)= 1 ) & ( M.read(r+1 ,c-1)= 1 ) & ( M.read(r+1 ,c)= 1 ) & ( M.read(r+1 ,c+1)= 1 ))
+          {let type= 1;}
       }			
           
-      if (r> 0) and (r< 19) and (c> 0)
+      if ((r> 0) & (r< 19) & (c> 0))
       {
-        if ( M.cell[(r-1)*10+ (c-1)]= 1 ) and ( M.cell[r*10+ (c-1)]= 1 ) and ( M.cell[(r+1)*10+ (c-1)]= 1 ) and ( M.cell[(r+1)*10+ c]= 1 )
-          let type= 2;
+        if (( M.read(r-1 ,c-1)= 1 ) & ( M.read(r ,c-1)= 1 ) & ( M.read(r+1, c-1)= 1 ) & ( M.read(r+1 ,c)= 1 ))
+          {let type= 2;}
       }
 
-      if (r> 0) and (c> 0) and (c< 9)
+      if ((r> 0) & (c> 0) & (c< 9))
       {
-        if ( M.cell[(r-1)*10+ (c-1)]= 1 ) and ( M.cell[(r-1)*10+ c]= 1 ) and ( M.cell[(r-1)*10+ (c+1)]= 1 ) and ( M.cell[r*10+ (c-1)]= 1 )
-          let type= 3;
+        if (( M.read(r-1 ,c-1)= 1 ) & ( M.read(r-1 ,c)= 1 ) & ( M.read(r-1 ,c+1)= 1 ) & ( M.read(r ,c-1)= 1 ))
+          {let type= 3;}
       }
 
       if (type= 0)
@@ -52,8 +56,8 @@ class LBlock{
         if (c= 0)
         {
           // cannot collide w/ others
-          if ( M.cell[r*10+ 2]= 1 ) or ( M.cell[(r+1)*10+ 0]= 1 ) or ( M.cell[(r+1)*10+ 2]= 1 )
-            break;
+          if (( M.read(r ,2)= 1 ) | ( M.read(r+1 ,0)= 1 ) | ( M.read(r+1 ,2)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r-1, 0);
@@ -62,18 +66,43 @@ class LBlock{
           do M.set(r, 2);
           do M.set(r+1, 0);
           do M.set(r+1, 2);
+
+          do B.setC(1);
+
+          // after 500ms or click down:
+          // do M.reset(r, 2);
+          // do M.reset(r+1, 2);
+          // do M.reset(r+1, 1);
+          // do M.reset(r+1 ,0);
+          // do M.set(r+1, 2);
+          // do M.set(r+2, 2);
+          // do M.set(r+2, 1);
+          // do M.set(r+2 ,0);
+          // outside loop r+1
         }
         else
         {
           // cannot collide w/ others
-          if ( M.cell[(r+1)*10+ (c-1)]= 1 ) or ( M.cell[(r+1)*10+ c]= 1 )
-            break;
+          if (( M.read(r+1 ,c-1)= 1 ) | ( M.read(r+1 ,c)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r-1, c);
           do M.reset(r-1, c+1);
           do M.set(r+1, c-1);
           do M.set(r+1, c);
+
+          // after 500ms | click down:
+          // do M.reset(r, c+1);
+          // do M.reset(r+1, c-1);
+          // do M.reset(r+1, c);
+          // do M.reset(r+1 ,c+1);
+          // do M.set(r+1, c+1);
+          // do M.set(r+2, c-1);
+          // do M.set(r+2, c);
+          // do M.set(r+2 ,c+1);
+          // outside loop r+1
+
         }
       }
 
@@ -82,8 +111,8 @@ class LBlock{
         if (r= 0)
         {
           // cannot collide w/ others
-          if ( M.cell[0*10+ (c-1)]= 1 ) or ( M.cell[2*10+ (c-1)]= 1 ) or ( M.cell[2*10+ c]= 1 )
-            break;
+          if (( M.read(0 ,c-1)= 1 ) | ( M.read(2 ,c-1)= 1 ) | ( M.read(2 ,c)= 1 ))
+            {return;}
 
           // implement
           do M.reset(0, c+1);
@@ -92,27 +121,54 @@ class LBlock{
           do M.set(0, c-1);
           do M.set(2, c-1);
           do M.set(2, c);
+
+          do B.set(1);
+
+
+          // after 500ms | click down:
+          // do M.reset(0, c-1);
+          // do M.reset(1, c-1);
+          // do M.reset(2, c-1);
+          // do M.reset(2 ,c);
+          // do M.set(1, c-1);
+          // do M.set(2, c-1);
+          // do M.set(3, c-1);
+          // do M.set(3 ,c);
+          // outside loop r+1
         }
         else
         {
           // cannot collide w/ others
-          if ( M.cell[(r-1)*10+ (c-1)]= 1 ) or ( M.cell[r*10+ (c-1)]= 1 )
-            break;
+          if (( M.read(r-1 ,c-1)= 1 ) | ( M.read(r ,c-1)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r, c+1);
           do M.reset(r+1, c+1);
           do M.set(r-1, c-1);
           do M.set(r, c-1);
+
+          // after 500ms | click down:
+          // do M.reset(r-1, c-1);
+          // do M.reset(r, c-1);
+          // do M.reset(r+1, c-1);
+          // do M.reset(r+1 ,c);
+          // do M.set(r, c-1);
+          // do M.set(r+1, c-1);
+          // do M.set(r+2, c-1);
+          // do M.set(r+2 ,c);
+          // outside loop r+1
+
         }
       }
 
       if (type= 2)
       {	
         if (c= 9)
+        {
           // cannot collide w/ others
-          if ( M.cell[(r-1)*10+ 7]= 1 ) or ( M.cell[(r-1)*10+ 9]= 1 ) or ( M.cell[r*10+ 7]= 1 )
-            break;
+          if (( M.read(r-1 ,7)= 1 ) | ( M.read(r-1 ,9)= 1 ) | ( M.read(r ,7)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r, 8);
@@ -121,18 +177,43 @@ class LBlock{
           do M.set(r-1, 7);
           do M.set(r-1, 9);
           do M.set(r, 7);
+
+          do B.setC(8);
+
+          // after 500ms or click down:
+          // do M.reset(r-1, 7);
+          // do M.reset(r-1, 8);
+          // do M.reset(r-1, 9);
+          // do M.reset(r ,7);
+          // do M.set(r, 7);
+          // do M.set(r, 8);
+          // do M.set(r, 9);
+          // do M.set(r+1 ,7);
+          // outside loop r+1
         }
         else
         {
           // cannot collide w/ others
-          if ( M.cell[(r-1)*10+ c]= 1 ) or ( M.cell[(r-1)*10+ (c+1)]= 1 )
-            break;
+          if (( M.read(r-1 ,c)= 1 ) | ( M.read(r-1 ,c+1)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r+1, c-1);
           do M.reset(r+1, c);
           do M.set(r-1, c);
           do M.set(r-1, c+1);
+
+          // after 500ms | click down:
+          // do M.reset(r-1, c-1);
+          // do M.reset(r-1, c);
+          // do M.reset(r-1, c+1);
+          // do M.reset(r ,c-1);
+          // do M.set(r, c-1);
+          // do M.set(r, c);
+          // do M.set(r, c+1);
+          // do M.set(r+1, c-1);
+          // outside loop r+1
+
         }
       }
 
@@ -141,8 +222,8 @@ class LBlock{
         if (r= 19)
         {
           // cannot collide w/ others
-          if ( M.cell[17*10+ c]= 1 ) or ( M.cell[17*10+ (c+1)]= 1 ) or ( M.cell[19*10+ (c+1)]= 1 )
-            break;
+          if (( M.read(17 ,c)= 1 ) | ( M.read(17 ,c+1)= 1 ) | ( M.read(19 ,c+1)= 1 ))
+            {return;}
 
           // implement
           do M.reset(18, c-1);
@@ -151,22 +232,36 @@ class LBlock{
           do M.set(17, c);
           do M.set(17, c+1);
           do M.set(19, c+1);
+          
+          do B.setR(18);
+          
         }
         else
         {
           // cannot collide w/ others
-          if ( M.cell[r*10+ (c+1)]= 1 ) or ( M.cell[(r+1)*10+ (c+1)]= 1 )
-            break;
+          if (( M.read(r ,c+1)= 1 ) | ( M.read(r+1 ,c+1)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r-1, c-1);
           do M.reset(r, c-1);
           do M.set(r, c+1);
           do M.set(r+1, c+1);
+
+          // after 500ms | click down:
+          // do M.reset(r-1, c);
+          // do M.reset(r-1, c+1);
+          // do M.reset(r, c+1);
+          // do M.reset(r+1 ,c+1);
+          // do M.set(r, c);
+          // do M.set(r, c+1);
+          // do M.set(r+1, c+1);
+          // do M.set(r+2 ,c+1);
+          // outside loop r+1
         }
       }
 
-
+    return ;
     }
 
 }

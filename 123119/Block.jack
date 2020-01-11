@@ -1,0 +1,296 @@
+class Block{
+    static Map A;
+    static int r;
+    static int c;
+    static Array cells;
+    static int type;
+    field IBlock I;
+    field JBlock J;
+    field LBlock L;
+    field OBlock O;
+    field SBlock S;
+    field TBlock T;
+    field ZBlock Z;
+    
+    constructor Block new(Map Map_A,int row,column,block_type){
+        let A = Map_A;
+        let r = row;
+        let c = column;
+        let type = block_type;
+    }
+
+    method void create_block(){
+        if (type = 0){
+            let O = OBlock.new(A,r,c);
+            
+        }
+        if (type = 1){
+            let I = IBlock.new(A,r,c);
+            
+        }
+        if (type = 2){
+            let Z = ZBlock.new(A,r,c);
+            
+        }
+        if (type = 3){
+            let S = SBlock.new(A,r,c);
+            
+        }
+        if (type = 4){
+            let T = TBlock.new(A,r,c);
+            
+        }
+        if (type = 5){
+            let J = JBlock.new(A,r,c);
+            
+        }
+        if (type = 6){
+            let L = LBlock.new(A,r,c);
+            
+        }
+        return;
+    }
+
+    method void down(){
+        if (type = 0) {
+            O.clear(A,r,c)
+            O.dispose()
+            let O = OBlock.new(A,r+1,c)
+        }
+        if (type = 1){
+            I.clear(A,r,c)
+            I.dispose()
+            let I = IBlock.new(A,r+1,c)
+        }
+        if (type = 2){
+            Z.clear(A,r,c)
+            Z.dispose()
+            let Z = ZBlock.new(A,r+1,c)
+        }
+        if (type = 3){
+            S.clear(A,r,c)
+            S.dispose()
+            let S = SBlock.new(A,r+1,c)
+        }
+        if (type = 4){
+            T.clear(A,r,c)
+            T.dispose()
+            let T = TBlock.new(A,r+1,c)
+        }
+        if (type = 5){
+            J.clear(A,r,c)
+            J.dispose()
+            let J = JBlock.new(A,r+1,c)
+        }
+        if (type = 6){
+            L.clear(A,r,c)
+            L.dispose()
+            let L = LBlock.new(A,r+1,c)
+        }
+
+        let r = r+1;
+
+        return;
+    }
+
+    method void left(){
+        if (type = 0) {
+            O.clear(A,r,c)
+            O.dispose()
+            let O = OBlock.new(A,r,c-1)
+        }
+        if (type = 1){
+            I.clear(A,r,c)
+            I.dispose()
+            let I = IBlock.new(A,r,c-1)
+        }
+        if (type = 2){
+            Z.clear(A,r,c)
+            Z.dispose()
+            let Z = ZBlock.new(A,r,c-1)
+        }
+        if (type = 3){
+            S.clear(A,r,c)
+            S.dispose()
+            let S = SBlock.new(A,r,c-1)
+        }
+        if (type = 4){
+            T.clear(A,r,c)
+            T.dispose()
+            let T = TBlock.new(A,r,c-1)
+        }
+        if (type = 5){
+            J.clear(A,r,c)
+            J.dispose()
+            let J = JBlock.new(A,r,c-1)
+        }
+        if (type = 6){
+            L.clear(A,r,c)
+            L.dispose()
+            let L = LBlock.new(A,r,c-1)
+        }
+
+        let c = c-1
+        return;
+    }
+
+    method void right(){
+        if (type = 0) {
+            O.clear(A,r,c)
+            O.dispose()
+            let O = OBlock.new(A,r,c+1)
+        }
+        if (type = 1){
+            I.clear(A,r,c)
+            I.dispose()
+            let I = IBlock.new(A,r,c+1)
+        }
+        if (type = 2){
+            Z.clear(A,r,c)
+            Z.dispose()
+            let Z = ZBlock.new(A,r,c+1)
+        }
+        if (type = 3){
+            S.clear(A,r,c)
+            S.dispose()
+            let S = SBlock.new(A,r,c+1)
+        }
+        if (type = 4){
+            T.clear(A,r,c)
+            T.dispose()
+            let T = TBlock.new(A,r,c+1)
+        }
+        if (type = 5){
+            J.clear(A,r,c)
+            J.dispose()
+            let J = JBlock.new(A,r,c+1)
+        }
+        if (type = 6){
+            L.clear(A,r,c)
+            L.dispose()
+            let L = LBlock.new(A,r,c+1)
+        }
+        let c = c+1;
+        return;
+    }
+    
+    function boolean bottomChecker(){
+        var boolean isBottom;
+        var int row;
+        var int column;
+        let column = c+0;
+        let cells = A.getCell()
+        if (type = 0) {
+            let row = r+1;
+            while (row+1 < 19){
+                if (cells[10*(row+1)+c] = 1) | (cells[10*(row+1)+c+1] = 1) {
+                    let isBottom = true;
+                    return isBottom;
+                }
+                let row = row+1;
+            }
+        }
+        if (type = 1){
+            let row = r+0;
+        }
+        if (type = 2){
+            let row = r+1;
+            while (row+1 < 19){
+                if (cells[10*(row)+c] = 1) | (cells[10*(row+1)+c+1] = 1) | (cells[10*(row+1)+c+2] = 1){
+                    let isBottom = true;
+                    return isBottom;
+                }
+                let row = row+1;
+            }
+        }
+        if (type = 3){
+            let row = r;
+        }
+        if (type = 4){
+            let row = r;
+        }
+        if (type = 5){
+            let row = r+1;
+            while (row+1 < 19){
+                if (cells[10*(row+1)+c] = 1) | (cells[10*(row+1)+c+1] = 1) | (cells[10*(row+1)+c+2] = 1){
+                    let isBottom = true;
+                    return isBottom;
+                }
+                let row = row+1;
+            }
+        }
+        if (type = 6){
+            let row = r;
+        }
+    }
+    method void toBottom() {
+
+        while (isBottom = false){
+            if (type = 0) {
+                O.down()
+            }
+            if (type = 1){
+                I.down()
+            }
+            if (type = 2){
+                Z.down()
+            }
+            if (type = 3){
+                S.down()
+            }
+            if (type = 4){
+                T.down()
+            }
+            if (type = 5){
+                J.down()
+            }
+            if (type = 6){
+                L.down()
+            }
+        }
+
+        return;
+    }
+    
+
+    
+    method IBlock getI() {
+        return I;
+    }
+    method JBlock getJ() {
+        return J;
+    }
+    method LBlock getL() {
+        return L;
+    }
+    method OBlock getO() {
+        return O;
+    }
+    method SBlock getS() {
+        return S;
+    }
+    method TBlock getT() {
+        return T;
+    }
+    method ZBlock getZ() {
+        return Z;
+    }
+
+    method int getR(){
+        return r;
+    }
+
+    method int getC(){
+        return c;
+    }
+
+    method void setR(int num){
+        let r= num;
+    }
+
+    method void setC(int num){
+        let c= num;
+    }
+}
+
+    
