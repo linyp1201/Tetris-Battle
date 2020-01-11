@@ -15,6 +15,7 @@ class Map{
       return;
     }
 
+    /* encapsulation: setter and getter */
     method void set(int row, int column) //set (r, c) as 1
     {
         let cells[row*10+column] = 1;
@@ -27,13 +28,19 @@ class Map{
         return;
     }
 
+    method void SET(int row, int column, int toSet) //set (r, c) to whatever you want
+    {
+        let cells[row*10+column] = toSet;
+        return;
+    }
+    
 	method int read(int row, int column)
 	{
 		var int k;
 		let k = cells[row*10+column];
 		return k;
 	}
-
+    /* end for encapsulation */
     method int proc() /* returns how many lines to be eliminated */
     {
         var int row;
