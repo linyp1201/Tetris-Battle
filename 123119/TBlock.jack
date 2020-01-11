@@ -60,6 +60,17 @@ class TBlock{
           do M.reset(r, c+1);
           do M.set(r+1, c-1);
           do M.set(r+2, c);
+
+          // after 500ms or click down:
+          // do M.reset(r, c);
+          // do M.reset(r+1, c-1);
+          // do M.reset(r+1, c);
+          // do M.reset(r+2 ,c);
+          // do M.set(r+1, c);
+          // do M.set(r+2, c-1);
+          // do M.set(r+2, c-1);
+          // do M.set(r+3 ,c);
+          // outside loop r+1
         }
         else
         {
@@ -70,6 +81,17 @@ class TBlock{
           // implement
           do M.reset(r, c+1);
           do M.set(r-1, c);
+
+          // after 500ms or click down:
+          // do M.reset(r-1, c);
+          // do M.reset(r, c-1);
+          // do M.reset(r, c);
+          // do M.reset(r+1 ,c);
+          // do M.set(r, c);
+          // do M.set(r+1, c-1);
+          // do M.set(r+1, c);
+          // do M.set(r+2 ,c);
+          // outside loop r+1
         }
       }
 
@@ -86,6 +108,17 @@ class TBlock{
           do M.reset(r+1, c);
           do M.set(r-1, c-1);
           do M.set(r, c-2);
+
+          // after 500ms or click down:
+          // do M.reset(r-1, c-1);
+          // do M.reset(r, c-2);
+          // do M.reset(r, c-1);
+          // do M.reset(r ,c);
+          // do M.set(r, c-1);
+          // do M.set(r+1, c-2);
+          // do M.set(r+1, c-1);
+          // do M.set(r+1 ,c);
+          // outside loop r+1
         }
         else
         {
@@ -96,6 +129,17 @@ class TBlock{
           // implement
           do M.reset(r+1, c);
           do M.set(r, c+1);
+
+          // after 500ms or click down:
+          // do M.reset(r-1, c);
+          // do M.reset(r, c-1);
+          // do M.reset(r, c);
+          // do M.reset(r ,c+1);
+          // do M.set(r, c);
+          // do M.set(r+1, c-1);
+          // do M.set(r+1, c);
+          // do M.set(r+1 ,c+1);
+          // outside loop r+1
         }
       }
 
@@ -138,6 +182,17 @@ class TBlock{
           do M.reset(r+1, c);
           do M.set(r, c+2);
           do M.set(r+1, c+1);
+
+          // after 500ms or click down:
+          // do M.reset(r, c);
+          // do M.reset(r, c+1);
+          // do M.reset(r, c+2);
+          // do M.reset(r+1 ,c+1);
+          // do M.set(r+1, c);
+          // do M.set(r+1, c+1);
+          // do M.set(r+1, c+2);
+          // do M.set(r+2 ,c+1);
+          // outside loop r+1
         }
         else
         {
@@ -148,6 +203,17 @@ class TBlock{
           // implement
           do M.reset(r-1, c);
           do M.set(r, c-1);
+
+          // after 500ms or click down:
+          // do M.reset(r, c-1);
+          // do M.reset(r, c);
+          // do M.reset(r, c+1);
+          // do M.reset(r+1 ,c);
+          // do M.set(r+1, c-1);
+          // do M.set(r+1, c);
+          // do M.set(r+1, c+1);
+          // do M.set(r+2 ,c);
+          // outside loop r+1
         }
       }
     }
