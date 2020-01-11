@@ -21,8 +21,10 @@ class IBlock{
     {	
         var int type;
         var int r; 
-        let r = B.getR();
         var int c; 
+        var int temp;
+        
+        let r = B.getR();
         let c = B.getC();
 
         if ( M.read(r,c+1) = 1 )
@@ -41,8 +43,8 @@ class IBlock{
             {
                 // cannot collide w/ others
 
-                let flag = ( ( M.read(r-1, c)= 1 ) | ( M.read(r-2, c)= 1 ) );
-                if ( flag | ( M.read(r-3, c)= 1 ) )
+                   
+                if ( ( M.read(r-1, c)= 1 ) | ( M.read(r-2, c)= 1 ) | ( M.read(r-3, c)= 1 ) )
                   {
                       return;
                   }

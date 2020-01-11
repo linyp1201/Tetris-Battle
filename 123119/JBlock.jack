@@ -3,7 +3,7 @@ class JBlock{
 
     constructor JBlock new(Map A)
     {
-        let r = 0;
+        let r = 1;
         let c = 4;
         do A.set(r,c);
         do A.set(r+1,c);
@@ -21,8 +21,8 @@ class JBlock{
     {	
         var int type;
         var int r; 
-        let r = B.getR();
         var int c; 
+        let r = B.getR();
         let c = B.getC();
 
         if ((r> 0) & (r< 19) & (c< 9))

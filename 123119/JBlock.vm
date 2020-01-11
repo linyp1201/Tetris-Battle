@@ -2,7 +2,7 @@ function JBlock.new 0
 push constant 2
 call Memory.alloc 1
 pop pointer 0
-push constant 0
+push constant 1
 pop this 0
 push constant 4
 pop this 1
@@ -46,17 +46,23 @@ call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
-function JBlock.J_rotate 1
+function JBlock.J_rotate 3
 push argument 0
 pop pointer 0
 push argument 2
+call Block.getR 1
+pop local 1
+push argument 2
+call Block.getC 1
+pop local 2
+push local 1
 push constant 0
 gt
-push argument 2
+push local 1
 push constant 19
 lt
 and
-push argument 3
+push local 2
 push constant 9
 lt
 and
@@ -64,38 +70,38 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 add
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
-push argument 3
+push local 1
+push local 2
 push constant 1
 add
-call Map.read 3
-push constant 1
-eq
-and
-push argument 1
-push argument 2
-push constant 1
-add
-push argument 3
 call Map.read 3
 push constant 1
 eq
 and
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
+call Map.read 3
+push constant 1
+eq
+and
+push argument 1
+push local 1
+push constant 1
+add
+push local 2
 push constant 1
 add
 call Map.read 3
@@ -109,14 +115,14 @@ push constant 0
 pop local 0
 label IF_FALSE1
 label IF_FALSE0
-push argument 2
+push local 1
 push constant 19
 lt
-push argument 3
+push local 2
 push constant 0
 gt
 and
-push argument 3
+push local 2
 push constant 9
 lt
 and
@@ -124,18 +130,18 @@ if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
 push argument 1
-push argument 2
-push argument 3
+push local 1
+push local 2
 push constant 1
 sub
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.read 3
@@ -143,19 +149,19 @@ push constant 1
 eq
 and
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 call Map.read 3
 push constant 1
 eq
 and
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 push constant 1
 add
 call Map.read 3
@@ -169,14 +175,14 @@ push constant 1
 pop local 0
 label IF_FALSE3
 label IF_FALSE2
-push argument 2
+push local 1
 push constant 0
 gt
-push argument 2
+push local 1
 push constant 19
 lt
 and
-push argument 3
+push local 2
 push constant 0
 gt
 and
@@ -184,38 +190,38 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
-call Map.read 3
-push constant 1
-eq
-and
-push argument 1
-push argument 2
-push argument 3
-push constant 1
-sub
+push local 2
 call Map.read 3
 push constant 1
 eq
 and
 push argument 1
-push argument 2
+push local 1
+push local 2
+push constant 1
+sub
+call Map.read 3
+push constant 1
+eq
+and
+push argument 1
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.read 3
@@ -229,14 +235,14 @@ push constant 2
 pop local 0
 label IF_FALSE5
 label IF_FALSE4
-push argument 2
+push local 1
 push constant 0
 gt
-push argument 3
+push local 2
 push constant 0
 gt
 and
-push argument 3
+push local 2
 push constant 9
 lt
 and
@@ -244,29 +250,29 @@ if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 call Map.read 3
 push constant 1
 eq
 and
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 add
 call Map.read 3
@@ -274,8 +280,8 @@ push constant 1
 eq
 and
 push argument 1
-push argument 2
-push argument 3
+push local 1
+push local 2
 push constant 1
 add
 call Map.read 3
@@ -295,20 +301,20 @@ eq
 if-goto IF_TRUE8
 goto IF_FALSE8
 label IF_TRUE8
-push argument 3
+push local 2
 push constant 0
 eq
 if-goto IF_TRUE9
 goto IF_FALSE9
 label IF_TRUE9
 push argument 1
-push argument 2
+push local 1
 push constant 0
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
 push constant 2
@@ -323,44 +329,48 @@ push constant 0
 return
 label IF_FALSE10
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
 push constant 1
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 0
 call Map.set 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
 push constant 2
 call Map.set 3
 pop temp 0
+push argument 2
+push constant 1
+call Block.setC 2
+pop temp 0
 goto IF_END9
 label IF_FALSE9
 push argument 1
-push argument 2
-push argument 3
+push local 1
+push local 2
 push constant 1
 sub
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.read 3
@@ -374,33 +384,33 @@ push constant 0
 return
 label IF_FALSE11
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 add
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
-push argument 3
+push local 1
+push local 2
 push constant 1
 add
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
-push argument 3
+push local 1
+push local 2
 push constant 1
 sub
 call Map.set 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.set 3
@@ -413,7 +423,7 @@ eq
 if-goto IF_TRUE12
 goto IF_FALSE12
 label IF_TRUE12
-push argument 2
+push local 1
 push constant 0
 eq
 if-goto IF_TRUE13
@@ -421,7 +431,7 @@ goto IF_FALSE13
 label IF_TRUE13
 push argument 1
 push constant 2
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.read 3
@@ -429,7 +439,7 @@ push constant 1
 eq
 push argument 1
 push constant 0
-push argument 3
+push local 2
 call Map.read 3
 push constant 1
 eq
@@ -442,45 +452,49 @@ return
 label IF_FALSE14
 push argument 1
 push constant 1
-push argument 3
+push local 2
 call Map.reset 3
 pop temp 0
 push argument 1
 push constant 1
-push argument 3
+push local 2
 push constant 1
 add
 call Map.reset 3
 pop temp 0
 push argument 1
 push constant 0
-push argument 3
+push local 2
 call Map.set 3
 pop temp 0
 push argument 1
 push constant 2
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.set 3
 pop temp 0
+push argument 2
+push constant 1
+call Block.setR 2
+pop temp 0
 goto IF_END13
 label IF_FALSE13
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 call Map.read 3
 push constant 1
 eq
@@ -492,35 +506,35 @@ push constant 0
 return
 label IF_FALSE15
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 push constant 1
 add
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.set 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 call Map.set 3
 pop temp 0
 label IF_END13
@@ -531,20 +545,20 @@ eq
 if-goto IF_TRUE16
 goto IF_FALSE16
 label IF_TRUE16
-push argument 3
+push local 2
 push constant 9
 eq
 if-goto IF_TRUE17
 goto IF_FALSE17
 label IF_TRUE17
 push argument 1
-push argument 2
+push local 1
 push constant 9
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
 push constant 7
@@ -559,44 +573,48 @@ push constant 0
 return
 label IF_FALSE18
 push argument 1
-push argument 2
+push local 1
 push constant 8
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
 push constant 8
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 9
 call Map.set 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
 push constant 7
 call Map.set 3
 pop temp 0
+push argument 2
+push constant 8
+call Block.setC 2
+pop temp 0
 goto IF_END17
 label IF_FALSE17
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 add
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
-push argument 3
+push local 1
+push local 2
 push constant 1
 add
 call Map.read 3
@@ -610,33 +628,33 @@ push constant 0
 return
 label IF_FALSE19
 push argument 1
-push argument 2
-push argument 3
+push local 1
+push local 2
 push constant 1
 sub
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 add
 call Map.set 3
 pop temp 0
 push argument 1
-push argument 2
-push argument 3
+push local 1
+push local 2
 push constant 1
 add
 call Map.set 3
@@ -649,7 +667,7 @@ eq
 if-goto IF_TRUE20
 goto IF_FALSE20
 label IF_TRUE20
-push argument 2
+push local 1
 push constant 19
 eq
 if-goto IF_TRUE21
@@ -657,13 +675,13 @@ goto IF_FALSE21
 label IF_TRUE21
 push argument 1
 push constant 19
-push argument 3
+push local 2
 call Map.read 3
 push constant 1
 eq
 push argument 1
 push constant 17
-push argument 3
+push local 2
 push constant 1
 add
 call Map.read 3
@@ -678,43 +696,47 @@ return
 label IF_FALSE22
 push argument 1
 push constant 18
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.reset 3
 pop temp 0
 push argument 1
 push constant 18
-push argument 3
+push local 2
 call Map.reset 3
 pop temp 0
 push argument 1
 push constant 19
-push argument 3
+push local 2
 call Map.set 3
 pop temp 0
 push argument 1
 push constant 17
-push argument 3
+push local 2
 push constant 1
 add
 call Map.set 3
 pop temp 0
+push argument 2
+push constant 18
+call Block.setR 2
+pop temp 0
 goto IF_END21
 label IF_FALSE21
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 call Map.read 3
 push constant 1
 eq
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 push constant 1
 add
 call Map.read 3
@@ -728,33 +750,33 @@ push constant 0
 return
 label IF_FALSE23
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 push constant 1
 sub
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 sub
-push argument 3
+push local 2
 call Map.reset 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 call Map.set 3
 pop temp 0
 push argument 1
-push argument 2
+push local 1
 push constant 1
 add
-push argument 3
+push local 2
 push constant 1
 add
 call Map.set 3
