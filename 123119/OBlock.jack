@@ -42,7 +42,7 @@ class OBlock{
       return ;
     }
     method void left(Map M, Block B)
-{
+    {
 	
         var int r; 
 	      var int c; 
@@ -50,23 +50,23 @@ class OBlock{
         let c= B.getC();
 
 
-	if (c= 0)
-	{
-		return;
-	}
+      if (c= 0)
+      {
+        return;
+      }
 
-	if ( (M.read(r, c-1)= 0) & (M.read(r+1, c-1)= 0) )
-	{
-		do M.set(r, c-1);
-		do M.set(r+1, c-1);
-		do M.reset(r, c+1);
-		do M.reset(r+1, c+1);
+      if ( (M.read(r, c-1)= 0) & (M.read(r+1, c-1)= 0) )
+      {
+        do M.set(r, c-1);
+        do M.set(r+1, c-1);
+        do M.reset(r, c+1);
+        do M.reset(r+1, c+1);
 
-		do B.setC(c-1);
-	}
+        do B.setC(c-1);
+      }
 
-	return;	
-}
+      return;	
+    }
 
 method void right(Map M, Block B)
 {

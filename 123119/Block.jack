@@ -3,6 +3,7 @@ class Block{
     field int r;
     field int c;
     field int type;
+    field boolean last; // to memorize whether last valid mvt is rotation
     field IBlock I;
     field JBlock J;
     field LBlock L;
@@ -16,6 +17,7 @@ class Block{
         let r = row;
         let c = column;
         let type = block_type;
+        let last = false;
         return this;
     }
 
@@ -143,7 +145,7 @@ class Block{
         }
         return;
     }
-    /* cuz jack sucks, cannot call method in another method
+    
     method boolean bottomChecker(){
         var boolean isBottom;
         if (type = 0) {
@@ -169,7 +171,7 @@ class Block{
         }
         return isBottom;
     }
-    */
+
         
     method void toBottom() {
         var boolean flag;
@@ -263,6 +265,60 @@ class Block{
 
     method void setC(int num){
         let c= num;
+        return;
+    }
+
+    method boolean Tspin(){
+        var int occupied;
+        let occupied = 0;
+        if(~(type = 4)){
+            return false;
+        }
+        else{
+            if(T.T_isbottom(A, this) & last){
+                if(r+1 > 19 | c+1 > 9){
+                    let occupied = occupied + 1;
+                }
+                else{
+                    if(A.read(r+1, c+1)){
+                        let occupied = occupied + 1;
+                    }
+                }
+                if(r+1 > 19 | c-1 < 0){
+                    let occupied = occupied + 1;
+                }
+                else{
+                    if(A.read(r+1, c-1)){
+                        let occupied = occupied + 1;
+                    }
+                }
+                if(r-1 < 0 | c+1 > 9){
+                    let occupied = occupied + 1;
+                }
+                else{
+                    if(A.read(r-1, c+1)){
+                        let occupied = occupied + 1;
+                    }
+                }
+                if(r-1 > 0 | c-1 < 0){
+                    let occupied = occupied + 1;
+                }
+                else{
+                    if(A.read(r-1, c-1)){
+                        let occupied = occupied + 1;
+                    }
+                }
+                if(occupied > 2){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    method void setLast(boolean b){
+        /* set last to b */
+        let last = b;
         return;
     }
 }

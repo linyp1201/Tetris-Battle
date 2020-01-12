@@ -520,7 +520,7 @@ call Map.set 3
 pop temp 0
 push argument 2
 push constant 1
-call Block.set 2
+call Block.setR 2
 pop temp 0
 goto IF_END13
 label IF_FALSE13
