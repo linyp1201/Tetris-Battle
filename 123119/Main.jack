@@ -149,7 +149,8 @@ class Main {
         var Map map0, map1;
         //var Array nextSet0, nextSet1;
         var Block block0, block1;
-        var int bIndex0, bIndex1;
+        //var int bIndex0, bIndex1;
+        var int bType0, bType1;
         var int cleared0, cleared1;
         var boolean prev0, prev1;
         var int bonus0, bonus1;
@@ -168,15 +169,19 @@ class Main {
         let P1 = Playa.new(1, pn1);//
         let map0 = Map.new();
         let map1 = Map.new();//
-        let bIndex0 = 1;
-        let bIndex1 = 1;//
+        //let bIndex0 = 1;
+        //let bIndex1 = 1;//
         let prev0 = false;
         let prev1 = false;
 
         //let nextSet0 = Main.Shuffle(timer.getTime());
         //let nextSet1 = Main.Shuffle(timer.getTime() + 99);//
-        let block0 = Block.new(map0, 1, 4, nextSet0[0]);
-        let block1 = Block.new(map1, 1, 4, nextSet1[0]);//
+        do Random.setSeed(0);
+        let bType0 = Random.Randrange(6);
+        do Random.setSeed(1);
+        let bType1 = Random.Randrange(6);
+        let block0 = Block.new(map0, 1, 4, bType0);
+        let block1 = Block.new(map1, 1, 4, bType1);//
         do block0.create_block();
         do block1.create_block();
 
@@ -186,8 +191,8 @@ class Main {
             do map0.showMap(0);
             do map1.showMap(1);
             /* showNextBlock */
-            do Display.showNext(0, nextSet0[bIndex0]);
-            do Display.showNext(1, nextSet1[bIndex1]);
+            //do Display.showNext(0, nextSet0[bIndex0]);
+            //do Display.showNext(1, nextSet1[bIndex1]);
             /* showScores */
             do Display.showScores(P0, P1);
 
@@ -218,9 +223,11 @@ class Main {
             if(cleared0 > -1){
         
                 do block0.dispose();
-                let block0 = Block.new(map0, 0, 4, nextSet0[bIndex0]);
+                do Random.setSeed(timer.getTime());
+                let bType0 = Random.Randrange(6);
+                let block0 = Block.new(map0, 0, 4, bType0);
                 do block0.create_block();
-                let bIndex0 = bIndex0 + 1;
+                //let bIndex0 = bIndex0 + 1;
                 
                 if(cleared0 = 0){
                     do P0.resetCombo();
@@ -255,10 +262,11 @@ class Main {
             if(cleared1 > -1){
                 
                 do block1.dispose();
-                let block1 = Block.new(map1, 0, 4, nextSet1[bIndex1]);
+                do Random.setSeed(timer.getTime()+99);
+                let bType1 = Random.Randrange(6);
+                let block1 = Block.new(map1, 0, 4, bType1);
                 do block1.create_block();
-                let bIndex1 = bIndex1 + 1;
-                
+                //let bIndex1 = bIndex1 + 1;
 
                 if(cleared1 = 0){
                     do P1.resetCombo();
@@ -301,7 +309,8 @@ class Main {
             /* tick */
             do timer.tick(50);
 
-            /* Shuffle if needed */
+            /*
+            // Shuffle if needed
             if(bIndex0 > 6){
                 do nextSet0.dispose();
                 let nextSet0 = Main.Shuffle(timer.getTime());
@@ -312,6 +321,7 @@ class Main {
                 let nextSet1 = Main.Shuffle(timer.getTime() + 99);
                 let bIndex1 = 0;
             }
+            */
 
             /* check if KO */ 
             if(map0.dead() = true){
