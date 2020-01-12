@@ -123,7 +123,7 @@ label IF_END1
 label IF_FALSE0
 push constant 0
 return
-function OBlock.O_left 2
+function OBlock.left 2
 push argument 0
 pop pointer 0
 push argument 2
