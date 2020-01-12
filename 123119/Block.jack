@@ -13,27 +13,14 @@ class Block{
     constructor Block new(Map Map_A,int r,int c,int b_type){
         let last = false;
         let type = b_type;
-        if (type = 0){
-            let O = OBlock.new(Map_A); 
-        }
-        if (type = 1){
-            let I = IBlock.new(Map_A);
-        }
-        if (type = 2){
-            let Z = ZBlock.new(Map_A);
-        }
-        if (type = 3){
-            let S = SBlock.new(Map_A);
-        }
-        if (type = 4){
-            let T = TBlock.new(Map_A);
-        }
-        if (type = 5){
-            let J = JBlock.new(Map_A);
-        }
-        if (type = 6){
-            let L = LBlock.new(Map_A);
-        }
+        let O = OBlock.new(Map_A); 
+        let I = IBlock.new(Map_A);
+        let Z = ZBlock.new(Map_A);
+        let S = SBlock.new(Map_A);
+        let T = TBlock.new(Map_A);
+        let J = JBlock.new(Map_A);
+        let L = LBlock.new(Map_A);
+        
         return this;
     }
 
