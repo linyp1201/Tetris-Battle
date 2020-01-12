@@ -620,7 +620,7 @@ push argument 2
 push local 0
 push constant 1
 add
-call Block.set 2
+call Block.setR 2
 pop temp 0
 label IF_END5
 label IF_FALSE4
