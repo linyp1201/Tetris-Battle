@@ -185,7 +185,7 @@ class IBlock{
     return;
 }
 
-method void right()
+method void right(Map M, Block B)
 {
 
     var int r; 
@@ -236,7 +236,7 @@ method void right()
 	return ;
 }
 
-method void down()
+method void down(Map M , Block B)
 {
 
     var int r; 
@@ -325,4 +325,4 @@ method boolean I_isBottom(Map M, Block B){
     return isbottom;
 }
     
-            }
+}

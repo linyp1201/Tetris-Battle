@@ -154,5 +154,107 @@ class SBlock{
       }
       return ;
     }
-  
+    method void left(Map M, Block B)
+    {
+      
+            var int r; 
+            var int c; 
+            let r= B.getR();
+            let c= B.getC();
+
+      // verdict type 0 or 1
+      // here
+      
+      if (type= 0)
+      {
+        if (c= 1)
+        {
+          return;
+        }
+
+        if ( (M.read(r-1, c-1)= 0) & (M.read(r, c-2)= 0) )
+        {
+          do M.set(r-1, c-1);
+          do M.set(r, c-2);
+          do M.reset(r-1, c+1);
+          do M.reset(r, c);
+
+          do B.setC(c-1);
+        }
+      }
+
+      if (type= 1)
+      {
+        if (c= 1)
+        {
+          return;
+        }
+
+        if ( (M.read(r-1, c-2)= 0) & (M.read(r, c-2)= 0) & (M.read(r+1, c-1)= 0) )
+        {
+          do M.set(r-1, c-2);
+          do M.set(r, c-2);
+          do M.set(r+1, c-1);
+          do M.reset(r-1, c-1);
+          do M.reset(r, c);
+          do M.reset(r+1, c);
+
+          do B.setC(c-1);
+        }
+      }
+
+      return;	
+    }
+
+    method void right(Map M, Block B)
+    {
+      
+            var int r; 
+            var int c; 
+            let r= B.getR();
+            let c= B.getC();
+
+      // verdict type 0 or 1
+      // here
+      
+      if (type= 0)
+      {
+        if (c= 8)
+        {
+          return;
+        }
+
+        if ( (M.read(r-1, c+2)= 0) & (M.read(r, c+1)= 0) )
+        {
+          do M.set(r-1, c+2);
+          do M.set(r, c+1);
+          do M.reset(r-1, c);
+          do M.reset(r, c-1);
+
+          do B.setC(c+1);
+        }
+      }
+
+      if (type= 1)
+      {
+        if (c= 9)
+        {
+          return;
+        }
+
+        if ( (M.read(r-1, c)= 0) & (M.read(r, c+1)= 0) & (M.read(r+1, c+1)= 0) )
+        {
+          do M.set(r-1, c);
+          do M.set(r, c+1);
+          do M.set(r+1, c+1);
+          do M.reset(r-1, c-1);
+          do M.reset(r, c-1);
+          do M.reset(r+1, c);
+
+          do B.setC(c+1);
+        }
+      }
+
+      return;			
+    }
 }

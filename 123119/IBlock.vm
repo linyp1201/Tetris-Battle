@@ -614,9 +614,11 @@ return
 function IBlock.right 2
 push argument 0
 pop pointer 0
-call B.getR 0
+push argument 2
+call Block.getR 1
 pop local 0
-call B.getC 0
+push argument 2
+call Block.getC 1
 pop local 1
 push this 2
 push constant 0
@@ -633,32 +635,36 @@ label IF_TRUE1
 push constant 0
 return
 label IF_FALSE1
+push argument 1
 push local 0
 push local 1
 push constant 1
 add
-call M.read 2
+call Map.read 3
 push constant 0
 eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
+push argument 1
 push local 0
 push local 1
 push constant 1
 add
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 1
 push local 0
 push local 1
 push constant 3
 sub
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 2
 push local 1
 push constant 1
 add
-call B.setC 1
+call Block.setC 2
 pop temp 0
 label IF_FALSE2
 label IF_FALSE0
@@ -677,102 +683,115 @@ label IF_TRUE4
 push constant 0
 return
 label IF_FALSE4
+push argument 1
 push local 0
 push local 1
 push constant 1
 add
-call M.read 2
+call Map.read 3
 push constant 0
 eq
+push argument 1
 push local 0
 push constant 1
 sub
 push local 1
 push constant 1
 add
-call M.read 2
+call Map.read 3
 push constant 0
 eq
 and
+push argument 1
 push local 0
 push constant 2
 sub
 push local 1
 push constant 1
 add
-call M.read 2
+call Map.read 3
 push constant 0
 eq
 and
+push argument 1
 push local 0
 push constant 3
 sub
 push local 1
 push constant 1
 add
-call M.read 2
+call Map.read 3
 push constant 0
 eq
 and
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
+push argument 1
 push local 0
 push local 1
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 1
 push local 0
 push constant 1
 sub
 push local 1
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 1
 push local 0
 push constant 2
 sub
 push local 1
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 1
 push local 0
 push constant 3
 sub
 push local 1
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 1
 push local 0
 push local 1
 push constant 1
 add
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 1
 push local 0
 push constant 1
 sub
 push local 1
 push constant 1
 add
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 1
 push local 0
 push constant 2
 sub
 push local 1
 push constant 1
 add
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 1
 push local 0
 push constant 3
 sub
 push local 1
 push constant 1
 add
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 2
 push local 1
 push constant 1
 add
-call B.setC 1
+call Block.setC 2
 pop temp 0
 label IF_FALSE5
 label IF_FALSE3
@@ -781,9 +800,11 @@ return
 function IBlock.down 2
 push argument 0
 pop pointer 0
-call B.getR 0
+push argument 2
+call Block.getR 1
 pop local 0
-call B.getC 0
+push argument 2
+call Block.getC 1
 pop local 1
 push this 2
 push constant 1
@@ -800,32 +821,36 @@ label IF_TRUE1
 push constant 0
 return
 label IF_FALSE1
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
-call M.read 2
+call Map.read 3
 push constant 0
 eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 1
 push local 0
 push constant 3
 sub
 push local 1
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 2
 push local 0
 push constant 1
 add
-call B.setR 1
+call Block.setR 2
 pop temp 0
 label IF_FALSE2
 label IF_FALSE0
@@ -844,102 +869,115 @@ label IF_TRUE4
 push constant 0
 return
 label IF_FALSE4
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
-call M.read 2
+call Map.read 3
 push constant 0
 eq
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
 push constant 1
 add
-call M.read 2
+call Map.read 3
 push constant 0
 eq
 and
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
 push constant 2
 add
-call M.read 2
+call Map.read 3
 push constant 0
 eq
 and
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
 push constant 3
 add
-call M.read 2
+call Map.read 3
 push constant 0
 eq
 and
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
+push argument 1
 push local 0
 push local 1
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 1
 push local 0
 push local 1
 push constant 1
 add
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 1
 push local 0
 push local 1
 push constant 2
 add
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 1
 push local 0
 push local 1
 push constant 3
 add
-call M.reset 2
+call Map.reset 3
 pop temp 0
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
 push constant 1
 add
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
 push constant 2
 add
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 1
 push local 0
 push constant 1
 add
 push local 1
 push constant 3
 add
-call M.set 2
+call Map.set 3
 pop temp 0
+push argument 2
 push local 0
 push constant 1
 add
-call B.setR 1
+call Block.setR 2
 pop temp 0
 label IF_FALSE5
 label IF_FALSE3
