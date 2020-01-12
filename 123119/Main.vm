@@ -219,34 +219,20 @@ push constant 0
 call Block.setLast 2
 pop temp 0
 label IF_FALSE9
-call timer.getTime 0
-push constant 500
-eq
+push argument 2
+call Block.bottomChecker 1
 if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
-push argument 2
-call Block.down 1
-pop temp 0
-push argument 2
-push constant 0
-call Block.setLast 2
-pop temp 0
-label IF_FALSE10
-push argument 2
-call Block.bottomChecker 1
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
 push argument 1
 call Map.proc 1
 return
-goto IF_END11
-label IF_FALSE11
+goto IF_END10
+label IF_FALSE10
 push constant 1
 neg
 return
-label IF_END11
+label IF_END10
 function Main.Bonus 0
 push argument 0
 push constant 0
@@ -580,6 +566,11 @@ eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
+call block.down 0
+pop temp 0
+push constant 0
+call block.setLast 1
+pop temp 0
 push local 20
 push constant 0
 call Clock.setTime 2

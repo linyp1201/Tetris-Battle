@@ -62,11 +62,6 @@ class Main {
             do block.setLast(false);
         }
 
-        if(timer.getTime() = 500){
-            do block.down();
-            do block.setLast(false);
-        }
-
         if(block.bottomChecker()){
             return map.proc();
         }
@@ -203,6 +198,8 @@ class Main {
             }
 
             if(timer.getTime() = 500){
+                do block.down();
+                do block.setLast(false);
                 do timer.setTime(0);
                 let stop = stop + 1;
             }
