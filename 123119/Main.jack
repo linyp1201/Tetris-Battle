@@ -22,35 +22,49 @@ class Main {
         /* returns map.proc if block goes to bottom */
         
         var int key;
+        var int success;
         
         let key = Keyboard.keyPressed();
         if(ID = 0 & key = 131){ //up:rotate
-            do block.rotate();
+            let success = block.rotate();
+            if(success){
+                do block.setLast(true);
+            }
         }
         if(ID = 1 & key = 87){ //up:rotate
-            do block.rotate();
+            let success = block.rotate();
+            if(success){
+                do block.setLast(true);
+            }
         }
         if(ID = 0 & key = 130){ //left
             do block.left();
+            do block.setLast(false);
         }
         if(ID = 1 & key = 65){ //left
             do block.left();
+            do block.setLast(false);
         }
         if(ID = 0 & key = 133){ //down
             do block.down();
+            do block.setLast(false);
         }
         if(ID = 1 & key = 83){ //down
             do block.down();
+            do block.setLast(false);
         }
         if(ID = 0 & key = 132){ //right
             do block.right();
+            do block.setLast(false);
         }
         if(ID = 1 & key = 68){ //right
             do block.right();
+            do block.setLast(false);
         }
 
         if(timer.getTime() = 500){
             do block.down();
+            do block.setLast(false);
         }
 
         if(block.bottomChecker()){
