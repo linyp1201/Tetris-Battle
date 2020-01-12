@@ -173,8 +173,8 @@ class Main {
 
         let nextSet0 = Main.Shuffle(timer.getTime());
         let nextSet1 = Main.Shuffle(timer.getTime() + 1);//
-        let block0 = Block.new(map0, 0, 4, nextSet0[0]);
-        let block1 = Block.new(map1, 0, 4, nextSet1[0]);//
+        let block0 = Block.new(map0, 1, 4, nextSet0[0]);
+        let block1 = Block.new(map1, 1, 4, nextSet1[0]);//
 
         while(stop < 240 & (~KO)){
 

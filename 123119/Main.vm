@@ -469,7 +469,7 @@ add
 call Main.Shuffle 1
 pop local 5
 push local 2
-push constant 0
+push constant 1
 push constant 4
 push constant 0
 push local 4
@@ -479,7 +479,7 @@ push that 0
 call Block.new 4
 pop local 6
 push local 3
-push constant 0
+push constant 1
 push constant 4
 push constant 0
 push local 5

@@ -127,8 +127,8 @@ push argument 0
 call Playa.getKO 1
 call Output.printInt 1
 pop temp 0
-push constant 17
-push constant 3
+push constant 18
+push constant 4
 call Output.moveCursor 2
 pop temp 0
 push argument 0
@@ -143,8 +143,8 @@ push argument 1
 call Playa.getKO 1
 call Output.printInt 1
 pop temp 0
-push constant 17
-push constant 33
+push constant 18
+push constant 34
 call Output.moveCursor 2
 pop temp 0
 push argument 1
@@ -672,7 +672,7 @@ pop temp 0
 push constant 0
 return
 function Display.showNext 4
-push constant 194
+push constant 199
 pop local 3
 push constant 30
 pop local 2
@@ -681,12 +681,12 @@ pop local 0
 push constant 8
 pop local 1
 push argument 0
-push constant 2
+push constant 1
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push constant 434
+push constant 439
 pop local 3
 label IF_FALSE0
 push argument 1

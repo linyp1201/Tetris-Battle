@@ -26,11 +26,11 @@ class Display{
 		/* shows KO and linesSent */
 		do Output.moveCursor(12, 4);
 		do Output.printInt(P0.getKO());
-		do Output.moveCursor(17, 3);
+		do Output.moveCursor(18, 4);
 		do Output.printInt(P0.getLinesSent());
 		do Output.moveCursor(12, 34);
 		do Output.printInt(P1.getKO());
-		do Output.moveCursor(17, 33);
+		do Output.moveCursor(18, 34);
 		do Output.printInt(P1.getLinesSent());
 		return;
 
@@ -165,13 +165,13 @@ class Display{
 	{
 		var int space, blockSize;
 		var int y, x;
-		let x = 194;
+		let x = 199;
 		let y = 30;
 		let space = 3;
 		let blockSize = 8;
-		if(player = 2)
+		if(player = 1)
 		{
-			let x = 434;
+			let x = 439;
 		}
 
 		if(type = 0) //O
