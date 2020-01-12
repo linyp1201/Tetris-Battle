@@ -173,7 +173,8 @@ class Display{
 		{
 			let x = 439;
 		}
-
+		do Screen.setColor(false);
+		do Screen.drawRectangle(x-3, y-3, x+44, y+44);
 		if(type = 0) //O
 		{
 			do Screen.setColor(true);

@@ -202,6 +202,11 @@ class Map{
                     do Screen.setColor(true);
                     do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
                 }
+                if(cells[i*10+j] = 0)
+                {
+                    do Screen.setColor(false);
+                    do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
+                }
                 let curX = curX + blockSize + space;
                 let j = j + 1;
             }

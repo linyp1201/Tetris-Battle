@@ -464,7 +464,7 @@ call Main.Shuffle 1
 pop local 4
 push local 20
 call Clock.getTime 1
-push constant 1
+push constant 99
 add
 call Main.Shuffle 1
 pop local 5
@@ -572,10 +572,19 @@ eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-call block.down 0
+push local 6
+call Block.down 1
 pop temp 0
+push local 6
 push constant 0
-call block.setLast 1
+call Block.setLast 2
+pop temp 0
+push local 7
+call Block.down 1
+pop temp 0
+push local 7
+push constant 0
+call Block.setLast 2
 pop temp 0
 push local 20
 push constant 0
@@ -593,26 +602,6 @@ gt
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push local 6
-call Block.dispose 1
-pop temp 0
-push local 2
-push constant 0
-push constant 4
-push local 8
-push local 4
-add
-pop pointer 1
-push that 0
-call Block.new 4
-pop local 6
-push local 6
-call Block.create_block 1
-pop temp 0
-push local 8
-push constant 1
-add
-pop local 8
 push local 10
 push constant 0
 eq
@@ -716,26 +705,6 @@ gt
 if-goto IF_TRUE9
 goto IF_FALSE9
 label IF_TRUE9
-push local 7
-call Block.dispose 1
-pop temp 0
-push local 3
-push constant 0
-push constant 4
-push local 9
-push local 5
-add
-pop pointer 1
-push that 0
-call Block.new 4
-pop local 7
-push local 7
-call Block.create_block 1
-pop temp 0
-push local 9
-push constant 1
-add
-pop local 9
 push local 11
 push constant 0
 eq
@@ -885,7 +854,7 @@ call Array.dispose 1
 pop temp 0
 push local 20
 call Clock.getTime 1
-push constant 1
+push constant 99
 add
 call Main.Shuffle 1
 pop local 5

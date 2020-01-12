@@ -689,6 +689,23 @@ label IF_TRUE0
 push constant 439
 pop local 3
 label IF_FALSE0
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push local 3
+push constant 3
+sub
+push local 2
+push constant 3
+sub
+push local 3
+push constant 44
+add
+push local 2
+push constant 44
+add
+call Screen.drawRectangle 4
+pop temp 0
 push argument 1
 push constant 0
 eq

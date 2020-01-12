@@ -172,7 +172,7 @@ class Main {
         let prev1 = false;
 
         let nextSet0 = Main.Shuffle(timer.getTime());
-        let nextSet1 = Main.Shuffle(timer.getTime() + 1);//
+        let nextSet1 = Main.Shuffle(timer.getTime() + 99);//
         let block0 = Block.new(map0, 1, 4, nextSet0[0]);
         let block1 = Block.new(map1, 1, 4, nextSet1[0]);//
         do block0.create_block();
@@ -200,20 +200,22 @@ class Main {
             }
 
             if(timer.getTime() = 500){
-                do block.down();
-                do block.setLast(false);
+                do block0.down();
+                do block0.setLast(false);
+                do block1.down();
+                do block1.setLast(false);
                 do timer.setTime(0);
                 let stop = stop + 1;
             }
 
             /* If toBottom, Calculate combo & sent/received lines ; else add received */
             if(cleared0 > -1){
-
+                /*
                 do block0.dispose();
                 let block0 = Block.new(map0, 0, 4, nextSet0[bIndex0]);
                 do block0.create_block();
                 let bIndex0 = bIndex0 + 1;
-
+                */
                 if(cleared0 = 0){
                     do P0.resetCombo();
                 }
@@ -245,11 +247,12 @@ class Main {
                 do P0.resetLinesReceived();
             }
             if(cleared1 > -1){
-
+                /*
                 do block1.dispose();
                 let block1 = Block.new(map1, 0, 4, nextSet1[bIndex1]);
                 do block1.create_block();
                 let bIndex1 = bIndex1 + 1;
+                */
 
                 if(cleared1 = 0){
                     do P1.resetCombo();
@@ -300,7 +303,7 @@ class Main {
             }
             if(bIndex1 > 6){
                 do nextSet1.dispose();
-                let nextSet1 = Main.Shuffle(timer.getTime() + 1);
+                let nextSet1 = Main.Shuffle(timer.getTime() + 99);
                 let bIndex1 = 0;
             }
 
