@@ -183,7 +183,7 @@ class Map{
         let space = 3;
         let blockSize = 8;
         let frameSize = 4;
-        if(player = 2)
+        if(player = 1)
         {
             let x = 305;
         }

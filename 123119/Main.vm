@@ -594,7 +594,7 @@ if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
 push local 6
-call Memory.deAlloc 1
+call Block.dispose 1
 pop temp 0
 push local 2
 push constant 0
@@ -717,7 +717,7 @@ if-goto IF_TRUE9
 goto IF_FALSE9
 label IF_TRUE9
 push local 7
-call Memory.deAlloc 1
+call Block.dispose 1
 pop temp 0
 push local 3
 push constant 0
