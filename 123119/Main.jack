@@ -121,6 +121,7 @@ class Main {
         return 0;
     }
 
+    /*
     function Array Shuffle(int newSeed){
         var Array next;
         var int index;
@@ -138,6 +139,7 @@ class Main {
         }
         return next;
     }
+    */
 
     function void Play(String pn0, String pn1){
 
@@ -145,7 +147,7 @@ class Main {
 
         var Playa P0, P1;
         var Map map0, map1;
-        var Array nextSet0, nextSet1;
+        //var Array nextSet0, nextSet1;
         var Block block0, block1;
         var int bIndex0, bIndex1;
         var int cleared0, cleared1;
@@ -171,8 +173,8 @@ class Main {
         let prev0 = false;
         let prev1 = false;
 
-        let nextSet0 = Main.Shuffle(timer.getTime());
-        let nextSet1 = Main.Shuffle(timer.getTime() + 99);//
+        //let nextSet0 = Main.Shuffle(timer.getTime());
+        //let nextSet1 = Main.Shuffle(timer.getTime() + 99);//
         let block0 = Block.new(map0, 1, 4, nextSet0[0]);
         let block1 = Block.new(map1, 1, 4, nextSet1[0]);//
         do block0.create_block();
@@ -198,6 +200,10 @@ class Main {
             if(cleared1 > -1){
                 do P1.addLinesSent(cleared1);
             }
+            //
+            do Output.moveCursor(0, 0);
+            do Output.printInt(timer.getTime());
+            //
 
             if(timer.getTime() = 500){
                 do block0.down();
@@ -210,12 +216,12 @@ class Main {
 
             /* If toBottom, Calculate combo & sent/received lines ; else add received */
             if(cleared0 > -1){
-                /*
+        
                 do block0.dispose();
                 let block0 = Block.new(map0, 0, 4, nextSet0[bIndex0]);
                 do block0.create_block();
                 let bIndex0 = bIndex0 + 1;
-                */
+                
                 if(cleared0 = 0){
                     do P0.resetCombo();
                 }
@@ -247,12 +253,12 @@ class Main {
                 do P0.resetLinesReceived();
             }
             if(cleared1 > -1){
-                /*
+                
                 do block1.dispose();
                 let block1 = Block.new(map1, 0, 4, nextSet1[bIndex1]);
                 do block1.create_block();
                 let bIndex1 = bIndex1 + 1;
-                */
+                
 
                 if(cleared1 = 0){
                     do P1.resetCombo();
@@ -293,7 +299,7 @@ class Main {
             }
 
             /* tick */
-            do timer.tick(1);
+            do timer.tick(50);
 
             /* Shuffle if needed */
             if(bIndex0 > 6){
