@@ -41,7 +41,7 @@ class OBlock{
       }
       return ;
     }
-    method void O_left(Map M, Block B)
+    method void left(Map M, Block B)
 {
 	
         var int r; 
@@ -92,6 +92,33 @@ method void right(Map M, Block B)
 	}
 
 	return;	
-}
+  }
 
-}
+  method boolean O_isBottom(Map M,Block B)
+  {
+      var boolean isbottom;
+      var int r;
+      var int c;
+      let r = B.getR();
+      let c = B.getC();
+      if (r>18)
+      {
+        if ((M.read(r+2,c)=1)|(M.read(r+2,c+1)=1))
+        {
+          let isbottom = true;
+        }
+        else
+        {
+          let isbottom = false;
+        }
+      }
+      else
+      {
+        let isbottom = true;
+      }
+
+      return isbottom;
+  }
+
+  }
+

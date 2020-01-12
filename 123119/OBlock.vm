@@ -123,7 +123,7 @@ label IF_END1
 label IF_FALSE0
 push constant 0
 return
-function OBlock.O_left 2
+function OBlock.left 2
 push argument 0
 pop pointer 0
 push argument 2
@@ -280,4 +280,57 @@ call Block.setC 2
 pop temp 0
 label IF_FALSE1
 push constant 0
+return
+function OBlock.O_isBottom 3
+push argument 0
+pop pointer 0
+push argument 2
+call Block.getR 1
+pop local 1
+push argument 2
+call Block.getC 1
+pop local 2
+push local 1
+push constant 18
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+push local 1
+push constant 2
+add
+push local 2
+call Map.read 3
+push constant 1
+eq
+push argument 1
+push local 1
+push constant 2
+add
+push local 2
+push constant 1
+add
+call Map.read 3
+push constant 1
+eq
+or
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push constant 0
+not
+pop local 0
+goto IF_END1
+label IF_FALSE1
+push constant 0
+pop local 0
+label IF_END1
+goto IF_END0
+label IF_FALSE0
+push constant 0
+not
+pop local 0
+label IF_END0
+push local 0
 return

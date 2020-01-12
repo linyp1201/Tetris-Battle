@@ -459,4 +459,87 @@ method void right(Map M, Block B)
 	
 	return;		
 }
+method boolean L_isBottom(Map M,Block B)
+{
+  var boolean isbottom;
+  var int r;
+  var int c;
+  let r = B.getR();
+  let c = B.getC();
+
+  if (type = 0)
+  {
+    if (r<18)
+        {
+          if ((M.read(r,c)=1)|(M.read(r+2,c+1)=1))
+          {
+            let isbottom = true;
+          }
+          else
+          {
+            let isbottom = false;
+          }
+        }
+    else
+        {
+          let isbottom = true;
+        }
+  }
+  if (type = 1)
+  {
+    if (r<18)
+        {
+          if ((M.read(r+2,c-1)=1)|(M.read(r+2,c)=1)|(M.read(r+2,c+1)=1))
+          {
+            let isbottom = true;
+          }
+          else
+          {
+            let isbottom = false;
+          }
+        }
+    else
+        {
+          let isbottom = true;
+        }
+  }
+  if (type = 2)
+  {
+    if (r<18)
+        {
+          if ((M.read(r+2,c-1)=1)|(M.read(r+2,c)=1))
+          {
+            let isbottom = true;
+          }
+          else
+          {
+            let isbottom = false;
+          }
+        }
+    else
+      {
+        let isbottom = true;
+      }
+  }
+  if (type = 3)
+  {
+    if (r<19)
+        {
+          if ((M.read(r+1,c-1)=1)|(M.read(r,c)=1)|(M.read(r,c+1)=1))
+          {
+              let isbottom = true;
+          }
+          else
+          {
+              let isbottom = false;
+          }
+        }
+    else
+        {
+              let isbottom = true;
+        }
+  }
+
+  return isbottom;
+}
 }

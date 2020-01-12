@@ -257,4 +257,52 @@ class SBlock{
 
       return;			
     }
+
+    method boolean S_isBottom(Map M, Block B)
+    {
+      var int r; 
+      var int c; 
+      var boolean isbottom;
+      let r= B.getR();
+      let c= B.getC();
+
+      if (type = 0)
+      {
+        if (r<19)
+          {
+            if ((M.read(r+1,c-1)=1)|(M.read(r+1,c)=1)|(M.read(r,c+1)=1))
+            {
+              let isbottom = true;
+            }
+            else
+            {
+              let isbottom = false;
+            }
+          }
+        else
+          {
+              let isbottom = true;
+          }
+      }
+      if (type = 1)
+      {
+        if (r<18)
+        {
+          if ((M.read(r+1,c-1)=1)|(M.read(r+2,c)=1))
+          {
+            let isbottom = true;
+          }
+          else
+          {
+            let isbottom = false;
+          }
+        }
+        else
+        {
+          let isbottom = true;
+        }
+      }
+
+      return isbottom;
+    }
 }

@@ -18,7 +18,6 @@ class IBlock{
     }
 
     
-
     method void I_rotate (Map M, Block B)
     {	
         var int r; 
@@ -288,7 +287,8 @@ method void down(Map M , Block B)
 }
 
 
-method boolean I_isBottom(Map M, Block B){
+method boolean I_isBottom(Map M, Block B)
+{
     var boolean isbottom;
     var int r;
     var int c;
