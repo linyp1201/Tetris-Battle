@@ -353,7 +353,7 @@ pop local 1
 push constant 4
 pop local 2
 push argument 1
-push constant 2
+push constant 1
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0

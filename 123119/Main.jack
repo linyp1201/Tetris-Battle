@@ -209,7 +209,7 @@ class Main {
             /* If toBottom, Calculate combo & sent/received lines ; else add received */
             if(cleared0 > -1){
 
-                do Memory.deAlloc(block0);
+                do block0.dispose();
                 let block0 = Block.new(map0, 0, 4, nextSet0[bIndex0]);
                 do block0.create_block();
                 let bIndex0 = bIndex0 + 1;
@@ -246,7 +246,7 @@ class Main {
             }
             if(cleared1 > -1){
 
-                do Memory.deAlloc(block1);
+                do block1.dispose();
                 let block1 = Block.new(map1, 0, 4, nextSet1[bIndex1]);
                 do block1.create_block();
                 let bIndex1 = bIndex1 + 1;
