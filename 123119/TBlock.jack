@@ -6,10 +6,10 @@ class TBlock{
     {
         let r = 0;
         let c = 4;
-        do A.set(r,c);
+        /*do A.set(r,c);
         do A.set(r,c+1);
         do A.set(r,c-1);
-        do A.set(r+1, c);
+        do A.set(r+1, c);*/
         return this;
     }
 
