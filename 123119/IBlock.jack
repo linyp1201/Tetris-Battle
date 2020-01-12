@@ -1,6 +1,6 @@
 class IBlock{
     field int r,c;
-
+    field int type;	
     constructor IBlock new(Map A)
     {
         let r = 0;
@@ -19,7 +19,6 @@ class IBlock{
 
     method void I_rotate (Map M, Block B)
     {	
-        var int type;
         var int r; 
         var int c; 
         var int temp;

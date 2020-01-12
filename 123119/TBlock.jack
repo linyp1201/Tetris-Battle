@@ -1,5 +1,6 @@
 class TBlock{
     field int r,c;
+    field int type;
     //the position of this one should be considered carefully | be redefined
     constructor TBlock new(Map A)
     {
@@ -21,7 +22,7 @@ class TBlock{
 
     method void T_rotate(Map M, Block B)
     {	
-      var int type;
+
       var int r; 
       var int c; 
       let r = B.getR();

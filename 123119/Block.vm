@@ -438,11 +438,6 @@ pop temp 0
 label IF_FALSE6
 push constant 0
 return
-function Block.bottomChecker 1
-push argument 0
-pop pointer 0
-push local 0
-return
 function Block.toBottom 2
 push argument 0
 pop pointer 0

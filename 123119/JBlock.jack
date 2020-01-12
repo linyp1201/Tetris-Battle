@@ -1,6 +1,6 @@
 class JBlock{
     field int r,c;
-
+    field int type;	
     constructor JBlock new(Map A)
     {
         let r = 1;
@@ -19,7 +19,7 @@ class JBlock{
 
     method void J_rotate(Map M, Block B)
     {	
-        var int type;
+        
         var int r; 
         var int c; 
         let r = B.getR();
