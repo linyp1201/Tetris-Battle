@@ -26,39 +26,39 @@ class Main {
         
         let key = Keyboard.keyPressed();
         if(ID = 0 & key = 131){ //up:rotate
-            let success = block.rotate();
+            let success = block.rotate(map);
             if(success){
                 do block.setLast(true);
             }
         }
         if(ID = 1 & key = 87){ //up:rotate
-            let success = block.rotate();
+            let success = block.rotate(map);
             if(success){
                 do block.setLast(true);
             }
         }
         if(ID = 0 & key = 130){ //left
-            do block.left();
+            do block.left(map);
             do block.setLast(false);
         }
         if(ID = 1 & key = 65){ //left
-            do block.left();
+            do block.left(map);
             do block.setLast(false);
         }
         if(ID = 0 & key = 133){ //down
-            do block.down();
+            do block.down(map);
             do block.setLast(false);
         }
         if(ID = 1 & key = 83){ //down
-            do block.down();
+            do block.down(map);
             do block.setLast(false);
         }
         if(ID = 0 & key = 132){ //right
-            do block.right();
+            do block.right(map);
             do block.setLast(false);
         }
         if(ID = 1 & key = 68){ //right
-            do block.right();
+            do block.right(map);
             do block.setLast(false);
         }
 
@@ -151,6 +151,7 @@ class Main {
         var Block block0, block1;
         //var int bIndex0, bIndex1;
         var int bType0, bType1;
+        var int bNext0, bNext1;
         var int cleared0, cleared1;
         var boolean prev0, prev1;
         var int bonus0, bonus1;
@@ -177,13 +178,15 @@ class Main {
         //let nextSet0 = Main.Shuffle(timer.getTime());
         //let nextSet1 = Main.Shuffle(timer.getTime() + 99);//
         do Random.setSeed(0);
-        let bType0 = Random.Randrange(6);
+        let bType0 = Random.randRange(6);
         do Random.setSeed(1);
-        let bType1 = Random.Randrange(6);
+        let bType1 = Random.randRange(6);
+        do Random.setSeed(2);
+        let bNext0 = Random.randRange(6);
+        do Random.setSeed(3);
+        let bNext1 = Random.randRange(6);
         let block0 = Block.new(map0, 1, 4, bType0);
         let block1 = Block.new(map1, 1, 4, bType1);//
-        do block0.create_block();
-        do block1.create_block();
 
         while(stop < 240 & (~KO)){
 
@@ -191,8 +194,8 @@ class Main {
             do map0.showMap(0);
             do map1.showMap(1);
             /* showNextBlock */
-            //do Display.showNext(0, nextSet0[bIndex0]);
-            //do Display.showNext(1, nextSet1[bIndex1]);
+            do Display.showNext(0, bNext0);
+            do Display.showNext(1, bNext1);
             /* showScores */
             do Display.showScores(P0, P1);
 
@@ -211,9 +214,9 @@ class Main {
             //
 
             if(timer.getTime() = 500){
-                do block0.down();
+                do block0.down(map0);
                 do block0.setLast(false);
-                do block1.down();
+                do block1.down(map1);
                 do block1.setLast(false);
                 do timer.setTime(0);
                 let stop = stop + 1;
@@ -224,9 +227,9 @@ class Main {
         
                 do block0.dispose();
                 do Random.setSeed(timer.getTime());
-                let bType0 = Random.Randrange(6);
+                let bType0 = bNext0;
+                let bNext0 = Random.randRange(6);
                 let block0 = Block.new(map0, 0, 4, bType0);
-                do block0.create_block();
                 //let bIndex0 = bIndex0 + 1;
                 
                 if(cleared0 = 0){
@@ -263,9 +266,9 @@ class Main {
                 
                 do block1.dispose();
                 do Random.setSeed(timer.getTime()+99);
-                let bType1 = Random.Randrange(6);
+                let bType1 = bNext1;
+                let bNext1 = Random.randRange(6);
                 let block1 = Block.new(map1, 0, 4, bType1);
-                do block1.create_block();
                 //let bIndex1 = bIndex1 + 1;
 
                 if(cleared1 = 0){
