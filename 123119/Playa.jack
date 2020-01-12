@@ -24,11 +24,7 @@ class Playa {
 		do Memory.deAlloc(this);
 		return;
 	}
-
-	method String getName(){
-		return name;
-	}
-
+	
 	method void addLinesSent(int lines){
 		let linesSent = linesSent + lines;
 		return;
@@ -156,12 +152,12 @@ class Playa {
 	/* getter */
 	method int getlinesSent()
 	{
-		return getlinesSent;
+		return linesSent;
 	}
 
 	method int getID()
 	{
-		return ID;
+		return id;
 	}
 
 	method String getName()
