@@ -145,7 +145,7 @@ class Block{
         }
         return;
     }
-    /* cuz jack sucks, cannot call method in another method
+    
     method boolean bottomChecker(){
         var boolean isBottom;
         if (type = 0) {
@@ -171,7 +171,7 @@ class Block{
         }
         return isBottom;
     }
-    */
+
         
     method void toBottom() {
         var boolean flag;

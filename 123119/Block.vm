@@ -440,6 +440,95 @@ pop temp 0
 label IF_FALSE6
 push constant 0
 return
+function Block.bottomChecker 1
+push argument 0
+pop pointer 0
+push this 3
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push this 8
+push this 0
+push pointer 0
+call OBlock.O_isBottom 3
+pop local 0
+label IF_FALSE0
+push this 3
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push this 5
+push this 0
+push pointer 0
+call IBlock.I_isBottom 3
+pop local 0
+label IF_FALSE1
+push this 3
+push constant 2
+eq
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push this 11
+push this 0
+push pointer 0
+call ZBlock.Z_isBottom 3
+pop local 0
+label IF_FALSE2
+push this 3
+push constant 3
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push this 9
+push this 0
+push pointer 0
+call SBlock.S_isBottom 3
+pop local 0
+label IF_FALSE3
+push this 3
+push constant 4
+eq
+if-goto IF_TRUE4
+goto IF_FALSE4
+label IF_TRUE4
+push this 10
+push this 0
+push pointer 0
+call TBlock.T_isBottom 3
+pop local 0
+label IF_FALSE4
+push this 3
+push constant 5
+eq
+if-goto IF_TRUE5
+goto IF_FALSE5
+label IF_TRUE5
+push this 6
+push this 0
+push pointer 0
+call JBlock.J_isBottom 3
+pop local 0
+label IF_FALSE5
+push this 3
+push constant 6
+eq
+if-goto IF_TRUE6
+goto IF_FALSE6
+label IF_TRUE6
+push this 7
+push this 0
+push pointer 0
+call LBlock.L_isBottom 3
+pop local 0
+label IF_FALSE6
+push local 0
+return
 function Block.toBottom 2
 push argument 0
 pop pointer 0
