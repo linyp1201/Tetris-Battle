@@ -123,7 +123,7 @@ class LBlock{
           do M.set(2, c-1);
           do M.set(2, c);
 
-          do B.set(1);
+          do B.setR(1);
 
 
           // after 500ms | click down:
