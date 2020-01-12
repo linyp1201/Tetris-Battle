@@ -239,6 +239,7 @@ class Block{
             if (type = 6){
                 do L.dispose();
             }
+        do Memory.deAlloc(this);
         return;
     }
     
