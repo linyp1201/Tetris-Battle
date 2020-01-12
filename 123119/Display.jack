@@ -21,79 +21,106 @@ class Display{
 		return;
 	}
 
+	function void showScores(Playa P0, Playa P1){
+
+		/* shows KO and linesSent */
+		do Output.moveCursor(12, 4);
+		do Output.printInt(P0.getKO());
+		do Output.moveCursor(17, 3);
+		do Output.printInt(P0.getLinesSent());
+		do Output.moveCursor(12, 34);
+		do Output.printInt(P1.getKO());
+		do Output.moveCursor(17, 33);
+		do Output.printInt(P1.getLinesSent());
+		return;
+
+	}
+
 	function void gameScreen()
 	{
 		/* shows game screen */
 		var int space, blockSize, frameSize;
+		var int text;
 		var int y, x;
-		let x = 60;
+		let x = 65;
 		let y = 8;
 		let space = 3;
 		let blockSize = 8;
 		let frameSize = 4;
+		let text = 0;
 
 		do Screen.clearScreen();
 
-		//p0
-		do Screen.setColor(true);
-		do Screen.drawRectangle(x, y, x+121, y+231);
-		do Screen.drawRectangle(x+128, y+16, x+181, y+69);
-		do Screen.setColor(false);
-		do Screen.drawRectangle(x+frameSize, y+frameSize, x+121-frameSize, y+231-frameSize);
-		do Screen.drawRectangle(x+131, y+19, x+178, y+66);
-		do Output.moveCursor(1, 24);
-		do Output.printString("Next");
-
-		//p1
-		let x = 300;
-		do Screen.setColor(true);
-		do Screen.drawRectangle(x, y, x+121, y+231);
-		do Screen.drawRectangle(x+128, y+16, x+181, y+69);
-		do Screen.setColor(false);
-		do Screen.drawRectangle(x+frameSize, y+frameSize, x+121-frameSize, y+231-frameSize);
-		do Screen.drawRectangle(x+131, y+19, x+178, y+66);
-		do Output.moveCursor(1, 54);
-		do Output.printString("Next");
+		while(x < 306){
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x, y, x+121, y+231);
+			do Screen.drawRectangle(x+128, y+16, x+181, y+69);
+			do Screen.drawRectangle(x-50, y+115, x-8, y+148);
+			do Screen.drawRectangle(x-50, y+182, x-8, y+213);
+			do Screen.setColor(false);
+			do Screen.drawRectangle(x+frameSize, y+frameSize, x+121-frameSize, y+231-frameSize);
+			do Screen.drawRectangle(x+131, y+19, x+178, y+66);
+			do Screen.drawRectangle(x-47, y+118, x-11, y+145);
+			do Screen.drawRectangle(x-47, y+185, x-11, y+210);
+			do Output.moveCursor(1, 25 + text);
+			do Output.printString("Next");
+			do Output.moveCursor(10, 3 + text);
+			do Output.printString("KO:");
+			do Output.moveCursor(15, 2 + text);
+			do Output.printString("LINES");
+			do Output.moveCursor(16, 2 + text );
+			do Output.printString("SENT:");
+			let x = x + 240;
+			let text = 30;
+		}
 
 		return;
 	}
 
-	function void endScreen(Playa p0, Playa p1, Map map0, Map map1){
+	function void endScreen(Playa P0, Playa P1, int h0, int h1){
 		var Playa winner;
+		var int winID;
 		var String name;
 		var int draw;
+		var int key;
 
 		let draw = 1;
 		do Screen.clearScreen();
 
-		if(p0.getKO() > p1.getKO()){
-			let winner = p0;
+		if(P0.getKO() > P1.getKO()){
+			let winner = P0;
+			let winID = 0;
 			let draw = 0;
 		}
-		if(p0.getKO() < p1.getKO()){
-			let winner = p1;
+		if(P0.getKO() < P1.getKO()){
+			let winner = P1;
+			let winID = 1;
 			let draw = 0;
 		}
-		if(p0.getKO() = p1.getKO() & p0.getlinesSent() > p1.getlinesSent()){
-			let winner = p0;
+		if(P0.getKO() = P1.getKO() & P0.getLinesSent() > P1.getLinesSent()){
+			let winner = P0;
+			let winID = 0;
 			let draw = 0;
 		}
-		if(p0.getKO() = p1.getKO() & p0.getlinesSent() < p1.getlinesSent()){
-			let winner = p1;
+		if(P0.getKO() = P1.getKO() & P0.getLinesSent() < P1.getLinesSent()){
+			let winner = P1;
+			let winID = 1;
 			let draw = 0;
 		}
-		if(p0.getKO() = p1.getKO() & p0.getlinesSent() = p1.getlinesSent() & map0.getHeight() < map1.getHeight()){
-			let winner = p0;
+		if(P0.getKO() = P1.getKO() & P0.getLinesSent() = P1.getLinesSent() & h0 < h1){
+			let winner = P0;
+			let winID = 0;
 			let draw = 0;
 		}
-		if(p0.getKO() = p1.getKO() & p0.getlinesSent() = p1.getlinesSent() & map0.getHeight() > map1.getHeight()){
-			let winner = p1;
+		if(P0.getKO() = P1.getKO() & P0.getLinesSent() = P1.getLinesSent() & h0 > h1){
+			let winner = P1;
+			let winID = 1;
 			let draw = 0;
 		}
 		if(draw = 0){
 			do Output.moveCursor(10, 28);
 			do Output.printString("PLAYER ");
-			do Output.printInt(winner.getID());
+			do Output.printInt(winID);
 			let name = winner.getName();
 			do Output.moveCursor(11, (32 - name.length() / 2));
 			do Output.printstring(winner.getName());
@@ -104,6 +131,9 @@ class Display{
 			do Output.moveCursor(10, 26);
 			do Output.printString("IT'S A DRAW!");
 		}
+		while(~(key = 128)){
+            let key = Keyboard.readChar();
+        }
 		return;
 	}
 	

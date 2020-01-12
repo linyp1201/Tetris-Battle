@@ -377,7 +377,7 @@ return
 function Map.showMap 9
 push argument 0
 pop pointer 0
-push constant 60
+push constant 65
 pop local 4
 push constant 8
 pop local 3
@@ -393,7 +393,7 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push constant 300
+push constant 305
 pop local 4
 label IF_FALSE0
 push local 4

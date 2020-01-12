@@ -25,40 +25,91 @@ class Main {
         
         let key = Keyboard.keyPressed();
         if(ID = 0 & key = 131){ //up:rotate
-            do block.rotate(map);
+            do block.rotate();
         }
         if(ID = 1 & key = 87){ //up:rotate
-            do block.rotate(map);
+            do block.rotate();
         }
         if(ID = 0 & key = 130){ //left
-            do block.left(map);
+            do block.left();
         }
         if(ID = 1 & key = 65){ //left
-            do block.left(map);
+            do block.left();
         }
         if(ID = 0 & key = 133){ //down
-            do block.down(map);
+            do block.down();
         }
         if(ID = 1 & key = 83){ //down
-            do block.down(map);
+            do block.down();
         }
         if(ID = 0 & key = 132){ //right
-            do block.right(map);
+            do block.right();
         }
         if(ID = 1 & key = 68){ //right
-            do block.right(map);
+            do block.right();
         }
 
         if(timer.getTime() = 500){
-            do block.down(map);
+            do block.down();
         }
 
-        if(block.toBottom(map)){
+        if(block.bottomChecker()){
             return map.proc();
         }
         else{
             return -1;
         }
+    }
+
+    function int Bonus(int prev, int TSpin, int cleared){
+        if(prev = 0){
+            if(TSpin = 0){
+                if(cleared = 2){
+                    return 1;
+                }
+                if(cleared = 3){
+                    return 2;
+                }
+                if(cleared = 4){
+                    return 4;
+                }
+            }
+            if(TSpin = 1){
+                if(cleared = 0){
+                    return 1;
+                }
+                if(cleared = 1){
+                    return 2;
+                }
+                if(cleared = 2){
+                    return 4;
+                }
+                if(cleared = 3){
+                    return 6;
+                }
+            }
+        }
+        if(prev = 1){
+            /* B2B */
+            if(cleared = 4){
+                return 6;
+            }
+            if(TSpin = 1){
+                if(cleared = 0){
+                    return 2;
+                }
+                if(cleared = 1){
+                    return 3;
+                }
+                if(cleared = 2){
+                    return 6;
+                }
+                if(cleared = 3){
+                return 9;
+                }
+            }
+        }
+        return 0;
     }
 
     function Array Shuffle(int newSeed){
@@ -83,24 +134,21 @@ class Main {
 
         /* A Game */
 
-        var Playa P0;
-        var Playa P1;//
-        var Map map0;
-        var Map map1;//
-        var Array nextSet0;
-        var Array nextSet1;//
-        var Block block0;
-        var Block block1;//
-        var Block nextBlock0;
-        var Block nextBlock1;//
-        var int bIndex0;
-        var int bIndex1;//
-        var int tmpSent0;
-        var int tmpSent1;//
+        var Playa P0, P1;
+        var Map map0, map1;
+        var Array nextSet0, nextSet1;
+        var Block block0, block1;
+        var int bIndex0, bIndex1;
+        var int cleared0, cleared1;
+        var boolean prev0, prev1;
+        var int bonus0, bonus1;
+        var boolean TSpin0, TSpin1;
         var int temp;
         var boolean KO;
         var Clock timer;
         var int stop;
+
+        do Display.gameScreen();
 
         let stop = 0;
         let timer = Clock.new();
@@ -109,19 +157,15 @@ class Main {
         let P1 = Playa.new(1, pn1);//
         let map0 = Map.new();
         let map1 = Map.new();//
-        let nextSet0 = Array.new(7);
-        let nextSet1 = Array.new(7);//
         let bIndex0 = 1;
         let bIndex1 = 1;//
+        let prev0 = false;
+        let prev1 = false;
 
         let nextSet0 = Main.Shuffle(timer.getTime());
         let nextSet1 = Main.Shuffle(timer.getTime() + 1);//
-        let block0 = Block.new(nextSet0[0]);
-        let block1 = Block.new(nextSet1[0]);//
-        let nextBlock0 = Block.new(nextSet0[1]);
-        let nextBlock1 = Block.new(nextSet1[1]);//
-
-        do Display.gameScreen();
+        let block0 = Block.new(map0, 0, 4, nextSet0[0]);
+        let block1 = Block.new(map1, 0, 4, nextSet1[0]);//
 
         while(stop < 240 & (~KO)){
 
@@ -129,17 +173,19 @@ class Main {
             do map0.showMap(0);
             do map1.showMap(1);
             /* showNextBlock */
-            do Display.showNext(0, bIndex0);
-            do Display.showNext(1, bIndex1);
+            do Display.showNext(0, nextSet0[bIndex0]);
+            do Display.showNext(1, nextSet1[bIndex1]);
+            /* showScores */
+            do Display.showScores(P0, P1);
 
             /* One Move */
-            let tmpSent0 = Main.Move(0, map0, block0);
-            if(tmpSent0 > -1){
-                do P0.addLinesSent(tmpSent0);
+            let cleared0 = Main.Move(0, map0, block0);
+            if(cleared0 > -1){
+                do P0.addLinesSent(cleared0);
             }
-            let tmpSent1 = Main.Move(1, map1, block1);
-            if(tmpSent1 > -1){
-                do P1.addLinesSent(tmpSent1);
+            let cleared1 = Main.Move(1, map1, block1);
+            if(cleared1 > -1){
+                do P1.addLinesSent(cleared1);
             }
 
             if(timer.getTime() = 500){
@@ -148,67 +194,97 @@ class Main {
             }
 
             /* If toBottom, Calculate combo & sent/received lines ; else add received */
-            if(tmpSent0 > -1){
-                let bIndex0 = bIndex0 + 1;
+            if(cleared0 > -1){
+
                 do Memory.deAlloc(block0);
-                let block0 = nextBlock0;
-                let nextBlock0 = Block.new(nextSet0[bIndex0]);
-                if(tmpSent0 = 0){
+                let block0 = Block.new(map0, 0, 4, nextSet0[bIndex0]);
+                let bIndex0 = bIndex0 + 1;
+
+                if(cleared0 = 0){
                     do P0.resetCombo();
                 }
-                do P0.incCombo();
-                if(P0.getLinesReceived() > tmpSent0){
-                    do P0.addLinesReceived(-tmpSent0);
+                else{
+                    do P0.incCombo();
+                }
+
+                if(cleared0 > 0){
+                    let temp = P0.getCombo();
+                    if(temp > 7){
+                        let temp = 7;
+                    }
+                    let TSpin0 = block0.Tspin();
+                    let prev0 = (TSpin0 | (cleared0 > 3));
+                    let bonus0 = Main.Bonus(prev0, TSpin0, cleared0);
+                    let cleared0 = comboTable[temp] + bonus0;
+                    if(map0.getHeight() = 0){
+                        let cleared0 = cleared0 + 10;
+                    }
+                }
+
+                if(P0.getLinesReceived() > cleared0){
+                    do P0.addLinesReceived(-cleared0);
                     do P0.getGarbage(map0);
                 }
                 else{
-                    let tmpSent0 = tmpSent0 - P0.getLinesReceived();
+                    let cleared0 = cleared0 - P0.getLinesReceived();
                 }
                 do P0.resetLinesReceived();
             }
-            if(tmpSent1 > -1){
-                let bIndex1 = bIndex1 + 1;
+            if(cleared1 > -1){
+
                 do Memory.deAlloc(block1);
-                let block1 = nextBlock1;
-                let nextBlock1 = Block.new(nextSet1[bIndex1]);
-                if(tmpSent1 = 1){
+                let block1 = Block.new(map1, 0, 4, nextSet1[bIndex1]);
+                let bIndex1 = bIndex1 + 1;
+
+                if(cleared1 = 0){
                     do P1.resetCombo();
                 }
-                do P1.incCombo();
-                if(P1.getLinesReceived() > tmpSent1){
-                    do P1.addLinesReceived(-tmpSent1);
+                else{
+                    do P1.incCombo();
+                }
+
+                if(cleared1 > 0){
+                    let temp = P1.getCombo();
+                    if(temp > 7){
+                        let temp = 7;
+                    }
+                    let TSpin1 = block1.Tspin();
+                    let prev1 = (TSpin1 | (cleared1 > 3));
+                    let bonus1 = Main.Bonus(prev1, TSpin1, cleared1);
+                    let cleared1 = comboTable[temp] + bonus1;
+                    if(map0.getHeight() = 0){
+                        let cleared0 = cleared0 + 10;
+                    }
+                }
+
+                if(P1.getLinesReceived() > cleared1){
+                    do P1.addLinesReceived(-cleared1);
                     do P1.getGarbage(map1);
                 }
                 else{
-                    let tmpSent1 = tmpSent1 - P1.getLinesReceived();
+                    let cleared1 = cleared1 - P1.getLinesReceived();
                 }
                 do P1.resetLinesReceived();
             }
 
-            if(tmpSent0 > 0){ //combo added here
-                let temp = P0.getCombo();
-                if(temp > 7){
-                    let temp = 7;
-                }
-                do P1.addLinesReceived(tmpSent0 + comboTable[temp]);
+            if(cleared0 > 0){
+                do P1.addLinesReceived(cleared0);
             }
-            if(tmpSent1 > 0){
-                let temp = P1.getCombo();
-                if(temp > 7){
-                    let temp = 7;
-                }
-                do P0.addLinesReceived(tmpSent1 + comboTable[temp]);
+            if(cleared1 > 0){
+                do P0.addLinesReceived(cleared1);
             }
 
             /* tick */
             do timer.tick(1);
 
             /* Shuffle if needed */
-            if(bIndex0 > 5){
+            if(bIndex0 > 6){
+                do nextSet0.dispose();
                 let nextSet0 = Main.Shuffle(timer.getTime());
                 let bIndex0 = 0;
             }
-            if(bIndex1 > 5){
+            if(bIndex1 > 6){
+                do nextSet1.dispose();
                 let nextSet1 = Main.Shuffle(timer.getTime() + 1);
                 let bIndex1 = 0;
             }
@@ -224,6 +300,7 @@ class Main {
             }
             let KO = (P0.getKO() > 4 | P1.getKO() > 4);
         }
+        do Display.endScreen(P0, P1, map0.getHeight(), map1.getHeight());
         return;
     }
 
@@ -248,9 +325,9 @@ class Main {
 
         if(curOption = 0){
             do Screen.clearScreen();
-            do Output.moveCursor(11, 22);
+            do Output.moveCursor(9, 22);
             let pn0 = Keyboard.readLine("PLAYER ZERO NAME : ");
-            do Output.moveCursor(14, 22);
+            do Output.moveCursor(12, 22);
             let pn1 = Keyboard.readLine("PLAYER ONE NAME : ");
             do Main.Play(pn0, pn1);
         }

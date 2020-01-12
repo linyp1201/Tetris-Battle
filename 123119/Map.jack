@@ -199,14 +199,14 @@ class Map{
         var int space, blockSize, frameSize;
         var int y, x;
         var int i, j, curX, curY;
-        let x = 60;
+        let x = 65;
         let y = 8;
         let space = 3;
         let blockSize = 8;
         let frameSize = 4;
         if(player = 2)
         {
-            let x = 300;
+            let x = 305;
         }
 
         let curX = x + frameSize + space;

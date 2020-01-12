@@ -15,8 +15,6 @@ pop temp 0
 push this 0
 push argument 1
 add
-push constant 1000
-call Math.divide 2
 pop this 0
 push constant 0
 return

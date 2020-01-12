@@ -25,9 +25,16 @@ class Playa {
 		return;
 	}
 
+	method String getName(){
+		return name;
+	}
+
 	method void addLinesSent(int lines){
 		let linesSent = linesSent + lines;
 		return;
+	}
+	method int getLinesSent(){
+		return linesSent;
 	}
 
     method void resetLinesReceived(){
