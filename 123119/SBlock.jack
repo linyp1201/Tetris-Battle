@@ -1,6 +1,7 @@
 class SBlock{
     field int r,c;
-    //the position of this one should be considered carefully or be redefined
+    field int type;	
+    //the position of this one should be considered carefully | be redefined
     constructor SBlock new(Map A)
     {
         let r = 1;
@@ -21,22 +22,23 @@ class SBlock{
 
     method void S_rotate(Map M, Block B)
     {	
-      var int type;		
+	
       var int r; 
+      var int c;
+
       let r = B.getR();
-      var int c; 
       let c = B.getC();
           
-      if (r> 0) and (c> 0) and (c< 9)
+      if ((r> 0) & (c> 0) & (c< 9))
       {
-        if ( M.cell[r*10+ c]= 1 ) and ( M.cell[(r-1)*10+ c]= 1 ) and ( M.cell[(r-1)*10+ (c+1)]= 1 ) and ( M.cell[r*10+ (c-1)]= 1 )
-          let type= 0;
+        if (( M.read(r ,c)= 1 ) & ( M.read(r-1 ,c)= 1 ) & ( M.read(r-1 ,c+1)= 1 ) & ( M.read(r ,c-1)= 1 ))
+          {let type= 0;}
       }
 
-      if (r> 0) and (r< 19) and (c> 0)
+      if ((r> 0) & (r< 19) & (c> 0))
       {
-        if ( M.cell[r*10+ c]= 1 ) and ( M.cell[(r-1)*10+ (c-1)]= 1 ) and ( M.cell[r*10+ (c-1)]= 1 ) and ( M.cell[(r+1)*10 +c]= 1 )
-          let type= 1;
+        if (( M.read(r ,c)= 1 ) & ( M.read(r-1 ,c-1)= 1 ) & ( M.read(r ,c-1)= 1 ) & ( M.read(r+1 ,c)= 1 ))
+          {let type= 1;}
       }
 
       if (type= 0)
@@ -44,8 +46,8 @@ class SBlock{
         if (r= 19)
         {
           // cannot collide w/ others
-          if ( M.cell[(r-2)*10+ (c-1)]= 1 ) or ( M.cell[(r-1)*10+ (c-1)]= 1 )
-            break;
+          if (( M.read(r-2 ,c-1)= 1 ) | ( M.read(r-1 ,c-1)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r, c-1);
@@ -54,40 +56,18 @@ class SBlock{
           do M.set(r-1, c-1);
 
           do B.setR(18);
-
-          // after 500ms or click down:
-          // do M.reset(r-2, c-1);
-          // do M.reset(r-1, c-1);
-          // do M.reset(r-1, c);
-          // do M.reset(r ,c);
-          // do M.set(r-1, c-1);
-          // do M.set(r, c-1);
-          // do M.set(r, c);
-          // do M.set(r+1 ,c);
-          // outside loop r+1
         }
         else
         {
           // cannot collide w/ others
-          if ( M.cell[(r-1)*10+ (c-1)]= 1 ) or ( M.cell[(r+1)*10+ c]= 1 )
-            break;
+          if (( M.read(r-1 ,c-1)= 1 ) | ( M.read(r+1 ,c)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r-1, c);
           do M.reset(r-1, c+1);
           do M.set(r-1, c-1);
           do M.set(r+1, c);
-
-          // after 500ms or click down:
-          // do M.reset(r-1, c-1);
-          // do M.reset(r, c-1);
-          // do M.reset(r, c);
-          // do M.reset(r+1 ,c);
-          // do M.set(r, c-1);
-          // do M.set(r+1, c-1);
-          // do M.set(r+1, c);
-          // do M.set(r+2 ,c);
-          // outside loop r+1
         }
       }
 
@@ -96,8 +76,8 @@ class SBlock{
         if (c= 9)
         {
           // cannot collide w/ others
-          if ( M.cell[(r-1)*10+ c]= 1 ) or ( M.cell[r*10+ (c-2)]= 1 )
-            break;
+          if (( M.read(r-1 ,c)= 1 ) | ( M.read(r ,c-2)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r+1, c);
@@ -107,42 +87,72 @@ class SBlock{
 
           do B.setC(8);
 
-          // after 500ms or click down:
-          // do M.reset(r-1, c-1);
-          // do M.reset(r-1, c);
-          // do M.reset(r, c-2);
-          // do M.reset(r, c-1);
-          // do M.set(r, c-1);
-          // do M.set(r, c);
-          // do M.set(r+1, c-2);
-          // do M.set(r+1 ,c-1);
-          // outside loop r+1
         }
         else
         {
           // cannot collide w/ others
-          if ( M.cell[(r-1)*10+ c]= 1 ) or ( M.cell[(r-1)*10+ (c+1)]= 1 )
-            break;
+          if (( M.read(r-1 ,c)= 1 ) | ( M.read(r-1 ,c+1)= 1 ))
+            {return;}
 
           // implement
           do M.reset(r, c);
           do M.reset(r+1, c);
           do M.set(r-1, c);
           do M.set(r-1, c+1);
-
-          // after 500ms or click down:
-          // do M.reset(0, c-1);
-          // do M.reset(1, c-1);
-          // do M.reset(2, c-1);
-          // do M.reset(2 ,c);
-          // do M.set(1, c-1);
-          // do M.set(2, c-1);
-          // do M.set(3, c-1);
-          // do M.set(3 ,c);
-          // outside loop r+1
         }
       }
-
+      return ;
     }
+    
+    method void down(Map M, Block B)
+    {
+      var int r;
+      var int c;
+      let r = B.getR();
+      let c = B.getC();
 
+      if (type = 0){
+          if (r<19)
+          {
+            if ((M.read(r+1,c-1)=1)|(M.read(r+1,c)=1)|(M.read(r,c+1)=1))
+            {
+              return ;
+            }
+            else
+            {
+              do M.reset(r,c-1);
+              do M.reset(r-1,c);
+              do M.reset(r-1,c+1);
+              do M.set(r+1,c-1);
+              do M.set(r+1,c);
+              do M.set(r,c+1);
+
+              do B.setR(r+1);
+            }
+          }
+          return ;
+      }
+      if (type = 1)
+      {
+        if (r<18){
+          if ((M.read(r+1,c-1)=1)|(M.read(r+2,c)=1))
+          {
+            return ;
+          }
+          else
+          {
+            do M.reset(r-1,c-1);
+            do M.reset(r,c);
+            do M.set(r+1,c-1);
+            do M.set(r+2,c);
+
+            do B.setR(r+1);
+
+          }
+        }
+        return ;
+      }
+      return ;
+    }
+  
 }

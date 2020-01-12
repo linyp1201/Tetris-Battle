@@ -17,4 +17,29 @@ class OBlock{
       return;
     }
 
+    method void down(Map M,Block B)
+    {
+      var int r;
+      var int c;
+      let r = B.getR();
+      let c = B.getC();
+      if (r>18)
+      {
+        if ((M.read(r+2,c)=1)|(M.read(r+2,c+1)=1))
+        {
+          return ;
+        }
+        else
+        {
+          do M.reset(r,c);
+          do M.reset(r,c+1);
+          do M.set(r+2,c);
+          do M.set(r+2,c+1);
+
+          do B.setR(r+1);
+        }
+      }
+      return ;
+    }
+
 }
