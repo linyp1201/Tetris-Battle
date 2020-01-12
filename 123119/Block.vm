@@ -773,6 +773,9 @@ push this 6
 call LBlock.dispose 1
 pop temp 0
 label IF_FALSE6
+push pointer 0
+call Memory.deAlloc 1
+pop temp 0
 push constant 0
 return
 function Block.getI 0
