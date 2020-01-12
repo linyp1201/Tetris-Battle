@@ -559,9 +559,6 @@ gt
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push local 4
-call Block.dispose 1
-pop temp 0
 push local 20
 call Clock.getTime 1
 call Random.setSeed 1
@@ -571,12 +568,18 @@ pop local 6
 push constant 6
 call Random.randRange 1
 pop local 8
-push local 2
-push constant 0
-push constant 4
+push local 4
 push local 6
-call Block.new 4
-pop local 4
+call Block.setType 2
+pop temp 0
+push local 4
+push constant 1
+call Block.setR 2
+pop temp 0
+push local 4
+push constant 4
+call Block.setC 2
+pop temp 0
 push local 10
 push constant 0
 eq
@@ -681,9 +684,6 @@ gt
 if-goto IF_TRUE9
 goto IF_FALSE9
 label IF_TRUE9
-push local 5
-call Block.dispose 1
-pop temp 0
 push local 20
 call Clock.getTime 1
 push constant 99
@@ -695,12 +695,18 @@ pop local 7
 push constant 6
 call Random.randRange 1
 pop local 9
-push local 3
-push constant 0
-push constant 4
+push local 5
 push local 7
-call Block.new 4
-pop local 5
+call Block.setType 2
+pop temp 0
+push local 5
+push constant 1
+call Block.setR 2
+pop temp 0
+push local 5
+push constant 4
+call Block.setC 2
+pop temp 0
 push local 11
 push constant 0
 eq
