@@ -789,7 +789,7 @@ label IF_FALSE0
 push this 10
 push this 0
 push pointer 0
-call TBlock.T_isbottom 3
+call TBlock.T_isBottom 3
 push this 4
 and
 if-goto IF_TRUE1

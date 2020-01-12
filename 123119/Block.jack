@@ -275,7 +275,7 @@ class Block{
             return false;
         }
         else{
-            if(T.T_isbottom(A, this) & last){
+            if(T.T_isBottom(A, this) & last){
                 if(r+1 > 19 | c+1 > 9){
                     let occupied = occupied + 1;
                 }
