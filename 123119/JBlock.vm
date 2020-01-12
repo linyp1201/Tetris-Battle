@@ -2,10 +2,14 @@ function JBlock.new 0
 push constant 3
 call Memory.alloc 1
 pop pointer 0
+push argument 1
 push constant 1
-pop this 0
+call Block.setR 2
+pop temp 0
+push argument 1
 push constant 4
-pop this 1
+call Block.setC 2
+pop temp 0
 push pointer 0
 return
 function JBlock.dispose 0

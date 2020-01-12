@@ -1,11 +1,12 @@
 class ZBlock{
     field int r,c;
     field int type;	
-    constructor ZBlock new(Map A)
+    constructor ZBlock new(Map A,Block B)
     {
-        let r = 1;
-        let c = 4;
-        let type = 0;
+        //let r = 1;
+        //let c = 4;
+        do B.setR(1);
+        do B.setC(4);
         /*do A.set(r-1,c-1);
         do A.set(r-1,c);
         do A.set(r,c);

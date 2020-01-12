@@ -2,10 +2,12 @@ class LBlock{
     field int r,c;
     field int type;	
     //the position of this one should be considered carefully | be redefined
-    constructor LBlock new(Map A)
+    constructor LBlock new(Map A,Block B)
     {
-        let r = 1;
-        let c = 4;
+        //let r = 1;
+        //let c = 4;
+        do B.setR(1);
+        do B.setC(4);
         /*
         do A.set(r-1,c);
         do A.set(r-1,c+1);

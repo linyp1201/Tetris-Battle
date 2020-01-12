@@ -1,10 +1,12 @@
 class JBlock{
     field int r,c;
     field int type;	
-    constructor JBlock new(Map A)
+    constructor JBlock new(Map A,Block B)
     {
-        let r = 1;
-        let c = 4;
+        //let r = 1;
+        //let c = 4;
+        do B.setR(1);
+        do B.setC(4);
         /*
         do A.set(r-1,c+1);
         do A.set(r,c+1);

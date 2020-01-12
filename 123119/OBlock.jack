@@ -1,14 +1,16 @@
 class OBlock{
     field int r,c;
 
-    constructor OBlock new(Map A)
+    constructor OBlock new(Map A,Block B)
     {
-        let r = 0;
-        let c = 4;
-        do A.set(r,c);
+        //let r = 0;
+        //let c = 4;
+        do B.setR(0);
+        do B.setC(4);
+        /*do A.set(r,c);
         do A.set(r,c+1);
         do A.set(r+1,c);
-        do A.set(r+1, c+1);
+        do A.set(r+1, c+1);*/
         return this;
     }
 
