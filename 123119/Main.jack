@@ -17,6 +17,15 @@ class Main {
         return;
     }
 
+    function int mod500(int k) /* % function */
+    {
+        var int q, r;
+        let q = k/500;
+        let q = q*500;
+        let r = k - q;
+        return r;
+    }
+
     function int Move(int ID, Map map, Block block){
 
         /* returns map.proc if block goes to bottom */
@@ -189,12 +198,14 @@ class Main {
             do Output.printInt(timer.getTime());
             //
 
-            if(timer.getTime() = 500){
+            if(Main.mod500(timer.getTime()) = 0){
                 do block0.down(map0);
                 do block0.setLast(false);
                 do block1.down(map1);
                 do block1.setLast(false);
-                do timer.setTime(0);
+                if(timer.getTime() = 30000){
+                    do timer.setTime(0);
+                }
                 let stop = stop + 1;
             }
 
