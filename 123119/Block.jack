@@ -24,6 +24,11 @@ class Block{
         return this;
     }
 
+    method void setType(int num){
+        let type = num;
+        return ;
+    }
+
     method void down(Map A){
         if (type = 0) {
             do O.down(A,this);
