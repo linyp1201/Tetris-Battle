@@ -225,6 +225,31 @@ class Block{
         }
         return;
     }
+
+    method void dispose()
+    {
+        if (type = 0) {
+                do O.dispose();
+            }
+            if (type = 1){
+                do I.dispose();
+            }
+            if (type = 2){
+                do Z.dispose();
+            }
+            if (type = 3){
+                do S.dispose();
+            }
+            if (type = 4){
+                do T.dispose();
+            }
+            if (type = 5){
+                do J.dispose();
+            }
+            if (type = 6){
+                do L.dispose();
+            }
+    }
     
 
     
