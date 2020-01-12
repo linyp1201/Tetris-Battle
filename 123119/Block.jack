@@ -249,6 +249,7 @@ class Block{
             if (type = 6){
                 do L.dispose();
             }
+        return;
     }
     
 
