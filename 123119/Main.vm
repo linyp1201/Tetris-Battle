@@ -228,7 +228,8 @@ call Block.setLast 2
 pop temp 0
 label IF_FALSE9
 push argument 2
-call Block.bottomChecker 1
+push argument 1
+call Block.bottomChecker 2
 if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
@@ -610,7 +611,8 @@ push constant 7
 pop local 18
 label IF_FALSE6
 push local 4
-call Block.Tspin 1
+push local 2
+call Block.Tspin 2
 pop local 16
 push local 16
 push local 10
@@ -733,7 +735,8 @@ push constant 7
 pop local 18
 label IF_FALSE12
 push local 5
-call Block.Tspin 1
+push local 3
+call Block.Tspin 2
 pop local 17
 push local 17
 push local 11

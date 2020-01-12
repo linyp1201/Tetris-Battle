@@ -6,10 +6,10 @@ class LBlock{
     {
         let r = 1;
         let c = 4;
-        do A.set(r,c);
+        do A.set(r-1,c);
+        do A.set(r-1,c+1);
         do A.set(r,c+1);
-        do A.set(r,c+2);
-        do A.set(r-1, c+2);
+        do A.set(r+1, c+1);
         return this;
     }
 

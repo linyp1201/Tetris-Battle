@@ -21,17 +21,15 @@ pop temp 0
 push argument 0
 push this 0
 push this 1
-push constant 2
-add
+push constant 1
+sub
 call Map.set 3
 pop temp 0
 push argument 0
 push this 0
 push constant 1
-sub
-push this 1
-push constant 1
 add
+push this 1
 call Map.set 3
 pop temp 0
 push pointer 0

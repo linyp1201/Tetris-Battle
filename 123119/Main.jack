@@ -62,7 +62,7 @@ class Main {
             do block.setLast(false);
         }
 
-        if(block.bottomChecker()){
+        if(block.bottomChecker(map)){
             return map.proc();
         }
         else{
@@ -244,7 +244,7 @@ class Main {
                     if(temp > 7){
                         let temp = 7;
                     }
-                    let TSpin0 = block0.Tspin();
+                    let TSpin0 = block0.Tspin(map0);
                     let prev0 = (TSpin0 | (cleared0 > 3));
                     let bonus0 = Main.Bonus(prev0, TSpin0, cleared0);
                     let cleared0 = comboTable[temp] + bonus0;
@@ -283,7 +283,7 @@ class Main {
                     if(temp > 7){
                         let temp = 7;
                     }
-                    let TSpin1 = block1.Tspin();
+                    let TSpin1 = block1.Tspin(map1);
                     let prev1 = (TSpin1 | (cleared1 > 3));
                     let bonus1 = Main.Bonus(prev1, TSpin1, cleared1);
                     let cleared1 = comboTable[temp] + bonus1;

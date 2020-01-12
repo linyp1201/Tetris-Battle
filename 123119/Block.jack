@@ -1,5 +1,7 @@
 class Block{
     field boolean last; // to memorize whether last valid mvt is rotation
+    field int r,c;
+    field int type;
     field IBlock I;
     field JBlock J;
     field LBlock L;

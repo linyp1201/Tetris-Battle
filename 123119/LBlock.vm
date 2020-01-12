@@ -8,21 +8,9 @@ push constant 4
 pop this 1
 push argument 0
 push this 0
-push this 1
-call Map.set 3
-pop temp 0
-push argument 0
-push this 0
-push this 1
 push constant 1
-add
-call Map.set 3
-pop temp 0
-push argument 0
-push this 0
+sub
 push this 1
-push constant 2
-add
 call Map.set 3
 pop temp 0
 push argument 0
@@ -30,7 +18,23 @@ push this 0
 push constant 1
 sub
 push this 1
-push constant 2
+push constant 1
+add
+call Map.set 3
+pop temp 0
+push argument 0
+push this 0
+push this 1
+push constant 1
+add
+call Map.set 3
+pop temp 0
+push argument 0
+push this 0
+push constant 1
+add
+push this 1
+push constant 1
 add
 call Map.set 3
 pop temp 0
