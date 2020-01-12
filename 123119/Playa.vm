@@ -26,11 +26,6 @@ call Memory.deAlloc 1
 pop temp 0
 push constant 0
 return
-function Playa.getName 0
-push argument 0
-pop pointer 0
-push this 1
-return
 function Playa.addLinesSent 0
 push argument 0
 pop pointer 0
@@ -301,4 +296,19 @@ label WHILE_END0
 push constant 0
 pop this 6
 push constant 0
+return
+function Playa.getlinesSent 0
+push argument 0
+pop pointer 0
+push this 2
+return
+function Playa.getID 0
+push argument 0
+pop pointer 0
+push this 0
+return
+function Playa.getName 0
+push argument 0
+pop pointer 0
+push this 1
 return
