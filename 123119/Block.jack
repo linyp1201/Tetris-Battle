@@ -16,38 +16,30 @@ class Block{
         let r = row;
         let c = column;
         let type = block_type;
-
         return this;
     }
 
     method void create_block(){
         if (type = 0){
-            let O = OBlock.new(A);
-            
+            let O = OBlock.new(A); 
         }
         if (type = 1){
             let I = IBlock.new(A);
-            
         }
         if (type = 2){
             let Z = ZBlock.new(A);
-            
         }
         if (type = 3){
             let S = SBlock.new(A);
-            
         }
         if (type = 4){
             let T = TBlock.new(A);
-            
         }
         if (type = 5){
             let J = JBlock.new(A);
-            
         }
         if (type = 6){
             let L = LBlock.new(A);
-            
         }
         return;
     }
@@ -151,6 +143,7 @@ class Block{
         }
         return;
     }
+    /* cuz jack sucks, cannot call method in another method
     method boolean bottomChecker(){
         var boolean isBottom;
         if (type = 0) {
@@ -176,38 +169,58 @@ class Block{
         }
         return isBottom;
     }
+    */
         
     method void toBottom() {
         var boolean flag;
         var boolean flag2;
-        let flag2 = this.bottomChecker();
+        if (type = 0) {
+            let flag2 = O.O_isBottom(A,this);
+        }
+        if (type = 1){
+            let flag2 = I.I_isBottom(A,this);
+        }
+        if (type = 2){
+            let flag2 = Z.Z_isBottom(A,this);
+        }
+        if (type = 3){
+            let flag2 = S.S_isBottom(A,this);
+        }
+        if (type = 4){
+            let flag2 = T.T_isBottom(A,this);
+        }
+        if (type = 5){
+            let flag2 = J.J_isBottom(A,this);
+        }
+        if (type = 6){
+            let flag2 = L.L_isBottom(A,this);
+        }
         let flag = flag2;
-        //let flag = this.bottomChecker();
 
-        while (flag = false){
+        while (~flag) //flag == false
+        {
             if (type = 0) {
-                O.down(A,this);
+                do O.down(A,this);
             }
             if (type = 1){
-                I.down(A,this);
+                do I.down(A,this);
             }
             if (type = 2){
-                Z.down(A,this);
+                do Z.down(A,this);
             }
             if (type = 3){
-                S.down(A,this);
+                do S.down(A,this);
             }
             if (type = 4){
-                T.down(A,this);
+                do T.down(A,this);
             }
             if (type = 5){
-                J.down(A,this);
+                do J.down(A,this);
             }
             if (type = 6){
-                L.down(A,this);
+                do L.down(A,this);
             }
         }
-
         return;
     }
     
