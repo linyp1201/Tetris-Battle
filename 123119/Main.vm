@@ -488,6 +488,12 @@ pop pointer 1
 push that 0
 call Block.new 4
 pop local 7
+push local 6
+call Block.create_block 1
+pop temp 0
+push local 7
+call Block.create_block 1
+pop temp 0
 label WHILE_EXP0
 push local 21
 push constant 240
@@ -600,6 +606,9 @@ pop pointer 1
 push that 0
 call Block.new 4
 pop local 6
+push local 6
+call Block.create_block 1
+pop temp 0
 push local 8
 push constant 1
 add
@@ -720,6 +729,9 @@ pop pointer 1
 push that 0
 call Block.new 4
 pop local 7
+push local 7
+call Block.create_block 1
+pop temp 0
 push local 9
 push constant 1
 add

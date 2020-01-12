@@ -175,6 +175,8 @@ class Main {
         let nextSet1 = Main.Shuffle(timer.getTime() + 1);//
         let block0 = Block.new(map0, 1, 4, nextSet0[0]);
         let block1 = Block.new(map1, 1, 4, nextSet1[0]);//
+        do block0.create_block();
+        do block1.create_block();
 
         while(stop < 240 & (~KO)){
 
@@ -209,6 +211,7 @@ class Main {
 
                 do Memory.deAlloc(block0);
                 let block0 = Block.new(map0, 0, 4, nextSet0[bIndex0]);
+                do block0.create_block();
                 let bIndex0 = bIndex0 + 1;
 
                 if(cleared0 = 0){
@@ -245,6 +248,7 @@ class Main {
 
                 do Memory.deAlloc(block1);
                 let block1 = Block.new(map1, 0, 4, nextSet1[bIndex1]);
+                do block1.create_block();
                 let bIndex1 = bIndex1 + 1;
 
                 if(cleared1 = 0){
