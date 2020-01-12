@@ -1,6 +1,6 @@
 class LBlock{
     field int r,c;
-    field int type;
+    field int type;	
     //the position of this one should be considered carefully | be redefined
     constructor LBlock new(Map A)
     {
@@ -22,6 +22,7 @@ class LBlock{
 
     method void L_rotate(Map M, Block B)
     {	
+      
       var int r; 
       var int c; 
       let r = B.getR();

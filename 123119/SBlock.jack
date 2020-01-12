@@ -1,6 +1,6 @@
 class SBlock{
     field int r,c;
-    field int type;
+    field int type;	
     //the position of this one should be considered carefully | be redefined
     constructor SBlock new(Map A)
     {
@@ -21,7 +21,8 @@ class SBlock{
     // Put into SBlock.jack
 
     method void S_rotate(Map M, Block B)
-    {		
+    {	
+	
       var int r; 
       var int c;
 

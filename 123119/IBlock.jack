@@ -1,7 +1,6 @@
 class IBlock{
-    //field int r,c;
-    field int type;
-
+    field int r,c;
+    field int type;	
     constructor IBlock new(Map A)
     {
         let r = 0;
