@@ -64,6 +64,7 @@ class Map{
             
             if(FULL = 1)
             {
+                let count = count + 1;
                 let l = row; //ROW = 20, COL = 10
                 while(l > 0)
                 {
@@ -85,29 +86,7 @@ class Map{
             
             let row = row - 1;
         }
-        /* move */
-        let tmp = count;
-        while(tmp > 0)
-        {
-            let i = 19;
-            while(i > 0)
-            {
-                let j = 0;
-                while(j<10)
-                {
-                    let cells[i*10+j] = cells[i*10+j-10];
-                    let j = j + 1;
-                }
-                let i = i - 1;
-            }
-            let j = 0;
-            while(j<10)
-            {
-                let cells[j] = 0;
-                let j = j + 1;
-            }
-            let tmp = tmp - 1;
-        }
+        
 		return count;
     }
     /*

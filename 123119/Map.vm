@@ -131,6 +131,10 @@ eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
+push local 1
+push constant 1
+add
+pop local 1
 push local 0
 pop local 5
 label WHILE_EXP2
@@ -210,92 +214,6 @@ sub
 pop local 0
 goto WHILE_EXP0
 label WHILE_END0
-push local 1
-pop local 2
-label WHILE_EXP5
-push local 2
-push constant 0
-gt
-not
-if-goto WHILE_END5
-push constant 19
-pop local 3
-label WHILE_EXP6
-push local 3
-push constant 0
-gt
-not
-if-goto WHILE_END6
-push constant 0
-pop local 4
-label WHILE_EXP7
-push local 4
-push constant 10
-lt
-not
-if-goto WHILE_END7
-push local 3
-push constant 10
-call Math.multiply 2
-push local 4
-add
-push this 0
-add
-push local 3
-push constant 10
-call Math.multiply 2
-push local 4
-add
-push constant 10
-sub
-push this 0
-add
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push local 4
-push constant 1
-add
-pop local 4
-goto WHILE_EXP7
-label WHILE_END7
-push local 3
-push constant 1
-sub
-pop local 3
-goto WHILE_EXP6
-label WHILE_END6
-push constant 0
-pop local 4
-label WHILE_EXP8
-push local 4
-push constant 10
-lt
-not
-if-goto WHILE_END8
-push local 4
-push this 0
-add
-push constant 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push local 4
-push constant 1
-add
-pop local 4
-goto WHILE_EXP8
-label WHILE_END8
-push local 2
-push constant 1
-sub
-pop local 2
-goto WHILE_EXP5
-label WHILE_END5
 push local 1
 return
 function Map.getHeight 2
