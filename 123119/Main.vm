@@ -388,15 +388,15 @@ label IF_FALSE12
 label IF_FALSE10
 push constant 0
 return
-function Main.Play 22
+function Main.Play 24
 call Display.gameScreen 0
 pop temp 0
 push constant 0
-pop local 21
+pop local 23
 call Clock.new 0
-pop local 20
+pop local 22
 push constant 0
-pop local 19
+pop local 21
 push constant 0
 push argument 0
 call Playa.new 2
@@ -410,9 +410,9 @@ pop local 2
 call Map.new 0
 pop local 3
 push constant 0
-pop local 12
+pop local 14
 push constant 0
-pop local 13
+pop local 15
 push constant 0
 call Random.setSeed 1
 pop temp 0
@@ -450,10 +450,10 @@ push local 7
 call Block.new 4
 pop local 5
 label WHILE_EXP0
-push local 21
+push local 23
 push constant 240
 lt
-push local 19
+push local 21
 not
 and
 not
@@ -516,11 +516,11 @@ push constant 0
 push constant 0
 call Output.moveCursor 2
 pop temp 0
-push local 20
+push local 22
 call Clock.getTime 1
 call Output.printInt 1
 pop temp 0
-push local 20
+push local 22
 call Clock.getTime 1
 push constant 500
 eq
@@ -543,14 +543,14 @@ push local 5
 push constant 0
 call Block.setLast 2
 pop temp 0
-push local 20
+push local 22
 push constant 0
 call Clock.setTime 2
 pop temp 0
-push local 21
+push local 23
 push constant 1
 add
-pop local 21
+pop local 23
 label IF_FALSE2
 push local 10
 push constant 1
@@ -559,7 +559,7 @@ gt
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push local 20
+push local 22
 call Clock.getTime 1
 call Random.setSeed 1
 pop temp 0
@@ -603,37 +603,37 @@ goto IF_FALSE5
 label IF_TRUE5
 push local 0
 call Playa.getCombo 1
-pop local 18
-push local 18
+pop local 20
+push local 20
 push constant 7
 gt
 if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
 push constant 7
-pop local 18
+pop local 20
 label IF_FALSE6
 push local 4
 push local 2
 call Block.Tspin 2
-pop local 16
-push local 16
+pop local 18
+push local 18
 push local 10
 push constant 3
 gt
 or
-pop local 12
-push local 12
-push local 16
+pop local 14
+push local 14
+push local 18
 push local 10
 call Main.Bonus 3
-pop local 14
-push local 18
+pop local 16
+push local 20
 push static 0
 add
 pop pointer 1
 push that 0
-push local 14
+push local 16
 add
 pop local 10
 push local 2
@@ -664,7 +664,7 @@ pop temp 0
 push local 0
 push local 2
 call Playa.getGarbage 2
-pop temp 0
+pop local 12
 goto IF_END8
 label IF_FALSE8
 push local 10
@@ -684,7 +684,7 @@ gt
 if-goto IF_TRUE9
 goto IF_FALSE9
 label IF_TRUE9
-push local 20
+push local 22
 call Clock.getTime 1
 push constant 99
 add
@@ -730,37 +730,37 @@ goto IF_FALSE11
 label IF_TRUE11
 push local 1
 call Playa.getCombo 1
-pop local 18
-push local 18
+pop local 20
+push local 20
 push constant 7
 gt
 if-goto IF_TRUE12
 goto IF_FALSE12
 label IF_TRUE12
 push constant 7
-pop local 18
+pop local 20
 label IF_FALSE12
 push local 5
 push local 3
 call Block.Tspin 2
-pop local 17
-push local 17
+pop local 19
+push local 19
 push local 11
 push constant 3
 gt
 or
-pop local 13
-push local 13
-push local 17
+pop local 15
+push local 15
+push local 19
 push local 11
 call Main.Bonus 3
-pop local 15
-push local 18
+pop local 17
+push local 20
 push static 0
 add
 pop pointer 1
 push that 0
-push local 15
+push local 17
 add
 pop local 11
 push local 2
@@ -791,7 +791,7 @@ pop temp 0
 push local 1
 push local 3
 call Playa.getGarbage 2
-pop temp 0
+pop local 13
 goto IF_END14
 label IF_FALSE14
 push local 11
@@ -826,14 +826,13 @@ push local 11
 call Playa.addLinesReceived 2
 pop temp 0
 label IF_FALSE16
-push local 20
+push local 22
 push constant 50
 call Clock.tick 2
 pop temp 0
-push local 2
-call Map.dead 1
-push constant 0
-not
+push local 12
+push constant 1
+neg
 eq
 if-goto IF_TRUE17
 goto IF_FALSE17
@@ -846,7 +845,7 @@ push local 2
 call Playa.clearGarbage 2
 pop temp 0
 label IF_FALSE17
-push local 3
+push local 2
 call Map.dead 1
 push constant 0
 not
@@ -854,6 +853,17 @@ eq
 if-goto IF_TRUE18
 goto IF_FALSE18
 label IF_TRUE18
+push local 1
+call Playa.incKO 1
+pop temp 0
+label IF_FALSE18
+push local 13
+push constant 1
+neg
+eq
+if-goto IF_TRUE19
+goto IF_FALSE19
+label IF_TRUE19
 push local 0
 call Playa.incKO 1
 pop temp 0
@@ -861,7 +871,19 @@ push local 1
 push local 3
 call Playa.clearGarbage 2
 pop temp 0
-label IF_FALSE18
+label IF_FALSE19
+push local 3
+call Map.dead 1
+push constant 0
+not
+eq
+if-goto IF_TRUE20
+goto IF_FALSE20
+label IF_TRUE20
+push local 0
+call Playa.incKO 1
+pop temp 0
+label IF_FALSE20
 push local 0
 call Playa.getKO 1
 push constant 4
@@ -871,7 +893,7 @@ call Playa.getKO 1
 or
 push constant 4
 gt
-pop local 19
+pop local 21
 goto WHILE_EXP0
 label WHILE_END0
 push local 0

@@ -121,38 +121,17 @@ class Main {
         return 0;
     }
 
-    /*
-    function Array Shuffle(int newSeed){
-        var Array next;
-        var int index;
-        var int num;
-        let next = Array.new(7);
-        let num = 6;
-        while(num > -1){
-            let newSeed = newSeed + 9;
-            do Random.setSeed(newSeed);
-            let index = Random.randRange(6);
-            if(next[index] = 0){
-                let next[index] = num;
-                let num = num - 1;
-            }
-        }
-        return next;
-    }
-    */
-
     function void Play(String pn0, String pn1){
 
         /* A Game */
 
         var Playa P0, P1;
         var Map map0, map1;
-        //var Array nextSet0, nextSet1;
         var Block block0, block1;
-        //var int bIndex0, bIndex1;
         var int bType0, bType1;
         var int bNext0, bNext1;
         var int cleared0, cleared1;
+        var int isDead0, isDead1;
         var boolean prev0, prev1;
         var int bonus0, bonus1;
         var boolean TSpin0, TSpin1;
@@ -170,13 +149,10 @@ class Main {
         let P1 = Playa.new(1, pn1);//
         let map0 = Map.new();
         let map1 = Map.new();//
-        //let bIndex0 = 1;
-        //let bIndex1 = 1;//
+        
         let prev0 = false;
         let prev1 = false;
 
-        //let nextSet0 = Main.Shuffle(timer.getTime());
-        //let nextSet1 = Main.Shuffle(timer.getTime() + 99);//
         do Random.setSeed(0);
         let bType0 = Random.randRange(6);
         do Random.setSeed(1);
@@ -231,7 +207,6 @@ class Main {
                 do block0.setType(bType0);
                 do block0.setR(1);
                 do block0.setC(4);
-                //let bIndex0 = bIndex0 + 1;
                 
                 if(cleared0 = 0){
                     do P0.resetCombo();
@@ -256,7 +231,7 @@ class Main {
 
                 if(P0.getLinesReceived() > cleared0){
                     do P0.addLinesReceived(-cleared0);
-                    do P0.getGarbage(map0);
+                    let isDead0 = P0.getGarbage(map0);
                 }
                 else{
                     let cleared0 = cleared0 - P0.getLinesReceived();
@@ -271,7 +246,6 @@ class Main {
                 do block1.setType(bType1);
                 do block1.setR(1);
                 do block1.setC(4);
-                //let bIndex1 = bIndex1 + 1;
 
                 if(cleared1 = 0){
                     do P1.resetCombo();
@@ -296,7 +270,7 @@ class Main {
 
                 if(P1.getLinesReceived() > cleared1){
                     do P1.addLinesReceived(-cleared1);
-                    do P1.getGarbage(map1);
+                    let isDead1 = P1.getGarbage(map1); 
                 }
                 else{
                     let cleared1 = cleared1 - P1.getLinesReceived();
@@ -314,28 +288,22 @@ class Main {
             /* tick */
             do timer.tick(50);
 
-            /*
-            // Shuffle if needed
-            if(bIndex0 > 6){
-                do nextSet0.dispose();
-                let nextSet0 = Main.Shuffle(timer.getTime());
-                let bIndex0 = 0;
-            }
-            if(bIndex1 > 6){
-                do nextSet1.dispose();
-                let nextSet1 = Main.Shuffle(timer.getTime() + 99);
-                let bIndex1 = 0;
-            }
-            */
-
             /* check if KO */ 
-            if(map0.dead() = true){
+            if(isDead0 = -1){
                 do P1.incKO();
                 do P0.clearGarbage(map0);
             }
-            if(map1.dead() = true){
+            if(map0.dead() = true){
+                do P1.incKO();
+                //do P0.clear(map0);
+            }
+            if(isDead1 = -1){
                 do P0.incKO();
                 do P1.clearGarbage(map1);
+            }
+            if(map1.dead() = true){
+                do P0.incKO();
+                //do P1.clear(map1);
             }
             let KO = (P0.getKO() > 4 | P1.getKO() > 4);
         }
