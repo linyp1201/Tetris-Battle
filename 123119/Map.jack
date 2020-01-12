@@ -172,6 +172,16 @@ class Map{
         return r;
     }
 
+    method void clear(){
+        var int i;
+        let i = 0;
+        while(i < 200){
+            let cells[i] = 0;
+            let i = i + 1;
+        }
+        return;
+    }
+
     method void showMap(int player)
     {
         /* shows map */

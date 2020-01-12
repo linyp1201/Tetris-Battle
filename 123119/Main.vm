@@ -856,6 +856,9 @@ label IF_TRUE18
 push local 1
 call Playa.incKO 1
 pop temp 0
+push local 2
+call Map.clear 1
+pop temp 0
 label IF_FALSE18
 push local 13
 push constant 1
@@ -882,6 +885,9 @@ goto IF_FALSE20
 label IF_TRUE20
 push local 0
 call Playa.incKO 1
+pop temp 0
+push local 3
+call Map.clear 1
 pop temp 0
 label IF_FALSE20
 push local 0

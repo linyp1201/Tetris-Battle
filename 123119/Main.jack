@@ -295,7 +295,7 @@ class Main {
             }
             if(map0.dead() = true){
                 do P1.incKO();
-                //do P0.clear(map0);
+                do map0.clear();
             }
             if(isDead1 = -1){
                 do P0.incKO();
@@ -303,7 +303,7 @@ class Main {
             }
             if(map1.dead() = true){
                 do P0.incKO();
-                //do P1.clear(map1);
+                do map1.clear();
             }
             let KO = (P0.getKO() > 4 | P1.getKO() > 4);
         }
