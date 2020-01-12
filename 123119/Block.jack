@@ -1,8 +1,4 @@
 class Block{
-    field Map A;
-    field int r;
-    field int c;
-    field int type;
     field boolean last; // to memorize whether last valid mvt is rotation
     field IBlock I;
     field JBlock J;
@@ -12,41 +8,33 @@ class Block{
     field TBlock T;
     field ZBlock Z;
     
-    constructor Block new(Map Map_A,int row,int column,int block_type){
-        let A = Map_A;
-        let r = row;
-        let c = column;
-        let type = block_type;
+    constructor Block new(Map Map_A,int r,int c,int type){
         let last = false;
+        if (type = 0){
+            let O = OBlock.new(Map_A); 
+        }
+        if (type = 1){
+            let I = IBlock.new(Map_A);
+        }
+        if (type = 2){
+            let Z = ZBlock.new(Map_A);
+        }
+        if (type = 3){
+            let S = SBlock.new(Map_A);
+        }
+        if (type = 4){
+            let T = TBlock.new(Map_A);
+        }
+        if (type = 5){
+            let J = JBlock.new(Map_A);
+        }
+        if (type = 6){
+            let L = LBlock.new(Map_A);
+        }
         return this;
     }
 
-    method void create_block(){
-        if (type = 0){
-            let O = OBlock.new(A); 
-        }
-        if (type = 1){
-            let I = IBlock.new(A);
-        }
-        if (type = 2){
-            let Z = ZBlock.new(A);
-        }
-        if (type = 3){
-            let S = SBlock.new(A);
-        }
-        if (type = 4){
-            let T = TBlock.new(A);
-        }
-        if (type = 5){
-            let J = JBlock.new(A);
-        }
-        if (type = 6){
-            let L = LBlock.new(A);
-        }
-        return;
-    }
-
-    method void down(){
+    method void down(Map A){
         if (type = 0) {
             do O.down(A,this);
         }
@@ -71,7 +59,7 @@ class Block{
         return;
     }
 
-    method void left(){
+    method void left(Map A){
         if (type = 0) {
             do O.left(A,this);
         }
@@ -96,7 +84,7 @@ class Block{
         return;
     }
 
-    method void right(){
+    method void right(Map A){
         if (type = 0) {
             do O.right(A,this);
         }
@@ -121,7 +109,7 @@ class Block{
         return;
     }
 
-    method void rotate(){
+    method void rotate(Map A){
         if (type = 0) {
             //do O.right(A,this);
         }
@@ -146,7 +134,7 @@ class Block{
         return;
     }
     
-    method boolean bottomChecker(){
+    method boolean bottomChecker(Map A){
         var boolean isBottom;
         if (type = 0) {
             let isBottom =  O.O_isBottom(A,this);
@@ -173,7 +161,7 @@ class Block{
     }
 
         
-    method void toBottom() {
+    method void toBottom(Map A) {
         var boolean flag;
         var boolean flag2;
         if (type = 0) {
@@ -294,7 +282,7 @@ class Block{
         return;
     }
 
-    method boolean Tspin(){
+    method boolean Tspin(Map A){
         var int occupied;
         let occupied = 0;
         if(~(type = 4)){
