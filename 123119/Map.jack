@@ -45,30 +45,44 @@ class Map{
     {
         var int row;
         var int count;
-        var int done;
         var int tmp;
-        var int i,j;
-        var boolean FULL;
+        var int i,j,l,m;
+        var int FULL;
     
         let count = 0;
         let row = 19;
-        let done = 0;
         /* count */
-        while(row > 0)
+        while(row > -1)
         {
-            if(done = 0)
+            let FULL = 1;
+            let j = 0;
+            while(j<10)
             {
-                let FULL = RowIsFull(row);
-                
-                if(FULL)
+                let FULL = FULL & cells[i*10+j];
+                let j = j + 1;
+            }
+            
+            if(FULL = 1)
+            {
+                let l = row; //ROW = 20, COL = 10
+                while(l > 0)
                 {
-                    let count = count + 1;
+                    let m = 0;
+                    while(m<10)
+                    {
+                        let cells[l*10+m] = cells[l*10+m-10];
+                        let m = m + 1;
+                    }
+                    let l = l - 1;
                 }
-                else
+                let m = 0;
+                while(m<10)
                 {
-                    let done = 1;
+                    let cells[m] = 0;
+                    let m = m + 1;
                 }
             }
+            
             let row = row - 1;
         }
         /* move */
@@ -148,20 +162,6 @@ class Map{
             let i = i+1;
         }
         return dead; //dead = 0(alive), dead = 1(dead)
-    }
-	
-    method boolean RowIsFull(int r)
-    {
-        var int i;
-        var int isFull;
-        let i = r*10;
-        let isFull = 1;
-        while(i<((r+1)*10))
-        {
-            let isFull = isFull & cells[i];
-            let i = i+1;
-        }
-        return isFull;
     }
 
     method void printCells() /* for debug */
