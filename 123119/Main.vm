@@ -3,9 +3,9 @@ push argument 0
 push constant 1
 eq
 push argument 0
-or
 push constant 2
 eq
+or
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
@@ -16,9 +16,9 @@ push argument 0
 push constant 3
 eq
 push argument 0
-or
 push constant 4
 eq
+or
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
@@ -29,9 +29,9 @@ push argument 0
 push constant 5
 eq
 push argument 0
-or
 push constant 6
 eq
+or
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
@@ -276,7 +276,8 @@ if-goto IF_TRUE12
 goto IF_FALSE12
 label IF_TRUE12
 push argument 1
-call Map.proc 1
+push argument 3
+call Map.proc 2
 return
 goto IF_END12
 label IF_FALSE12
@@ -607,7 +608,8 @@ if-goto WHILE_END0
 push constant 0
 push local 2
 push local 6
-call Main.Move 3
+push local 0
+call Main.Move 4
 pop local 12
 push local 12
 push constant 1
@@ -624,7 +626,8 @@ label IF_FALSE0
 push constant 1
 push local 3
 push local 7
-call Main.Move 3
+push local 1
+call Main.Move 4
 pop local 13
 push local 13
 push constant 1
@@ -991,6 +994,10 @@ push local 0
 push local 2
 call Playa.clearGarbage 2
 pop temp 0
+push local 0
+push constant 0
+call Playa.setGarbageHeight 2
+pop temp 0
 push constant 0
 pop local 16
 label IF_FALSE16
@@ -1024,6 +1031,10 @@ pop temp 0
 push local 1
 push local 3
 call Playa.clearGarbage 2
+pop temp 0
+push local 1
+push constant 0
+call Playa.setGarbageHeight 2
 pop temp 0
 push constant 0
 pop local 17

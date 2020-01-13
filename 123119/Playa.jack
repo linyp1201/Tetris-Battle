@@ -18,7 +18,7 @@ class Playa {
 		return this;
 	}
 
-	method int setGarbageHeight(int new){
+	method void setGarbageHeight(int new){
 		let garbageHeight = new;
 		return;
 	}
