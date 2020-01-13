@@ -152,6 +152,21 @@ call Playa.getLinesSent 1
 call Output.printInt 1
 pop temp 0
 push constant 0
+call Screen.setColor 1
+pop temp 0
+push constant 59
+push constant 8
+push constant 62
+push constant 239
+call Screen.drawRectangle 4
+pop temp 0
+push constant 299
+push constant 8
+push constant 302
+push constant 239
+call Screen.drawRectangle 4
+pop temp 0
+push constant 0
 not
 call Screen.setColor 1
 pop temp 0

@@ -1,13 +1,13 @@
 class Main {
 
     function int comboScore(int combo){
-        if(combo = 1 | combo = 2){
+        if((combo = 1) | (combo = 2)){
             return 1;
         }
-        if(combo = 3 | combo = 4){
+        if((combo = 3) | (combo = 4)){
             return 2;
         }
-        if(combo = 5 | combo = 6){
+        if((combo = 5) | (combo = 6)){
             return 3;
         }
         if(combo > 6){
@@ -25,7 +25,7 @@ class Main {
         return r;
     }
 
-    function int Move(int ID, Map map, Block block){
+    function int Move(int ID, Map map, Block block, Playa player){
 
         /* returns map.proc if block goes to bottom */
         
@@ -79,7 +79,7 @@ class Main {
         }
 
         if(block.bottomChecker(map)){
-            return map.proc();
+            return map.proc(player);
         }
         else{
             return -1;
@@ -199,11 +199,11 @@ class Main {
         while(stop < 240 & (~KO)){
 
             /* One Move */
-            let cleared0 = Main.Move(0, map0, block0);
+            let cleared0 = Main.Move(0, map0, block0, P0);
             if(cleared0 > -1){
                 do P0.addLinesSent(cleared0);
             }
-            let cleared1 = Main.Move(1, map1, block1);
+            let cleared1 = Main.Move(1, map1, block1, P1);
             if(cleared1 > -1){
                 do P1.addLinesSent(cleared1);
             }
@@ -226,8 +226,8 @@ class Main {
             }
 
             /* showMap */
-            do map0.showMap(0);
-            do map1.showMap(1);
+            do map0.showMap(0, P0.getGarbageHeight());
+            do map1.showMap(1, P1.getGarbageHeight());
             /* showNextBlock */
             do Display.showNext(0, bNext0);
             do Display.showNext(1, bNext1);
@@ -236,12 +236,6 @@ class Main {
 
             /* If toBottom, Calculate combo & sent/received lines ; else add received */
             if(cleared0 > -1){
-        
-                do Random.setSeed(bType1+bType0+timer.getTime());
-                let bType0 = bNext0;
-                let bNext0 = Random.randRange(6);
-                do block0.setType(bType0);
-                let isAlive0 = block0.create_block(map0);
                 
                 if(cleared0 = 0){
                     do P0.resetCombo();
@@ -267,15 +261,16 @@ class Main {
                     let cleared0 = cleared0 - P0.getLinesReceived();
                 }
                 do P0.resetLinesReceived();
+
+                do Random.setSeed(bType1+bType0+timer.getTime());
+                let bType0 = bNext0;
+                let bNext0 = Random.randRange(6);
+                do block0.setType(bType0);
+                let isAlive0 = block0.create_block(map0);
+
             }
             if(cleared1 > -1){
                 
-                do Random.setSeed(bType0+bType1+timer.getTime());
-                let bType1 = bNext1;
-                let bNext1 = Random.randRange(6);
-                do block1.setType(bType1);
-                let isAlive1 = block1.create_block(map1);
-
                 if(cleared1 = 0){
                     do P1.resetCombo();
                 }
@@ -300,6 +295,12 @@ class Main {
                     let cleared1 = cleared1 - P1.getLinesReceived();
                 }
                 do P1.resetLinesReceived();
+
+                do Random.setSeed(bType0+bType1+timer.getTime());
+                let bType1 = bNext1;
+                let bNext1 = Random.randRange(6);
+                do block1.setType(bType1);
+                let isAlive1 = block1.create_block(map1);
             }
 
             do Output.moveCursor(3, 0);
@@ -321,6 +322,7 @@ class Main {
             if(isDead0 = -1){
                 do P1.incKO();
                 do P0.clearGarbage(map0);
+                do P0.setGarbageHeight(0);
                 let isDead0 = 0;
             }
             if(isAlive0 = 0){
@@ -331,6 +333,7 @@ class Main {
             if(isDead1 = -1){
                 do P0.incKO();
                 do P1.clearGarbage(map1);
+                do P1.setGarbageHeight(0);
                 let isDead1 = 0;
             }
             if(isAlive1 = 0){

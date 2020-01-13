@@ -697,11 +697,15 @@ pop local 24
 label IF_FALSE2
 push local 2
 push constant 0
-call Map.showMap 2
+push local 0
+call Playa.getGarbageHeight 1
+call Map.showMap 3
 pop temp 0
 push local 3
 push constant 1
-call Map.showMap 2
+push local 1
+call Playa.getGarbageHeight 1
+call Map.showMap 3
 pop temp 0
 push constant 0
 push local 10
@@ -722,27 +726,6 @@ gt
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
-push local 9
-push local 8
-add
-push local 23
-call Clock.getTime 1
-add
-call Random.setSeed 1
-pop temp 0
-push local 10
-pop local 8
-push constant 6
-call Random.randRange 1
-pop local 10
-push local 6
-push local 8
-call Block.setType 2
-pop temp 0
-push local 6
-push local 2
-call Block.create_block 2
-pop local 14
 push local 12
 push constant 0
 eq
@@ -823,6 +806,27 @@ label IF_END8
 push local 0
 call Playa.resetLinesReceived 1
 pop temp 0
+push local 9
+push local 8
+add
+push local 23
+call Clock.getTime 1
+add
+call Random.setSeed 1
+pop temp 0
+push local 10
+pop local 8
+push constant 6
+call Random.randRange 1
+pop local 10
+push local 6
+push local 8
+call Block.setType 2
+pop temp 0
+push local 6
+push local 2
+call Block.create_block 2
+pop local 14
 label IF_FALSE4
 push local 13
 push constant 1
@@ -831,27 +835,6 @@ gt
 if-goto IF_TRUE9
 goto IF_FALSE9
 label IF_TRUE9
-push local 8
-push local 9
-add
-push local 23
-call Clock.getTime 1
-add
-call Random.setSeed 1
-pop temp 0
-push local 11
-pop local 9
-push constant 6
-call Random.randRange 1
-pop local 11
-push local 7
-push local 9
-call Block.setType 2
-pop temp 0
-push local 7
-push local 3
-call Block.create_block 2
-pop local 15
 push local 13
 push constant 0
 eq
@@ -932,6 +915,27 @@ label IF_END13
 push local 1
 call Playa.resetLinesReceived 1
 pop temp 0
+push local 8
+push local 9
+add
+push local 23
+call Clock.getTime 1
+add
+call Random.setSeed 1
+pop temp 0
+push local 11
+pop local 9
+push constant 6
+call Random.randRange 1
+pop local 11
+push local 7
+push local 9
+call Block.setType 2
+pop temp 0
+push local 7
+push local 3
+call Block.create_block 2
+pop local 15
 label IF_FALSE9
 push constant 3
 push constant 0
