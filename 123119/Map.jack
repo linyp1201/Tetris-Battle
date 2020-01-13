@@ -117,20 +117,25 @@ class Map{
 
     method int getHeight()
     {
-        var int which;
-        var int h;
-        let which = 0;
-        while(which < 200)
+        var int i,j,ull;
+        let i = 19;
+        while(i>-1)
         {
-            if(cells[which] > 0)
+            let ull = 0;
+            let j = 0;
+            while(j<10)
             {
-                let h = which / 10;
-                let h = 20 - h;
-                return h;
+                let ull = ull + cells[i*10+j];
+                let j = j+1;
             }
-            let which = which + 1;
+            if(ull = 0)
+            {
+                return (19 - i);
+            }
+            let i = i - 1;
         }
-        return h;
+
+        return 0;
     }
     method boolean dead()
     {
