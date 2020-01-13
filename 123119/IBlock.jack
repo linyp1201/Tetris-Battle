@@ -78,20 +78,25 @@ class IBlock{
 
                 let type = 1;
             }
-            else	// r= 0, 1, 2, 3	
+            else	// r= 0, 1, 2
             {
-                // cannot collide w/ others
-                //var int temp;
-                let temp= r-1;
-                while (temp> 0)
+                if ( r=0 )
                 {
-                  if( M.read(temp, c)= 1 )
-                  {let temp= temp-1;
-                    return;}
-                  
-                }
-                if (temp> 0)
-                  {return;}
+                    if ( ( M.read(1, c)= 1 ) | ( M.read(2, c)= 1 ) | ( M.read(3, c)= 1 ) )
+                    {return;}
+                }  
+
+                if ( r=1 )
+                {
+                    if ( ( M.read(0, c)= 1 ) | ( M.read(2, c)= 1 ) | ( M.read(3, c)= 1 ) )
+                    {return;}
+                }                
+
+                if ( r=2 )
+                {
+                    if ( ( M.read(1, c)= 1 ) | ( M.read(0, c)= 1 ) | ( M.read(3, c)= 1 ) )
+                    {return;}
+                }    
 
                 // implement
                 do M.reset(r, c+1);
@@ -130,19 +135,25 @@ class IBlock{
 
 
             }
-            else	// c= 6, 7, 8, 9	
+            else	// c=  7, 8, 9	
             {
-                // cannot collide w/ others
-                //var int temp;
-                let temp= c+1;
-                while (temp< 10)
+                if ( c=9 )
                 {
-                    if( M.read(r, temp)= 1 )
-                        {return;}
-                    let temp= temp+1;
-                }
-                if (temp< 10)
+                    if( ( M.read(r, 6)= 1 ) | ( M.read(r, 7)= 1 ) | ( M.read(r, 8)= 1 ) )
                     {return;}
+                }
+
+                if ( c=8 )
+                {
+                    if( ( M.read(r, 6)= 1 ) | ( M.read(r, 7)= 1 ) | ( M.read(r, 9)= 1 ) )
+                    {return;}
+                }
+
+                if ( c=7 )
+                {
+                    if( ( M.read(r, 6)= 1 ) | ( M.read(r, 9)= 1 ) | ( M.read(r, 8)= 1 ) )
+                    {return;}
+                }   
 
                 // implement
                 do M.reset(r-1, c);

@@ -246,7 +246,7 @@ class TBlock{
       {
         if (r<19)
         {
-          if ((M.read(r+1,c-1)=1)|(M.read(r+1,c)=1)|(M.read(r,c+1)=1))
+          if ((M.read(r+1,c-1)=1)|(M.read(r+1,c)=1)|(M.read(r+1,c+1)=1))
           {
             return ;
           }
@@ -517,7 +517,7 @@ method void right(Map M, Block B)
       {
         if (r<19)
         {
-          if ((M.read(r+1,c-1)=1)|(M.read(r+1,c)=1)|(M.read(r,c+1)=1))
+          if ((M.read(r+1,c-1)=1)|(M.read(r+1,c)=1)|(M.read(r+1,c+1)=1))
           {
             let isbottom = true;
           }
