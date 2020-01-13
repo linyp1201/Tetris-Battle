@@ -18,6 +18,10 @@ class Playa {
 		return this;
 	}
 
+	method int setGarbageHeight(int new){
+		let garbageHeight = new;
+		return;
+	}
 	method int getGarbageHeight(){
 		return garbageHeight;
 	}

@@ -1,13 +1,13 @@
 class Main {
 
     function int comboScore(int combo){
-        if(combo = 1 | combo = 2){
+        if((combo = 1) | (combo = 2)){
             return 1;
         }
-        if(combo = 3 | combo = 4){
+        if((combo = 3) | (combo = 4)){
             return 2;
         }
-        if(combo = 5 | combo = 6){
+        if((combo = 5) | (combo = 6)){
             return 3;
         }
         if(combo > 6){
@@ -25,7 +25,7 @@ class Main {
         return r;
     }
 
-    function int Move(int ID, Map map, Block block){
+    function int Move(int ID, Map map, Block block, Playa player){
 
         /* returns map.proc if block goes to bottom */
         
@@ -79,7 +79,7 @@ class Main {
         }
 
         if(block.bottomChecker(map)){
-            return map.proc();
+            return map.proc(player);
         }
         else{
             return -1;
@@ -199,11 +199,11 @@ class Main {
         while(stop < 240 & (~KO)){
 
             /* One Move */
-            let cleared0 = Main.Move(0, map0, block0);
+            let cleared0 = Main.Move(0, map0, block0, P0);
             if(cleared0 > -1){
                 do P0.addLinesSent(cleared0);
             }
-            let cleared1 = Main.Move(1, map1, block1);
+            let cleared1 = Main.Move(1, map1, block1, P1);
             if(cleared1 > -1){
                 do P1.addLinesSent(cleared1);
             }
@@ -322,6 +322,7 @@ class Main {
             if(isDead0 = -1){
                 do P1.incKO();
                 do P0.clearGarbage(map0);
+                do P0.setGarbageHeight(0);
                 let isDead0 = 0;
             }
             if(isAlive0 = 0){
@@ -332,6 +333,7 @@ class Main {
             if(isDead1 = -1){
                 do P0.incKO();
                 do P1.clearGarbage(map1);
+                do P1.setGarbageHeight(0);
                 let isDead1 = 0;
             }
             if(isAlive1 = 0){
