@@ -43,42 +43,59 @@ class Map{
     /* end for encapsulation */
     method int proc() /* returns how many lines to be eliminated */
     {
-        var int row;
-        var int count;
-        var int tmp;
-        var int i,j,l,m;
+        var int count, k,c,i,j;
         var int FULL;
-    
         let count = 0;
-        let row = 19;
+        let k = 19;
         
-        while(row > 0)
+        while(k > 0)
         {
-            let FULL = RowIsFull(row);
-            
-            while(FULL)
+            let FULL = 1;
+            let c=0;
+            //do Output.moveCursor(0,0);
+
+            while(c<10)
+            {
+                /*
+                do Output.printInt(cells[k*10+c]);
+                
+                do Output.printString(" ");
+                do Output.printInt(k);
+                do Output.printString(" ");
+                do Output.printInt(c);
+                do Output.printString("xx");
+                do Output.println();
+                */
+                let FULL = FULL & cells[k*10+c];
+                let c = c + 1;
+            }
+            //do Output.printInt(FULL);
+            //let FULL = RowIsFull(k);
+            //do Output.moveCursor(0,0);
+            //do Output.printInt(FULL);
+            while(FULL = 1)
             {
                 let count = count + 1;
-                let l = row; //ROW = 20, COL = 10
-                while(l > 0)
+                let i = k; //ROW = 20, COL = 10
+                while(i > 0)
                 {
-                    let m = 0;
-                    while(m<10)
+                    let j = 0;
+                    while(j<10)
                     {
-                        let cells[l*10+m] = cells[l*10+m-10];
-                        let m = m + 1;
+                        let cells[i*10+j] = cells[i*10+j-10];
+                        let j = j + 1;
                     }
-                    let l = l - 1;
+                    let i = i - 1;
                 }
-                let m = 0;
-                while(m<10)
+                let j = 0;
+                while(j<10)
                 {
-                    let cells[m] = 0;
-                    let m = m + 1;
+                    let cells[j] = 0;
+                    let j = j+1;
                 }
-                let FULL = RowIsFull(row);
+                let FULL = RowIsFull(k);
             }
-            let row = row - 1;
+            let k = k-1;
         }
         
 		return count;

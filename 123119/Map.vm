@@ -83,58 +83,84 @@ push that 0
 pop local 0
 push local 0
 return
-function Map.proc 8
+function Map.proc 6
 push argument 0
 pop pointer 0
 push constant 0
-pop local 1
-push constant 19
 pop local 0
+push constant 19
+pop local 1
 label WHILE_EXP0
-push local 0
+push local 1
 push constant 0
 gt
 not
 if-goto WHILE_END0
-push pointer 0
-push local 0
-call Map.RowIsFull 2
-pop local 7
-label WHILE_EXP1
-push local 7
-not
-if-goto WHILE_END1
-push local 1
 push constant 1
-add
-pop local 1
-push local 0
 pop local 5
-label WHILE_EXP2
-push local 5
 push constant 0
-gt
-not
-if-goto WHILE_END2
-push constant 0
-pop local 6
-label WHILE_EXP3
-push local 6
+pop local 2
+label WHILE_EXP1
+push local 2
 push constant 10
 lt
 not
-if-goto WHILE_END3
+if-goto WHILE_END1
 push local 5
+push local 1
 push constant 10
 call Math.multiply 2
-push local 6
+push local 2
 add
 push this 0
 add
+pop pointer 1
+push that 0
+and
+pop local 5
+push local 2
+push constant 1
+add
+pop local 2
+goto WHILE_EXP1
+label WHILE_END1
+label WHILE_EXP2
 push local 5
+push constant 1
+eq
+not
+if-goto WHILE_END2
+push local 0
+push constant 1
+add
+pop local 0
+push local 1
+pop local 3
+label WHILE_EXP3
+push local 3
+push constant 0
+gt
+not
+if-goto WHILE_END3
+push constant 0
+pop local 4
+label WHILE_EXP4
+push local 4
+push constant 10
+lt
+not
+if-goto WHILE_END4
+push local 3
 push constant 10
 call Math.multiply 2
-push local 6
+push local 4
+add
+push this 0
+add
+push local 3
+push constant 10
+call Math.multiply 2
+push local 4
 add
 push constant 10
 sub
@@ -146,27 +172,27 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 6
+push local 4
 push constant 1
 add
-pop local 6
-goto WHILE_EXP3
-label WHILE_END3
-push local 5
+pop local 4
+goto WHILE_EXP4
+label WHILE_END4
+push local 3
 push constant 1
 sub
-pop local 5
-goto WHILE_EXP2
-label WHILE_END2
+pop local 3
+goto WHILE_EXP3
+label WHILE_END3
 push constant 0
-pop local 6
-label WHILE_EXP4
-push local 6
+pop local 4
+label WHILE_EXP5
+push local 4
 push constant 10
 lt
 not
-if-goto WHILE_END4
-push local 6
+if-goto WHILE_END5
+push local 4
 push this 0
 add
 push constant 0
@@ -174,25 +200,25 @@ pop temp 0
 pop pointer 1
 push temp 0
 pop that 0
-push local 6
+push local 4
 push constant 1
 add
-pop local 6
-goto WHILE_EXP4
-label WHILE_END4
+pop local 4
+goto WHILE_EXP5
+label WHILE_END5
 push pointer 0
-push local 0
+push local 1
 call Map.RowIsFull 2
-pop local 7
-goto WHILE_EXP1
-label WHILE_END1
-push local 0
+pop local 5
+goto WHILE_EXP2
+label WHILE_END2
+push local 1
 push constant 1
 sub
-pop local 0
+pop local 1
 goto WHILE_EXP0
 label WHILE_END0
-push local 1
+push local 0
 return
 function Map.RowIsFull 2
 push argument 0
