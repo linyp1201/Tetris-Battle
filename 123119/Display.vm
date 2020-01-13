@@ -583,7 +583,7 @@ call Output.moveCursor 2
 pop temp 0
 push local 0
 call Playa.getName 1
-call Output.printstring 1
+call Output.printString 1
 pop temp 0
 push constant 12
 push constant 29
@@ -603,7 +603,7 @@ push constant 83
 call String.appendChar 2
 push constant 33
 call String.appendChar 2
-call Output.printstring 1
+call Output.printString 1
 pop temp 0
 goto IF_END6
 label IF_FALSE6

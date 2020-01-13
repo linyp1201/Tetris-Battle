@@ -129,9 +129,9 @@ class Display{
 			do Output.printString("PLAYER ");
 			do Output.printInt(winID);
 			do Output.moveCursor(11, 28);
-			do Output.printstring(winner.getName());
+			do Output.printString(winner.getName());
 			do Output.moveCursor(12, 29);
-			do Output.printstring(" WINS!");
+			do Output.printString(" WINS!");
 		}
 		else{
 			do Output.moveCursor(10, 26);
