@@ -1,20 +1,19 @@
 class Main {
-    
-    static Array comboTable;
 
-    function void initialize(){
-        
-        /* ComboTable */
-        let comboTable = Array.new(8);
-        let comboTable[1] = 1;
-        let comboTable[2] = 1;
-        let comboTable[3] = 2;
-        let comboTable[4] = 2;
-        let comboTable[5] = 3;
-        let comboTable[6] = 3;
-        let comboTable[7] = 4;
-
-        return;
+    function int comboScore(int combo){
+        if(combo = 1 | combo = 2){
+            return 1;
+        }
+        if(combo = 3 | combo = 4){
+            return 2;
+        }
+        if(combo = 5 | combo = 6){
+            return 3;
+        }
+        if(combo > 6){
+            return 4;
+        }
+        return 0;
     }
 
     function int mod500(int k) /* % function */
@@ -142,9 +141,7 @@ class Main {
         var int cleared0, cleared1;
         var int isDead0, isDead1;
         var boolean prev0, prev1;
-        var int bonus0, bonus1;
         var boolean TSpin0, TSpin1;
-        var int temp;
         var boolean KO;
         var Clock timer;
         var int stop;
@@ -227,14 +224,9 @@ class Main {
                 }
 
                 if(cleared0 > 0){
-                    let temp = P0.getCombo();
-                    if(temp > 7){
-                        let temp = 7;
-                    }
                     let TSpin0 = block0.Tspin(map0);
                     let prev0 = (TSpin0 | (cleared0 > 3));
-                    let bonus0 = Main.Bonus(prev0, TSpin0, cleared0);
-                    let cleared0 = comboTable[temp] + bonus0;
+                    let cleared0 = Main.comboScore(P0.getCombo()) + Main.Bonus(prev0, TSpin0, cleared0);
                     if(map0.getHeight() = 0){
                         let cleared0 = cleared0 + 10;
                     }
@@ -266,14 +258,9 @@ class Main {
                 }
 
                 if(cleared1 > 0){
-                    let temp = P1.getCombo();
-                    if(temp > 7){
-                        let temp = 7;
-                    }
                     let TSpin1 = block1.Tspin(map1);
                     let prev1 = (TSpin1 | (cleared1 > 3));
-                    let bonus1 = Main.Bonus(prev1, TSpin1, cleared1);
-                    let cleared1 = comboTable[temp] + bonus1;
+                    let cleared1 = Main.comboScore(P1.getCombo()) + Main.Bonus(prev1, TSpin1, cleared1);
                     if(map0.getHeight() = 0){
                         let cleared0 = cleared0 + 10;
                     }

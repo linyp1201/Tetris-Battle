@@ -160,14 +160,18 @@ push constant 239
 push constant 59
 push argument 0
 call Playa.getLinesReceived 1
-call Screen.drawLine 4
+push constant 200
+call Math.divide 2
+call Screen.drawRectangle 4
 pop temp 0
 push constant 302
 push constant 239
 push constant 299
 push argument 1
 call Playa.getLinesReceived 1
-call Screen.drawLine 4
+push constant 200
+call Math.divide 2
+call Screen.drawRectangle 4
 pop temp 0
 push constant 0
 return
