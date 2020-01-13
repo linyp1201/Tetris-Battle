@@ -118,7 +118,7 @@ method void right(Map M, Block B)
       var int c;
       let r = B.getR();
       let c = B.getC();
-      if (r>18)
+      if (r<18)
       {
         if ((M.read(r+2,c)=1)|(M.read(r+2,c+1)=1))
         {

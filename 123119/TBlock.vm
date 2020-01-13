@@ -978,6 +978,8 @@ eq
 or
 push argument 1
 push local 0
+push constant 1
+add
 push local 1
 push constant 1
 add
@@ -2007,6 +2009,8 @@ eq
 or
 push argument 1
 push local 0
+push constant 1
+add
 push local 1
 push constant 1
 add

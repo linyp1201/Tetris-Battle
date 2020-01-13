@@ -348,7 +348,7 @@ call Block.getC 1
 pop local 2
 push local 1
 push constant 18
-gt
+lt
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
