@@ -1,15 +1,22 @@
 class IBlock{
     field int r,c;
 
-    constructor IBlock new(Map A)
+    constructor IBlock new(Map A,int r,c)
     {
-        let r = 0;
-        let c = 3;
+        //let r = 0;
+        //let c = 3;
         do A.set(r,c);
         do A.set(r,c+1);
         do A.set(r,c+2);
         do A.set(r, c+3);
         return this;
+    }
+
+    method void clear(Map A, int r,c) {
+        do A.reset(r,c);
+        do A.reset(r,c+1);
+        do A.reset(r,c+2);
+        do A.reset(r, c+3);
     }
 
     method void dispose() {

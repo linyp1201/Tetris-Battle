@@ -47,16 +47,13 @@ class IBlock{
         if (( M.read(r,c+1) = 1)&( M.read(r,c)=1 )&( M.read(r,c+2)=1 )&( M.read(r,c+3)=1 ))
         {
             let type= 0;	// lying
-            do Output.moveCursor(1,0);
-            do Output.printInt(type);
             
         }	
     
         if (( M.read(r-1, c)= 1 )&( M.read(r,c)=1 )&( M.read(r-2,c)=1)&( M.read(r-3,c)=1))
         {
             let type= 1;	// standing
-            do Output.moveCursor(1,0);
-            do Output.printInt(type);
+            
            
         }	
           

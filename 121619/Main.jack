@@ -15,13 +15,14 @@ class Main {
         
         //choose one from below
         let I = IBlock.new(A);
+        do Display.gameScreen();
         //let J = JBlock.new(A);
         //let L = LBlock.new(A);
         //let O = OBlock.new(A);
         //let S = SBlock.new(A);
         //let T = TBlock.new(A);
         //let Z = ZBlock.new(A);
-        do A.printCells();
+        //do A.printCells();
         /* ded or nah
         do Sys.wait(1000);
         do Output.moveCursor(0,0);
@@ -31,7 +32,7 @@ class Main {
             do Output.moveCursor(0,0);
             do Output.printString("YOU ARE DEAD");
         }
-        else
+        if
         {
             do Output.moveCursor(0, 0);
             do Output.printString("HERE YOU GO");

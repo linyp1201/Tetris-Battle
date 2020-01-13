@@ -1,17 +1,22 @@
 class LBlock{
     field int r,c;
     //the position of this one should be considered carefully or be redefined
-    constructor LBlock new(Map A)
+    constructor LBlock new(Map A, int r,c)
     {
-        let r = 1;
-        let c = 4;
+        //let r = 1;
+        //let c = 4;
         do A.set(r,c);
         do A.set(r,c+1);
         do A.set(r,c+2);
         do A.set(r-1, c+2);
         return this;
     }
-
+    method void clear(Map A, int r,c) {
+        do A.reset(r,c);
+        do A.reset(r,c+1);
+        do A.reset(r,c+2);
+        do A.reset(r-1, c+2);
+    }
     method void dispose() {
       do Memory.deAlloc(this);
       return;
