@@ -1,0 +1,369 @@
+class Block{
+    field boolean last; // to memorize whether last valid mvt is rotation
+    field int r,c;
+    field int type;
+    field IBlock I;
+    field JBlock J;
+    field LBlock L;
+    field OBlock O;
+    field SBlock S;
+    field TBlock T;
+    field ZBlock Z;
+    
+    constructor Block new(Map Map_A, int b_type){
+        let last = false;
+        let type = b_type;
+        let O = OBlock.new(Map_A,this); 
+        let I = IBlock.new(Map_A,this);
+        let Z = ZBlock.new(Map_A,this);
+        let S = SBlock.new(Map_A,this);
+        let T = TBlock.new(Map_A,this);
+        let J = JBlock.new(Map_A,this);
+        let L = LBlock.new(Map_A,this);
+        
+        return this;
+    }
+
+    method void setType(int num){
+        let type = num;
+        return ;
+    }
+
+    method int create_block(Map A){
+        var int alive;
+        if (type = 0) {
+            let alive = O.create_block(A,this);
+        }
+        if (type = 1){
+            let alive = I.create_block(A,this);
+        }
+        if (type = 2){
+            let alive = Z.create_block(A,this);
+        }
+        if (type = 3){
+            let alive = S.create_block(A,this);
+        }
+        if (type = 4){
+            let alive = T.create_block(A,this);
+        }
+        if (type = 5){
+            let alive = J.create_block(A,this);
+        }
+        if (type = 6){
+            let alive = L.create_block(A,this);
+        }
+        return alive;
+    }
+
+    method void down(Map A){
+        if (type = 0) {
+            do O.down(A,this);
+        }
+        if (type = 1){
+            do I.down(A,this);
+        }
+        if (type = 2){
+            do Z.down(A,this);
+        }
+        if (type = 3){
+            do S.down(A,this);
+        }
+        if (type = 4){
+            do T.down(A,this);
+        }
+        if (type = 5){
+            do J.down(A,this);
+        }
+        if (type = 6){
+            do L.down(A,this);
+        }
+        return;
+    }
+
+    method void left(Map A){
+        if (type = 0) {
+            do O.left(A,this);
+        }
+        if (type = 1){
+            do I.left(A,this);
+        }
+        if (type = 2){
+            do Z.left(A,this);
+        }
+        if (type = 3){
+            do S.left(A,this);
+        }
+        if (type = 4){
+            do T.left(A,this);
+        }
+        if (type = 5){
+            do J.left(A,this);
+        }
+        if (type = 6){
+            do L.left(A,this);
+        }
+        return;
+    }
+
+    method void right(Map A){
+        if (type = 0) {
+            do O.right(A,this);
+        }
+        if (type = 1){
+            do I.right(A,this);
+        }
+        if (type = 2){
+            do Z.right(A,this);
+        }
+        if (type = 3){
+            do S.right(A,this);
+        }
+        if (type = 4){
+            do T.right(A,this);
+        }
+        if (type = 5){
+            do J.right(A,this);
+        }
+        if (type = 6){
+            do L.right(A,this);
+        }
+        return;
+    }
+
+    method void rotate(Map A){
+        if (type = 0) {
+            //do O.right(A,this);
+        }
+        if (type = 1){
+            do I.I_rotate(A,this);
+        }
+        if (type = 2){
+            do Z.Z_rotate(A,this);
+        }
+        if (type = 3){
+            do S.S_rotate(A,this);
+        }
+        if (type = 4){
+            do T.T_rotate(A,this);
+        }
+        if (type = 5){
+            do J.J_rotate(A,this);
+        }
+        if (type = 6){
+            do L.L_rotate(A,this);
+        }
+        return;
+    }
+    
+    method boolean bottomChecker(Map A){
+        var boolean isBottom;
+        if (type = 0) {
+            let isBottom =  O.O_isBottom(A,this);
+        }
+        if (type = 1){
+            let isBottom =  I.I_isBottom(A,this);
+        }
+        if (type = 2){
+            let isBottom =  Z.Z_isBottom(A,this);
+        }
+        if (type = 3){
+            let isBottom =  S.S_isBottom(A,this);
+        }
+        if (type = 4){
+            let isBottom =  T.T_isBottom(A,this);
+        }
+        if (type = 5){
+            let isBottom =  J.J_isBottom(A,this);
+        }
+        if (type = 6){
+            let isBottom =  L.L_isBottom(A,this);
+        }
+        return isBottom;
+    }
+
+        
+    method void toBottom(Map A) {
+        var boolean flag;
+        var boolean flag2;
+        if (type = 0) {
+            let flag2 = O.O_isBottom(A,this);
+        }
+        if (type = 1){
+            let flag2 = I.I_isBottom(A,this);
+        }
+        if (type = 2){
+            let flag2 = Z.Z_isBottom(A,this);
+        }
+        if (type = 3){
+            let flag2 = S.S_isBottom(A,this);
+        }
+        if (type = 4){
+            let flag2 = T.T_isBottom(A,this);
+        }
+        if (type = 5){
+            let flag2 = J.J_isBottom(A,this);
+        }
+        if (type = 6){
+            let flag2 = L.L_isBottom(A,this);
+        }
+        let flag = flag2;
+
+        while (~flag) //flag == false
+        {
+            if (type = 0) {
+                let flag = O.O_isBottom(A,this);
+                do O.down(A,this);
+            }
+            if (type = 1){
+                let flag = I.I_isBottom(A,this);
+                do I.down(A,this);
+            }
+            if (type = 2){
+                let flag = Z.Z_isBottom(A,this);
+                do Z.down(A,this);
+            }
+            if (type = 3){
+                let flag = S.S_isBottom(A,this);
+                do S.down(A,this);
+            }
+            if (type = 4){
+                let flag = T.T_isBottom(A,this);
+                do T.down(A,this);
+            }
+            if (type = 5){
+                let flag = J.J_isBottom(A,this);
+                do J.down(A,this);
+            }
+            if (type = 6){
+                let flag = L.L_isBottom(A,this);
+                do L.down(A,this);
+            }
+        }
+        return;
+    }
+
+    method void dispose()
+    {
+        if (type = 0) {
+                do O.dispose();
+            }
+            if (type = 1){
+                do I.dispose();
+            }
+            if (type = 2){
+                do Z.dispose();
+            }
+            if (type = 3){
+                do S.dispose();
+            }
+            if (type = 4){
+                do T.dispose();
+            }
+            if (type = 5){
+                do J.dispose();
+            }
+            if (type = 6){
+                do L.dispose();
+            }
+        do Memory.deAlloc(this);
+        return;
+    }
+    
+
+    
+    method IBlock getI() {
+        return I;
+    }
+    method JBlock getJ() {
+        return J;
+    }
+    method LBlock getL() {
+        return L;
+    }
+    method OBlock getO() {
+        return O;
+    }
+    method SBlock getS() {
+        return S;
+    }
+    method TBlock getT() {
+        return T;
+    }
+    method ZBlock getZ() {
+        return Z;
+    }
+
+    method int getR(){
+        return r;
+    }
+
+    method int getC(){
+        return c;
+    }
+
+    method void setR(int num){
+        let r= num;
+        return;
+    }
+
+    method void setC(int num){
+        let c= num;
+        return;
+    }
+
+    method boolean Tspin(Map A){
+        var int occupied;
+        let occupied = 0;
+        if(~(type = 4)){
+            return false;
+        }
+        else{
+            if(T.T_isBottom(A, this) & last){
+                if(r+1 > 19 | c+1 > 9){
+                    let occupied = occupied + 1;
+                }
+                else{
+                    if(A.read(r+1, c+1)){
+                        let occupied = occupied + 1;
+                    }
+                }
+                if(r+1 > 19 | c-1 < 0){
+                    let occupied = occupied + 1;
+                }
+                else{
+                    if(A.read(r+1, c-1)){
+                        let occupied = occupied + 1;
+                    }
+                }
+                if(r-1 < 0 | c+1 > 9){
+                    let occupied = occupied + 1;
+                }
+                else{
+                    if(A.read(r-1, c+1)){
+                        let occupied = occupied + 1;
+                    }
+                }
+                if(r-1 > 0 | c-1 < 0){
+                    let occupied = occupied + 1;
+                }
+                else{
+                    if(A.read(r-1, c-1)){
+                        let occupied = occupied + 1;
+                    }
+                }
+                if(occupied > 2){
+                    return true;
+                }
+            }
+            return false;
+        }
+    }
+
+    method void setLast(boolean b){
+        /* set last to b */
+        let last = b;
+        return;
+    }
+}
+
+    

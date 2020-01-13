@@ -1,0 +1,17 @@
+星：
+BLOCKS.rotate();
+
+芸：
+MAP.show();
+
+廷：
+BLOCKS.left();
+BLOCKS.right();
+BLOCKS.down();
+BLOCKS.acceleration();
+BLOCKS.toBottom();
+
+揚：
+BLOCKS.position();
+MAP.erase();
+MAP.(2D Array);

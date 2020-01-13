@@ -1,0 +1,572 @@
+class LBlock{
+    field int r,c;
+    field int type;	
+    //the position of this one should be considered carefully | be redefined
+    constructor LBlock new(Map A,Block B)
+    {
+        //let r = 1;
+        //let c = 4;
+        do B.setR(1);
+        do B.setC(4);
+        /*
+        do A.set(r-1,c);
+        do A.set(r-1,c+1);
+        do A.set(r,c+1);
+        do A.set(r+1, c+1);*/
+        return this;
+    }
+
+    method int create_block(Map A, Block B){
+        do B.setR(1);
+        do B.setC(4);
+        let r = B.getR();
+        let c = B.getC();
+        if((A.read(r-1, c) = 1) | (A.read(r-1, c+1) = 1) | (A.read(r, c+1) = 1) | (A.read(r+1, c+1) = 1)){
+            return 0;
+        }
+        do A.set(r-1,c);
+        do A.set(r-1,c+1);
+        do A.set(r,c+1);
+        do A.set(r+1, c+1);
+        let type = 0;
+        return 1;
+    }
+
+    method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+    }
+
+    // Put into LBlock.jack
+
+    method void L_rotate(Map M, Block B)
+    {	
+      
+      var int r; 
+      var int c; 
+      let r = B.getR();
+      let c = B.getC();
+      
+      if ((r> 0) & (r< 19) & (c< 9))
+      {
+        if (( M.read(r-1, c)= 1 ) & ( M.read(r-1 ,c+1)= 1 ) & ( M.read(r ,c+1)= 1 ) & ( M.read(r+1 ,c+1)= 1 ))
+          {let type= 0;}
+      }
+          
+      if ((r< 19) & (c> 0) & (c< 9))
+      {
+        if (( M.read(r ,c+1)= 1 ) & ( M.read(r+1 ,c-1)= 1 ) & ( M.read(r+1 ,c)= 1 ) & ( M.read(r+1 ,c+1)= 1 ))
+          {let type= 1;}
+      }			
+          
+      if ((r> 0) & (r< 19) & (c> 0))
+      {
+        if (( M.read(r-1 ,c-1)= 1 ) & ( M.read(r ,c-1)= 1 ) & ( M.read(r+1, c-1)= 1 ) & ( M.read(r+1 ,c)= 1 ))
+          {let type= 2;}
+      }
+
+      if ((r> 0) & (c> 0) & (c< 9))
+      {
+        if (( M.read(r-1 ,c-1)= 1 ) & ( M.read(r-1 ,c)= 1 ) & ( M.read(r-1 ,c+1)= 1 ) & ( M.read(r ,c-1)= 1 ))
+          {let type= 3;}
+      }
+
+      if (type= 0)
+      {	
+        if (c= 0)
+        {
+          // cannot collide w/ others
+          if (( M.read(r ,2)= 1 ) | ( M.read(r+1 ,0)= 1 ) | ( M.read(r+1 ,2)= 1 ))
+            {return;}
+
+          // implement
+          do M.reset(r-1, 0);
+          do M.reset(r-1, 1);
+          do M.reset(r, 1);
+          do M.set(r, 2);
+          do M.set(r+1, 0);
+          do M.set(r+1, 2);
+
+          do B.setC(1);
+        }
+        else
+        {
+          // cannot collide w/ others
+          if (( M.read(r+1 ,c-1)= 1 ) | ( M.read(r+1 ,c)= 1 ))
+            {return;}
+
+          // implement
+          do M.reset(r-1, c);
+          do M.reset(r-1, c+1);
+          do M.set(r+1, c-1);
+          do M.set(r+1, c);
+
+        }
+        let type = 1;
+        return ;
+      }
+
+      if (type= 1)
+      {	
+        if (r= 0)
+        {
+          // cannot collide w/ others
+          if (( M.read(0 ,c-1)= 1 ) | ( M.read(2 ,c-1)= 1 ) | ( M.read(2 ,c)= 1 ))
+            {return;}
+
+          // implement
+          do M.reset(0, c+1);
+          do M.reset(1, c);
+          do M.reset(1, c+1);
+          do M.set(0, c-1);
+          do M.set(2, c-1);
+          do M.set(2, c);
+
+          do B.setR(1);
+        }
+        else
+        {
+          // cannot collide w/ others
+          if (( M.read(r-1 ,c-1)= 1 ) | ( M.read(r ,c-1)= 1 ))
+            {return;}
+
+          // implement
+          do M.reset(r, c+1);
+          do M.reset(r+1, c+1);
+          do M.set(r-1, c-1);
+          do M.set(r, c-1);
+
+        }
+        let type = 2;
+        return ;
+      }
+
+      if (type= 2)
+      {	
+        if (c= 9)
+        {
+          // cannot collide w/ others
+          if (( M.read(r-1 ,7)= 1 ) | ( M.read(r-1 ,9)= 1 ) | ( M.read(r ,7)= 1 ))
+            {return;}
+
+          // implement
+          do M.reset(r, 8);
+          do M.reset(r+1, 8);
+          do M.reset(r+1, 9);
+          do M.set(r-1, 7);
+          do M.set(r-1, 9);
+          do M.set(r, 7);
+
+          do B.setC(8);
+
+        }
+        else
+        {
+          // cannot collide w/ others
+          if (( M.read(r-1 ,c)= 1 ) | ( M.read(r-1 ,c+1)= 1 ))
+            {return;}
+
+          // implement
+          do M.reset(r+1, c-1);
+          do M.reset(r+1, c);
+          do M.set(r-1, c);
+          do M.set(r-1, c+1);
+
+        }
+        let type = 3;
+        return ;
+      }
+
+      if (type= 3)
+      {	
+        if (r= 19)
+        {
+          // cannot collide w/ others
+          if (( M.read(17 ,c)= 1 ) | ( M.read(17 ,c+1)= 1 ) | ( M.read(19 ,c+1)= 1 ))
+            {return;}
+
+          // implement
+          do M.reset(18, c-1);
+          do M.reset(18, c);
+          do M.reset(19, c-1);
+          do M.set(17, c);
+          do M.set(17, c+1);
+          do M.set(19, c+1);
+          
+          do B.setR(18);
+          
+        }
+        else
+        {
+          // cannot collide w/ others
+          if (( M.read(r ,c+1)= 1 ) | ( M.read(r+1 ,c+1)= 1 ))
+            {return;}
+
+          // implement
+          do M.reset(r-1, c-1);
+          do M.reset(r, c-1);
+          do M.set(r, c+1);
+          do M.set(r+1, c+1);
+        }
+        let type = 0;
+        return ;
+      }
+
+    return ;
+    }
+    method void down(Map M,Block B)
+    {
+      var int r;
+      var int c;
+      let r = B.getR();
+      let c = B.getC();
+      if (type = 0)
+      {
+        if (r<18)
+        {
+          if ((M.read(r,c)=1)|(M.read(r+2,c+1)=1))
+          {
+            return;
+          }
+          else
+          {
+            do M.reset(r-1, c);
+            do M.reset(r-1, c+1);
+            do M.set(r, c);
+            do M.set(r+2 ,c+1);
+
+            do B.setR(r+1);
+          }
+        }
+        return;
+      }
+      if (type = 1)
+      {
+        if (r<18)
+        {
+          if ((M.read(r+2,c-1)=1)|(M.read(r+2,c)=1)|(M.read(r+2,c+1)=1))
+          {
+            return;
+          }
+          else
+          {
+              do M.reset(r, c+1);
+              do M.reset(r+1, c-1);
+              do M.reset(r+1 ,c);
+              do M.set(r+2, c-1);
+              do M.set(r+2, c+1);
+              do M.set(r+2 ,c);
+
+              do B.setR(r+1);
+          }
+        }
+        return ;
+      }
+      if (type = 2)
+      {
+        if (r<18)
+        {
+          if ((M.read(r+2,c-1)=1)|(M.read(r+2,c)=1))
+          {
+            return;
+          }
+          else
+          {
+              do M.reset(r-1,c-1);
+              do M.reset(r+1,c);
+              do M.set(r+2,c-1);
+              do M.set(r+2,c);
+
+              do B.setR(r+1);
+          }
+        }
+        return ;
+      }
+      if (type = 3)
+      {
+        if (r<19)
+        {
+          if ((M.read(r+1,c-1)=1)|(M.read(r,c)=1)|(M.read(r,c+1)=1))
+          {
+              return;
+          }
+          else
+          {
+            do M.reset(r-1,c-1);
+            do M.reset(r-1,c);
+            do M.reset(r-1,c+1);
+            do M.set(r+1,c-1);
+            do M.set(r,c);
+            do M.set(r,c+1);
+
+            do B.setR(r+1);
+          }
+        }
+        return ;
+      }
+      return;
+    }
+
+    method void left(Map M, Block B)
+{
+	
+        var int r; 
+	      var int c; 
+        let r= B.getR();
+        let c= B.getC();
+
+	// verdict type 0 or 1 or 2 or 3
+	// here
+	
+	if (type= 0)
+	{
+		if (c= 0)
+		{
+			return;
+		}
+
+		if ( (M.read(r-1, c-1)= 0) & (M.read(r, c)= 0) & (M.read(r+1, c)= 0) )
+		{
+			do M.set(r-1, c-1);
+			do M.set(r, c);
+			do M.set(r+1, c);
+			do M.reset(r-1, c+1);
+			do M.reset(r, c+1);
+			do M.reset(r+1, c+1);
+
+			do B.setC(c-1);
+		}
+	}
+
+	if (type= 1)
+	{
+		if (c= 1)
+		{
+			return;
+		}
+
+		if ( (M.read(r, c)= 0) & (M.read(r+1, c-2)= 0) )
+		{
+			do M.set(r, c);
+			do M.set(r+1, c-2);
+			do M.reset(r, c+1);
+			do M.reset(r+1, c+1);
+
+			do B.setC(c-1);
+		}
+	}
+
+	if (type= 2)
+	{
+		if (c= 1)
+		{
+			return;
+		}
+
+		if ( (M.read(r-1, c-2)= 0) & (M.read(r, c-2)= 0) & (M.read(r+1, c-2)= 0) )
+		{
+			do M.set(r-1, c-2);
+			do M.set(r, c-2);
+			do M.set(r+1, c-2);
+			do M.reset(r-1, c-1);
+			do M.reset(r, c-1);
+			do M.reset(r+1, c);
+
+			do B.setC(c-1);
+		}
+	}
+
+	if (type= 3)
+	{
+		if (c= 1)
+		{
+			return;
+		}
+
+		if ( (M.read(r-1, c-2)= 0) & (M.read(r, c-2)= 0) )
+		{
+			do M.set(r-1, c-2);
+			do M.set(r, c-2);
+			do M.reset(r-1, c+1);
+			do M.reset(r, c-1);
+
+			do B.setC(c-1);
+		}
+	}
+
+	return;	
+}
+
+method void right(Map M, Block B)
+{
+	
+        var int r; 
+	      var int c; 
+        let r= B.getR();
+        let c= B.getC();
+
+	// verdict type 0 or 1 or 2 or 3
+	// here
+	
+	if (type= 0)
+	{
+		if (c= 8)
+		{
+			return;
+		}
+
+		if ( (M.read(r-1, c+2)= 0) & (M.read(r, c+2)= 0) & (M.read(r+1, c+2)= 0) )
+		{
+			do M.set(r-1, c+2);
+			do M.set(r, c+2);
+			do M.set(r+1, c+2);
+			do M.reset(r-1, c);
+			do M.reset(r, c+1);
+			do M.reset(r+1, c+1);
+
+			do B.setC(c+1);
+		}
+	}
+
+	if (type= 1)
+	{
+		if (c= 8)
+		{
+			return;
+		}
+
+		if ( (M.read(r, c+2)= 0) & (M.read(r+1, c+2)= 0) )
+		{
+			do M.set(r, c+2);
+			do M.set(r+1, c+2);
+			do M.reset(r, c+1);
+			do M.reset(r+1, c-1);
+
+			do B.setC(c+1);
+		}
+	}
+
+	if (type= 2)
+	{
+		if (c= 9)
+		{
+			return;
+		}
+
+		if ( (M.read(r-1, c)= 0) & (M.read(r, c)= 0) & (M.read(r+1, c+1)= 0) )
+		{
+			do M.set(r-1, c);
+			do M.set(r, c);
+			do M.set(r+1, c+1);
+			do M.reset(r-1, c-1);
+			do M.reset(r, c-1);
+			do M.reset(r+1, c-1);
+
+			do B.setC(c+1);
+		}
+	}
+
+	if (type= 3)
+	{
+		if (c= 8)
+		{
+			return;
+		}
+
+		if ( (M.read(r-1, c+2)= 0) & (M.read(r, c)= 0) )
+		{
+			do M.set(r-1, c+2);
+			do M.set(r, c);
+			do M.reset(r-1, c-1);
+			do M.reset(r, c-1);
+			
+			do B.setC(c+1);
+		}
+	}
+	
+	return;		
+}
+method boolean L_isBottom(Map M,Block B)
+{
+  var boolean isbottom;
+  var int r;
+  var int c;
+  let r = B.getR();
+  let c = B.getC();
+
+  if (type = 0)
+  {
+    if (r<18)
+        {
+          if ((M.read(r,c)=1)|(M.read(r+2,c+1)=1))
+          {
+            let isbottom = true;
+          }
+          else
+          {
+            let isbottom = false;
+          }
+        }
+    else
+        {
+          let isbottom = true;
+        }
+  }
+  if (type = 1)
+  {
+    if (r<18)
+        {
+          if ((M.read(r+2,c-1)=1)|(M.read(r+2,c)=1)|(M.read(r+2,c+1)=1))
+          {
+            let isbottom = true;
+          }
+          else
+          {
+            let isbottom = false;
+          }
+        }
+    else
+        {
+          let isbottom = true;
+        }
+  }
+  if (type = 2)
+  {
+    if (r<18)
+        {
+          if ((M.read(r+2,c-1)=1)|(M.read(r+2,c)=1))
+          {
+            let isbottom = true;
+          }
+          else
+          {
+            let isbottom = false;
+          }
+        }
+    else
+      {
+        let isbottom = true;
+      }
+  }
+  if (type = 3)
+  {
+    if (r<19)
+        {
+          if ((M.read(r+1,c-1)=1)|(M.read(r,c)=1)|(M.read(r,c+1)=1))
+          {
+              let isbottom = true;
+          }
+          else
+          {
+              let isbottom = false;
+          }
+        }
+    else
+        {
+              let isbottom = true;
+        }
+  }
+
+  return isbottom;
+}
+}

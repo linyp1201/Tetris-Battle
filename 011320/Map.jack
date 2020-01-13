@@ -1,0 +1,232 @@
+class Map{
+    field Array cells;
+    field int dead;
+    
+    constructor Map new()
+    {
+        let cells = Array.new(200);
+        let dead = 0;
+        //cells[i][j] = cells[i*10+j]
+        return this;
+    }
+
+    method void dispose() {
+      do Memory.deAlloc(this);
+      return;
+    }
+
+    /* encapsulation: setter and getter */
+    method void set(int row, int column) //set (r, c) as 1
+    {
+        let cells[row*10+column] = 1;
+        return;
+    }
+
+	method void reset(int row, int column) //set (r, c) as 0
+	{
+        let cells[row*10+column] = 0;
+        return;
+    }
+
+    method void SET(int row, int column, int toSet) //set (r, c) to whatever you want
+    {
+        let cells[row*10+column] = toSet;
+        return;
+    }
+    
+	method int read(int row, int column)
+	{
+		var int k;
+		let k = cells[row*10+column];
+		return k;
+	}
+    /* end for encapsulation */
+    method int proc() /* returns how many lines to be eliminated */
+    {
+        var int count, k,c,i,j;
+        var int FULL;
+        let count = 0;
+        let k = 19;
+        
+        while(k > 0)
+        {
+            let FULL = 1;
+            let c=0;
+            //do Output.moveCursor(0,0);
+
+            while(c<10)
+            {
+                /*
+                do Output.printInt(cells[k*10+c]);
+                
+                do Output.printString(" ");
+                do Output.printInt(k);
+                do Output.printString(" ");
+                do Output.printInt(c);
+                do Output.printString("xx");
+                do Output.println();
+                */
+                let FULL = FULL & cells[k*10+c];
+                let c = c + 1;
+            }
+            //do Output.printInt(FULL);
+            //let FULL = RowIsFull(k);
+            //do Output.moveCursor(0,0);
+            //do Output.printInt(FULL);
+            while(FULL = 1)
+            {
+                let count = count + 1;
+                let i = k; //ROW = 20, COL = 10
+                while(i > 0)
+                {
+                    let j = 0;
+                    while(j<10)
+                    {
+                        let cells[i*10+j] = cells[i*10+j-10];
+                        let j = j + 1;
+                    }
+                    let i = i - 1;
+                }
+                let j = 0;
+                while(j<10)
+                {
+                    let cells[j] = 0;
+                    let j = j+1;
+                }
+                let FULL = RowIsFull(k);
+            }
+            let k = k-1;
+        }
+        
+		return count;
+    }
+    
+    method boolean RowIsFull(int r)
+    {
+        var int i;
+        var int isFull;
+        let i = r*10;
+        let isFull = 1;
+        while(i<((r+1)*10))
+        {
+            let isFull = isFull & cells[i];
+            let i = i+1;
+        }
+        return isFull;
+    }
+
+    method int getHeight()
+    {
+        var int which;
+        var int h;
+        let which = 0;
+        while(which < 200)
+        {
+            if(cells[which] > 0)
+            {
+                let h = which / 10;
+                let h = 20 - h;
+                return h;
+            }
+            let which = which + 1;
+        }
+        return h;
+    }
+    method boolean dead()
+    {
+        var int i;
+        let i = 0;
+        while(i<10)
+        {
+            let dead = dead|cells[i];
+            let i = i+1;
+        }
+        return dead; //dead = 0(alive), dead = 1(dead)
+    }
+
+    method void printCells() /* for debug */
+    {
+        var int i;
+        let i = 0;
+        while(i<200)
+        {
+            do Output.printInt(cells[i]);
+            if((Map.pa(i)+1) = 10)
+            {
+                do Output.println();
+            }
+            else
+            {
+                do Output.printString(" ");
+            }
+            let i = i+1;
+        }
+        return;
+    }
+
+    function int pa(int k) /* % function */
+    {
+        var int q, r;
+        let q = k/10;
+        let q = q*10;
+        let r = k - q;
+        return r;
+    }
+
+    method void clear(){
+        var int i;
+        let i = 0;
+        while(i < 200){
+            let cells[i] = 0;
+            let i = i + 1;
+        }
+        let dead = 0;
+        return;
+    }
+
+    method void showMap(int player)
+    {
+        /* shows map */
+        var int space, blockSize, frameSize;
+        var int y, x;
+        var int i, j, curX, curY;
+        let x = 65;
+        let y = 8;
+        let space = 3;
+        let blockSize = 8;
+        let frameSize = 4;
+        if(player = 1)
+        {
+            let x = 305;
+        }
+
+        let curX = x + frameSize + space;
+        let curY = y + frameSize + space;
+        let i = 0;
+
+        while(i < 20)
+        {
+            let j = 0;
+            while(j < 10)
+            {
+                if(cells[i*10+j] = 1)
+                {
+                    do Screen.setColor(true);
+                    do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
+                }
+                if(cells[i*10+j] = 0)
+                {
+                    do Screen.setColor(false);
+                    do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
+                }
+                let curX = curX + blockSize + space;
+                let j = j + 1;
+            }
+            let curX = x + frameSize + space;
+            let curY = curY + blockSize + space;
+            let i = i + 1;
+        }
+
+        return;
+    }
+}
