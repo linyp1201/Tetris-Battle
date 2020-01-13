@@ -1183,3 +1183,84 @@ label IF_END4
 label IF_FALSE3
 push local 2
 return
+function SBlock.clear 2
+push argument 0
+pop pointer 0
+push argument 2
+call Block.getR 1
+pop local 0
+push argument 2
+call Block.getC 1
+pop local 1
+push this 2
+push constant 0
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push argument 1
+push local 0
+push local 1
+call Map.reset 3
+pop temp 0
+push argument 1
+push local 0
+push local 1
+push constant 1
+sub
+call Map.reset 3
+pop temp 0
+push argument 1
+push local 0
+push constant 1
+sub
+push local 1
+call Map.reset 3
+pop temp 0
+push argument 1
+push local 0
+push constant 1
+sub
+push local 1
+push constant 1
+add
+call Map.reset 3
+pop temp 0
+label IF_FALSE0
+push this 2
+push constant 1
+eq
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push argument 1
+push local 0
+push constant 1
+sub
+push local 1
+push constant 1
+sub
+call Map.reset 3
+pop temp 0
+push argument 1
+push local 0
+push local 1
+push constant 1
+sub
+call Map.reset 3
+pop temp 0
+push argument 1
+push local 0
+push local 1
+call Map.reset 3
+pop temp 0
+push argument 1
+push local 0
+push constant 1
+add
+push local 1
+call Map.reset 3
+pop temp 0
+label IF_FALSE1
+push constant 0
+return

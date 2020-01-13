@@ -788,5 +788,44 @@ method void right(Map M, Block B)
       }
       return isbottom;
     }
+	method void clear(Map M, Block B)
+{	
+	var int r;
+  	var int c;
+  	let r = B.getR();
+  	let c = B.getC();
+	if ( type= 0 )
+	{
+		do M.reset(r,c);
+		do M.reset(r,c-1);
+		do M.reset(r,c+1);
+		do M.reset(r+1,c);
+	}
 
+	if ( type= 1 )
+	{
+		do M.reset(r,c);
+		do M.reset(r-1,c);
+		do M.reset(r+1,c);
+		do M.reset(r,c-1);
+	}
+
+	if ( type= 2 )
+	{
+		do M.reset(r,c);
+		do M.reset(r,c-1);
+		do M.reset(r,c+1);
+		do M.reset(r-1,c);
+	}
+
+	if ( type= 3 )
+	{
+		do M.reset(r,c);
+		do M.reset(r-1,c);
+		do M.reset(r+1,c);
+		do M.reset(r,c+1);
+	}
+
+	return;
+}
 }
