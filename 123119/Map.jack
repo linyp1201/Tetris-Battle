@@ -61,7 +61,7 @@ class Map{
                 let FULL = FULL & cells[i*10+j];
                 let j = j + 1;
             }
-            
+            /* eliminate */
             if(FULL = 1)
             {
                 let count = count + 1;

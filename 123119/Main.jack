@@ -316,7 +316,7 @@ class Main {
                 do P0.incKO();
                 do map1.clear();
             }
-            let KO = (P0.getKO() > 4 | P1.getKO() > 4);
+            let KO = ((P0.getKO() > 4) | (P1.getKO() > 4));
         }
         do Display.endScreen(P0, P1, map0.getHeight(), map1.getHeight());
         return;
