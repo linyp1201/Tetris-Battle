@@ -209,7 +209,9 @@ class Main {
             }
             //
             do Output.moveCursor(0, 0);
-            do Output.printInt(timer.getTime());
+            do Output.printInt(P0.getLinesReceived());
+            do Output.moveCursor(1, 0);
+            do Output.printInt(P1.getLinesReceived());
             //
 
             if(Main.mod500(timer.getTime()) = 0){
@@ -252,11 +254,9 @@ class Main {
                     let TSpin0 = block0.Tspin(map0);
                     let prev0 = (TSpin0 | (cleared0 > 3));
                     let cleared0 = Main.comboScore(P0.getCombo()) + Main.Bonus(prev0, TSpin0, cleared0);
-                    /*
                     if(map0.getHeight() = 0){
                         let cleared0 = cleared0 + 10;
                     }
-                    */
                 }
 
                 if(P0.getLinesReceived() > cleared0){
@@ -287,11 +287,9 @@ class Main {
                     let TSpin1 = block1.Tspin(map1);
                     let prev1 = (TSpin1 | (cleared1 > 3));
                     let cleared1 = Main.comboScore(P1.getCombo()) + Main.Bonus(prev1, TSpin1, cleared1);
-                    /*
                     if(map1.getHeight() = 1){
                         let cleared0 = cleared0 + 10;
                     }
-                    */
                 }
 
                 if(P1.getLinesReceived() > cleared1){
@@ -303,6 +301,11 @@ class Main {
                 }
                 do P1.resetLinesReceived();
             }
+
+            do Output.moveCursor(3, 0);
+            do Output.printInt(cleared0);
+            do Output.moveCursor(4, 0);
+            do Output.printInt(cleared1);
 
             if(cleared0 > 0){
                 do P1.addLinesReceived(cleared0);
