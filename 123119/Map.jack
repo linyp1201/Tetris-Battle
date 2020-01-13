@@ -56,7 +56,7 @@ class Map{
             {let tmp = gH;}
         else
         {let tmp = countfrombot;}
-        /* countfrombot */
+        /* countfrombot 
         while(row > 0)
         {
             if(done = 0)
@@ -97,7 +97,7 @@ class Map{
             let countfrombot = countfrombot - 1;
         }
         do p.setGarbageHeight(gH);
-        
+        */
         /* count */
         while(k > 0)
         {
