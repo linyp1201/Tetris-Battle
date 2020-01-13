@@ -115,149 +115,21 @@ push local 5
 pop local 10
 label IF_END0
 label WHILE_EXP0
-push local 7
-push constant 0
-gt
-not
-if-goto WHILE_END0
-push local 8
-push constant 0
-eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push pointer 0
-push local 7
-call Map.RowIsFull 2
-pop local 11
-push local 11
-if-goto IF_TRUE2
-goto IF_FALSE2
-label IF_TRUE2
-push local 5
-push constant 1
-add
-pop local 5
-goto IF_END2
-label IF_FALSE2
-push constant 1
-pop local 8
-label IF_END2
-label IF_FALSE1
-push local 7
-push constant 1
-sub
-pop local 7
-goto WHILE_EXP0
-label WHILE_END0
-label WHILE_EXP1
-push local 6
-push constant 0
-gt
-push local 5
-push constant 0
-gt
-or
-not
-if-goto WHILE_END1
-push constant 19
-pop local 3
-label WHILE_EXP2
-push local 3
-push constant 0
-gt
-not
-if-goto WHILE_END2
-push constant 0
-pop local 4
-label WHILE_EXP3
-push local 4
-push constant 10
-lt
-not
-if-goto WHILE_END3
-push local 3
-push constant 10
-call Math.multiply 2
-push local 4
-add
-push this 0
-add
-push local 3
-push constant 10
-call Math.multiply 2
-push local 4
-add
-push constant 10
-sub
-push this 0
-add
-pop pointer 1
-push that 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push local 4
-push constant 1
-add
-pop local 4
-goto WHILE_EXP3
-label WHILE_END3
-push local 3
-push constant 1
-sub
-pop local 3
-goto WHILE_EXP2
-label WHILE_END2
-push constant 0
-pop local 4
-label WHILE_EXP4
-push local 4
-push constant 10
-lt
-not
-if-goto WHILE_END4
-push local 4
-push this 0
-add
-push constant 0
-pop temp 0
-pop pointer 1
-push temp 0
-pop that 0
-push local 4
-push constant 1
-add
-pop local 4
-goto WHILE_EXP4
-label WHILE_END4
-push local 6
-push constant 1
-sub
-pop local 6
-push local 5
-push constant 1
-sub
-pop local 5
-goto WHILE_EXP1
-label WHILE_END1
-label WHILE_EXP5
 push local 1
 push constant 0
 gt
 not
-if-goto WHILE_END5
+if-goto WHILE_END0
 push constant 1
 pop local 11
 push constant 0
 pop local 2
-label WHILE_EXP6
+label WHILE_EXP1
 push local 2
 push constant 10
 lt
 not
-if-goto WHILE_END6
+if-goto WHILE_END1
 push local 11
 push local 1
 push constant 10
@@ -274,34 +146,34 @@ push local 2
 push constant 1
 add
 pop local 2
-goto WHILE_EXP6
-label WHILE_END6
-label WHILE_EXP7
+goto WHILE_EXP1
+label WHILE_END1
+label WHILE_EXP2
 push local 11
 push constant 1
 eq
 not
-if-goto WHILE_END7
+if-goto WHILE_END2
 push local 0
 push constant 1
 add
 pop local 0
 push local 1
 pop local 3
-label WHILE_EXP8
+label WHILE_EXP3
 push local 3
 push constant 0
 gt
 not
-if-goto WHILE_END8
+if-goto WHILE_END3
 push constant 0
 pop local 4
-label WHILE_EXP9
+label WHILE_EXP4
 push local 4
 push constant 10
 lt
 not
-if-goto WHILE_END9
+if-goto WHILE_END4
 push local 3
 push constant 10
 call Math.multiply 2
@@ -328,22 +200,22 @@ push local 4
 push constant 1
 add
 pop local 4
-goto WHILE_EXP9
-label WHILE_END9
+goto WHILE_EXP4
+label WHILE_END4
 push local 3
 push constant 1
 sub
 pop local 3
-goto WHILE_EXP8
-label WHILE_END8
+goto WHILE_EXP3
+label WHILE_END3
 push constant 0
 pop local 4
-label WHILE_EXP10
+label WHILE_EXP5
 push local 4
 push constant 10
 lt
 not
-if-goto WHILE_END10
+if-goto WHILE_END5
 push local 4
 push this 0
 add
@@ -356,20 +228,20 @@ push local 4
 push constant 1
 add
 pop local 4
-goto WHILE_EXP10
-label WHILE_END10
+goto WHILE_EXP5
+label WHILE_END5
 push pointer 0
 push local 1
 call Map.RowIsFull 2
 pop local 11
-goto WHILE_EXP7
-label WHILE_END7
+goto WHILE_EXP2
+label WHILE_END2
 push local 1
 push constant 1
 sub
 pop local 1
-goto WHILE_EXP5
-label WHILE_END5
+goto WHILE_EXP0
+label WHILE_END0
 push local 10
 push local 0
 add
