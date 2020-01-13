@@ -34,8 +34,8 @@ class Display{
 		do Output.printInt(P1.getLinesSent());
 		/* shows linesReceived */
 		do Screen.setColor(true);
-		do Screen.drawRectangle(62, 239, 59, P0.getLinesReceived()/200);
-		do Screen.drawRectangle(302, 239, 299, P1.getLinesReceived()/200);
+		//do Screen.drawRectangle(62, 239, 59, P0.getLinesReceived()/200);
+		//do Screen.drawRectangle(302, 239, 299, P1.getLinesReceived()/200);
 		return;
 
 	}
