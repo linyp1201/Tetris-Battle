@@ -390,3 +390,36 @@ pop local 0
 label IF_END0
 push local 0
 return
+function OBlock.clear 0
+push argument 0
+pop pointer 0
+push argument 1
+push this 0
+push this 1
+call Map.reset 3
+pop temp 0
+push argument 1
+push this 0
+push this 1
+push constant 1
+add
+call Map.reset 3
+pop temp 0
+push argument 1
+push this 0
+push constant 1
+add
+push this 1
+call Map.reset 3
+pop temp 0
+push argument 1
+push this 0
+push constant 1
+add
+push this 1
+push constant 1
+add
+call Map.reset 3
+pop temp 0
+push constant 0
+return
