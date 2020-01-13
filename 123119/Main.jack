@@ -79,7 +79,7 @@ class Main {
         }
 
         if(block.bottomChecker(map)){
-            return map.proc(player);
+            return map.proc();
         }
         else{
             return -1;
