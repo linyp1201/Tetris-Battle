@@ -31,6 +31,7 @@ class Main {
         
         var int key;
         var int success;
+        var int for;
         
         let key = Keyboard.keyPressed();
         if(ID = 1 & key = 131){ //up:rotate
@@ -79,6 +80,48 @@ class Main {
         }
 
         if(block.bottomChecker(map)){
+            let for = 0;
+            while(for < 2000){
+                let key = Keyboard.keyPressed();
+                if(ID = 1 & key = 131){ //up:rotate
+                    let success = block.rotate(map);
+                    if(success){
+                        do block.setLast(true);
+                    }
+                }
+                if(ID = 0 & key = 87){ //up:rotate
+                    let success = block.rotate(map);
+                    if(success){
+                        do block.setLast(true);
+                    }
+                }
+                if(ID = 1 & key = 130){ //left
+                    do block.left(map);
+                    do block.setLast(false);
+                }
+                if(ID = 0 & key = 65){ //left
+                    do block.left(map);
+                    do block.setLast(false);
+                }
+                if(ID = 1 & key = 133){ //down
+                    do block.down(map);
+                    do block.setLast(false);
+                }
+                if(ID = 0 & key = 83){ //down
+                    do block.down(map);
+                    do block.setLast(false);
+                }
+                if(ID = 1 & key = 132){ //right
+                    do block.right(map);
+                    do block.setLast(false);
+                }
+                if(ID = 0 & key = 68){ //right
+                    do block.right(map);
+                    do block.setLast(false);
+                }
+                let for = for + 1;
+            }
+
             return map.proc();
         }
         else{
