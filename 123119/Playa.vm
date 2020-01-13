@@ -16,6 +16,11 @@ push constant 0
 pop this 5
 push pointer 0
 return
+function Playa.getGarbageHeight 0
+push argument 0
+pop pointer 0
+push this 5
+return
 function Playa.dispose 0
 push argument 0
 pop pointer 0

@@ -18,6 +18,10 @@ class Playa {
 		return this;
 	}
 
+	method int getGarbageHeight(){
+		return garbageHeight;
+	}
+
 	method void dispose() {
 		do Memory.deAlloc(this);
 		return;

@@ -117,25 +117,20 @@ class Map{
 
     method int getHeight()
     {
-        var int i,j,ull;
-        let i = 19;
-        while(i>-1)
+        var int which;
+        var int h;
+        let which = 0;
+        while(which < 200)
         {
-            let ull = 0;
-            let j = 0;
-            while(j<10)
+            if(cells[which] > 0)
             {
-                let ull = ull + cells[i*10+j];
-                let j = j+1;
+                let h = which / 10;
+                let h = 20 - h;
+                return h;
             }
-            if(ull = 0)
-            {
-                return (19 - i);
-            }
-            let i = i - 1;
+            let which = which + 1;
         }
-
-        return 0;
+        return h;
     }
     method boolean dead()
     {
@@ -189,7 +184,7 @@ class Map{
         return;
     }
 
-    method void showMap(int player)
+    method void showMap(int player, int garbageHeight)
     {
         /* shows map */
         var int space, blockSize, frameSize;
@@ -218,6 +213,10 @@ class Map{
                 {
                     do Screen.setColor(true);
                     do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
+                    if(i > garbageHeight){
+                        do Screen.setColor(false);
+                        do Screen.drawRectangle(curX+2, curY+2, curX+blockSize-2, curY+blockSize-2);
+                    }
                 }
                 if(cells[i*10+j] = 0)
                 {
