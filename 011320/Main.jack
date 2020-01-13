@@ -1,0 +1,424 @@
+class Main {
+
+    function int comboScore(int combo){
+        if(combo = 1 | combo = 2){
+            return 1;
+        }
+        if(combo = 3 | combo = 4){
+            return 2;
+        }
+        if(combo = 5 | combo = 6){
+            return 3;
+        }
+        if(combo > 6){
+            return 4;
+        }
+        return 0;
+    }
+
+    function int mod500(int k) /* % function */
+    {
+        var int q, r;
+        let q = k/500;
+        let q = q*500;
+        let r = k - q;
+        return r;
+    }
+
+    function int Move(int ID, Map map, Block block){
+
+        /* returns map.proc if block goes to bottom */
+        
+        var int key;
+        var int success;
+        
+        let key = Keyboard.keyPressed();
+        if(ID = 1 & key = 131){ //up:rotate
+            let success = block.rotate(map);
+            if(success){
+                do block.setLast(true);
+            }
+        }
+        if(ID = 0 & key = 87){ //up:rotate
+            let success = block.rotate(map);
+            if(success){
+                do block.setLast(true);
+            }
+        }
+        if(ID = 1 & key = 130){ //left
+            do block.left(map);
+            do block.setLast(false);
+        }
+        if(ID = 0 & key = 65){ //left
+            do block.left(map);
+            do block.setLast(false);
+        }
+        if(ID = 1 & key = 133){ //down
+            do block.down(map);
+            do block.setLast(false);
+        }
+        if(ID = 0 & key = 83){ //down
+            do block.down(map);
+            do block.setLast(false);
+        }
+        if(ID = 1 & key = 132){ //right
+            do block.right(map);
+            do block.setLast(false);
+        }
+        if(ID = 0 & key = 68){ //right
+            do block.right(map);
+            do block.setLast(false);
+        }
+        if(ID = 1 & key = 32){ //hard drop
+            do block.toBottom(map);
+            do block.setLast(false);
+        }
+        if(ID = 0 & key = 88){ //hard drop
+            do block.toBottom(map);
+            do block.setLast(false);
+        }
+
+        if(block.bottomChecker(map)){
+            return map.proc();
+        }
+        else{
+            return -1;
+        }
+    }
+
+    function int Bonus(int prev, int TSpin, int cleared){
+        if(prev = 0){
+            if(TSpin = 0){
+                if(cleared = 2){
+                    return 1;
+                }
+                if(cleared = 3){
+                    return 2;
+                }
+                if(cleared = 4){
+                    return 4;
+                }
+            }
+            if(TSpin = 1){
+                if(cleared = 0){
+                    return 1;
+                }
+                if(cleared = 1){
+                    return 2;
+                }
+                if(cleared = 2){
+                    return 4;
+                }
+                if(cleared = 3){
+                    return 6;
+                }
+            }
+        }
+        if(prev = 1){
+            /* B2B */
+            if(cleared = 4){
+                return 6;
+            }
+            if(TSpin = 1){
+                if(cleared = 0){
+                    return 2;
+                }
+                if(cleared = 1){
+                    return 3;
+                }
+                if(cleared = 2){
+                    return 6;
+                }
+                if(cleared = 3){
+                return 9;
+                }
+            }
+        }
+        return 0;
+    }
+
+    function void Play(){
+
+        /* A Game */
+
+        var Playa P0, P1;
+        var Map map0, map1;
+        var String Pn0, Pn1;
+        var Block block0, block1;
+        var int bType0, bType1;
+        var int bNext0, bNext1;
+        var int cleared0, cleared1;
+        var int isAlive0, isAlive1;
+        var int isDead0, isDead1;
+        var boolean prev0, prev1;
+        var boolean TSpin0, TSpin1;
+        var boolean KO;
+        var Clock timer;
+        var int stop;
+        var int winID;
+        var int draw;
+        var int key;
+
+        let Pn0 = String.new(20);
+        let Pn1 = String.new(20);
+
+        do Screen.clearScreen();
+        do Output.moveCursor(9, 22);
+        let Pn0 = Keyboard.readLine("PLAYER ZERO NAME : ");
+        do Output.moveCursor(12, 22);
+        let Pn1 = Keyboard.readLine("PLAYER ONE NAME : ");
+
+        do Display.gameScreen();
+
+        let stop = 0;
+        let timer = Clock.new();
+        do timer.setTime(100);
+        let KO = false;
+        let P0 = Playa.new(0);
+        let P1 = Playa.new(1);//
+        let map0 = Map.new();
+        let map1 = Map.new();//
+        
+        let prev0 = false;
+        let prev1 = false;
+
+
+        do Random.setSeed(0);
+        let bType0 = Random.randRange(6);
+        do Random.setSeed(1);
+        let bType1 = Random.randRange(6);
+        do Random.setSeed(2);
+        let bNext0 = Random.randRange(6);
+        do Random.setSeed(3);
+        let bNext1 = Random.randRange(6);
+        let block0 = Block.new(map0, bType0);
+        let block1 = Block.new(map1, bType1);//
+        let isAlive0 = block0.create_block(map0);
+        let isAlive1 = block1.create_block(map1);
+
+        while(stop < 240 & (~KO)){
+
+            /* One Move */
+            let cleared0 = Main.Move(0, map0, block0);
+            if(cleared0 > -1){
+                do P0.addLinesSent(cleared0);
+            }
+            let cleared1 = Main.Move(1, map1, block1);
+            if(cleared1 > -1){
+                do P1.addLinesSent(cleared1);
+            }
+
+            if(Main.mod500(timer.getTime()) = 0){
+                do block0.down(map0);
+                do block0.setLast(false);
+                do block1.down(map1);
+                do block1.setLast(false);
+                if(timer.getTime() = 30000){
+                    do timer.setTime(0);
+                }
+                let stop = stop + 1;
+            }
+
+            /* showMap */
+            do map0.showMap(0);
+            do map1.showMap(1);
+            /* showNextBlock */
+            do Display.showNext(0, bNext0);
+            do Display.showNext(1, bNext1);
+            /* showScores */
+            do Display.showScores(P0, P1);
+
+            /* If toBottom, Calculate combo & sent/received lines ; else add received */
+            if(cleared0 > -1){
+                
+                if(cleared0 = 0){
+                    do P0.resetCombo();
+                }
+                else{
+                    do P0.incCombo();
+                }
+
+                if(cleared0 > 0){
+                    let TSpin0 = block0.Tspin(map0);
+                    let prev0 = (TSpin0 | (cleared0 > 3));
+                    let cleared0 = Main.comboScore(P0.getCombo()) + Main.Bonus(prev0, TSpin0, cleared0);
+                    if(map0.getHeight() = 0){
+                        let cleared0 = cleared0 + 10;
+                    }
+                }
+
+                if(P0.getLinesReceived() > cleared0){
+                    do P0.addLinesReceived(-cleared0);
+                    let isDead0 = P0.getGarbage(map0);
+                }
+                else{
+                    let cleared0 = cleared0 - P0.getLinesReceived();
+                }
+                do P0.resetLinesReceived();
+
+                do Random.setSeed(bType1+bType0+timer.getTime());
+                let bType0 = bNext0;
+                let bNext0 = Random.randRange(6);
+                do block0.setType(bType0);
+                let isAlive0 = block0.create_block(map0);
+
+            }
+            if(cleared1 > -1){
+                
+                if(cleared1 = 0){
+                    do P1.resetCombo();
+                }
+                else{
+                    do P1.incCombo();
+                }
+
+                if(cleared1 > 0){
+                    let TSpin1 = block1.Tspin(map1);
+                    let prev1 = (TSpin1 | (cleared1 > 3));
+                    let cleared1 = Main.comboScore(P1.getCombo()) + Main.Bonus(prev1, TSpin1, cleared1);
+                    if(map1.getHeight() = 1){
+                        let cleared0 = cleared0 + 10;
+                    }
+                }
+
+                if(P1.getLinesReceived() > cleared1){
+                    do P1.addLinesReceived(-cleared1);
+                    let isDead1 = P1.getGarbage(map1); 
+                }
+                else{
+                    let cleared1 = cleared1 - P1.getLinesReceived();
+                }
+                do P1.resetLinesReceived();
+
+                do Random.setSeed(bType0+bType1+timer.getTime());
+                let bType1 = bNext1;
+                let bNext1 = Random.randRange(6);
+                do block1.setType(bType1);
+                let isAlive1 = block1.create_block(map1);
+            }
+
+            if(cleared0 > 0){
+                do P1.addLinesReceived(cleared0);
+            }
+            if(cleared1 > 0){
+                do P0.addLinesReceived(cleared1);
+            }
+
+            /* tick */
+            do timer.tick(100);
+
+            /* check if KO */ 
+            if(isDead0 = -1){
+                do P1.incKO();
+                do P0.clearGarbage(map0);
+                let isDead0 = 0;
+            }
+            if(isAlive0 = 0){
+                do P1.incKO();
+                do map0.clear();
+                let isAlive0 = block0.create_block(map0);
+            }
+            if(isDead1 = -1){
+                do P0.incKO();
+                do P1.clearGarbage(map1);
+                let isDead1 = 0;
+            }
+            if(isAlive1 = 0){
+                do P0.incKO();
+                do map1.clear();
+                let isAlive1 = block1.create_block(map1);
+            }
+            let KO = ((P0.getKO() > 4) | (P1.getKO() > 4));
+        }
+
+        let draw = 1;
+        do Screen.clearScreen();
+
+        if(P0.getKO() > P1.getKO()){
+            let winID = 0;
+            let draw = 0;
+        }
+        if(P0.getKO() < P1.getKO()){
+            let winID = 1;
+            let draw = 0;
+        }
+        if((P0.getKO() = P1.getKO()) & (P0.getLinesSent() > P1.getLinesSent())){
+            let winID = 0;
+            let draw = 0;
+        }
+        if((P0.getKO() = P1.getKO()) & (P0.getLinesSent() < P1.getLinesSent())){
+            let winID = 1;
+            let draw = 0;
+        }
+        if((P0.getKO() = P1.getKO()) & (P0.getLinesSent() = P1.getLinesSent()) & (map0.getHeight() < map1.getHeight())){
+            let winID = 0;
+            let draw = 0;
+        }
+        if((P0.getKO() = P1.getKO()) & (P0.getLinesSent() = P1.getLinesSent()) & (map0.getHeight() > map1.getHeight())){
+            let winID = 1;
+            let draw = 0;
+        }
+        if(draw = 0){
+            do Output.moveCursor(10, 28);
+            do Output.printString("PLAYER ");
+            do Output.printInt(winID);
+            do Output.moveCursor(12, 30);
+            if(winID = 0){
+                do Output.printString(Pn0);
+            }
+            if(winID = 1){
+                do Output.printString(Pn1);
+            }
+            do Output.moveCursor(14, 29);
+            do Output.printString(" WINS!");
+        }
+        else{
+            do Output.moveCursor(10, 26);
+            do Output.printString("IT'S A DRAW!");
+        }
+        while(~(key = 128)){
+            let key = Keyboard.keyPressed();
+        }
+        return;
+    }
+
+    function boolean TitleScreen(){
+        var String pn0;
+        var String pn1;
+        var int endGame;
+        var int curOption;
+        var char key;
+
+        let curOption = 1;
+        let endGame = 0;
+        let pn0 = String.new(20);
+        let pn1 = String.new(20);
+        let key = 0;
+
+        while(~(key = 128)){
+            let curOption = 1 - curOption;
+            do Display.titleScreen(curOption);
+            let key = Keyboard.readChar();
+        }
+
+        if(curOption = 0){
+            do Main.Play();
+        }
+        else{
+            let endGame = 1;
+        }
+
+        return endGame;
+    }
+
+    function void main(){
+        var int endGame;
+        let endGame = 0;
+        while(endGame = 0){
+            let endGame = Main.TitleScreen();
+        }     
+        return;
+    }
+
+    
+}

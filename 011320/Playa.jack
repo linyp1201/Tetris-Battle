@@ -1,0 +1,165 @@
+class Playa {
+
+	field int id;
+	field int linesSent;
+	field int linesReceived;
+	field int KO;
+	field int combo;
+	field int garbageHeight;
+	
+	constructor Playa new(int ID)
+	{
+		let ID = ID;
+		let linesSent = 0;
+		let linesReceived = 0;
+		let KO = 0;
+		let combo = 0;
+		let garbageHeight = 0;
+		return this;
+	}
+
+	method int getGarbageHeight(){
+		return garbageHeight;
+	}
+
+	method void dispose() {
+		do Memory.deAlloc(this);
+		return;
+	}
+	
+	method void addLinesSent(int lines){
+		let linesSent = linesSent + lines;
+		return;
+	}
+	method int getLinesSent(){
+		return linesSent;
+	}
+
+    method void resetLinesReceived(){
+    	let linesReceived = 0;
+    	return;
+    }
+    method void addLinesReceived(int lines){
+    	let linesReceived = linesReceived + lines;
+    	return;
+    }
+    method int getLinesReceived(){
+    	return linesReceived;
+    }
+
+    method void resetCombo(){
+		let combo = 0;
+		return;
+    }
+    method void incCombo(){
+		let combo = combo + 1;
+		return;
+    }
+    method int getCombo(){
+    	return combo;
+    }
+
+    method void incKO(){
+    	let KO = KO + 1;
+    	return;
+    }
+    method int getKO(){
+    	return KO;
+    }
+
+    method int getGarbage(Map M){
+		var int i, j;
+		var int toReturn;
+		var int tmp;
+		var int toRead;
+		var int numtoRand;
+		
+		if((linesReceived + M.getHeight()) > 19) // >= 20
+		{
+			return -1; //omae wa mou shindeiru			
+		}	
+		let garbageHeight = garbageHeight + linesReceived;
+		
+		let tmp = linesReceived;
+		while(tmp > 0)
+        {
+            let i = 0;
+            while(i < 19)
+            {
+                let j = 0;
+                while(j<10)
+                {
+					let toRead = M.read(i+1,j);
+					do M.SET(i,j,toRead);
+                    //let cells[i*10+j] = cells[i*10+j+10];
+                    let j = j + 1;
+                }
+                let i = i + 1;
+			}
+			do Random.setSeed(tmp*tmp);
+			let numtoRand = Random.randRange(9);
+            let j = 0;
+            while(j<10)
+            {
+				if(j = numtoRand)
+				{
+					do M.reset(19, j);
+				}
+				else
+				{
+					do M.set(19,j);
+				}
+                
+                let j = j + 1;
+            }
+            let tmp = tmp - 1;
+		}
+		let linesReceived = 0;
+    	
+    	return 1; //you become taller :D
+    }
+    method void clearGarbage(Map M){
+		/* 林芸平是先知吧！！！*/
+		var int i,j;
+		var int tmp;
+		var int toRead;
+    	let tmp = garbageHeight;
+        while(tmp > 0)
+        {
+            let i = 19;
+            while(i > 0)
+            {
+                let j = 0;
+                while(j<10)
+                {
+					let toRead = M.read(i-1, j);
+					do M.SET(i, j, toRead);
+                    //let cells[i*10+j] = cells[i*10+j-10];
+                    let j = j + 1;
+                }
+                let i = i - 1;
+            }
+            let j = 0;
+            while(j<10)
+            {
+				do M.reset(0,j);
+                //let cells[j] = 0;
+                let j = j + 1;
+            }
+            let tmp = tmp - 1;
+		}
+		let garbageHeight = 0;
+    	return;
+	}
+	/* getter */
+	method int getlinesSent()
+	{
+		return linesSent;
+	}
+
+	method int getID()
+	{
+		return id;
+	}
+
+}
