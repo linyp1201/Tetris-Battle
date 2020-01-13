@@ -347,19 +347,19 @@ class Main {
             let winID = 1;
             let draw = 0;
         }
-        if(P0.getKO() = P1.getKO() & P0.getLinesSent() > P1.getLinesSent()){
+        if((P0.getKO() = P1.getKO()) & (P0.getLinesSent() > P1.getLinesSent())){
             let winID = 0;
             let draw = 0;
         }
-        if(P0.getKO() = P1.getKO() & P0.getLinesSent() < P1.getLinesSent()){
+        if((P0.getKO() = P1.getKO()) & (P0.getLinesSent() < P1.getLinesSent())){
             let winID = 1;
             let draw = 0;
         }
-        if(P0.getKO() = P1.getKO() & P0.getLinesSent() = P1.getLinesSent() & map0.getHeight() < map1.getHeight()){
+        if((P0.getKO() = P1.getKO()) & (P0.getLinesSent() = P1.getLinesSent()) & (map0.getHeight() < map1.getHeight())){
             let winID = 0;
             let draw = 0;
         }
-        if(P0.getKO() = P1.getKO() & P0.getLinesSent() = P1.getLinesSent() & map0.getHeight() > map1.getHeight()){
+        if((P0.getKO() = P1.getKO()) & (P0.getLinesSent() = P1.getLinesSent()) & (map0.getHeight() > map1.getHeight())){
             let winID = 1;
             let draw = 0;
         }
@@ -382,7 +382,7 @@ class Main {
             do Output.printString("IT'S A DRAW!");
         }
         while(~(key = 128)){
-            let key = Keyboard.readChar();
+            let key = Keyboard.keyPressed();
         }
         return;
     }

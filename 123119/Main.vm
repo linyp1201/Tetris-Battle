@@ -1040,10 +1040,10 @@ call Playa.getKO 1
 eq
 push local 0
 call Playa.getLinesSent 1
-and
 push local 1
 call Playa.getLinesSent 1
 gt
+and
 if-goto IF_TRUE20
 goto IF_FALSE20
 label IF_TRUE20
@@ -1059,10 +1059,10 @@ call Playa.getKO 1
 eq
 push local 0
 call Playa.getLinesSent 1
-and
 push local 1
 call Playa.getLinesSent 1
 lt
+and
 if-goto IF_TRUE21
 goto IF_FALSE21
 label IF_TRUE21
@@ -1078,16 +1078,16 @@ call Playa.getKO 1
 eq
 push local 0
 call Playa.getLinesSent 1
-and
 push local 1
 call Playa.getLinesSent 1
 eq
+and
 push local 2
 call Map.getHeight 1
-and
 push local 3
 call Map.getHeight 1
 lt
+and
 if-goto IF_TRUE22
 goto IF_FALSE22
 label IF_TRUE22
@@ -1103,16 +1103,16 @@ call Playa.getKO 1
 eq
 push local 0
 call Playa.getLinesSent 1
-and
 push local 1
 call Playa.getLinesSent 1
 eq
+and
 push local 2
 call Map.getHeight 1
-and
 push local 3
 call Map.getHeight 1
 gt
+and
 if-goto IF_TRUE23
 goto IF_FALSE23
 label IF_TRUE23
@@ -1238,7 +1238,7 @@ eq
 not
 not
 if-goto WHILE_END1
-call Keyboard.readChar 0
+call Keyboard.keyPressed 0
 pop local 27
 goto WHILE_EXP1
 label WHILE_END1

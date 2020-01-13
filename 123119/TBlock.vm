@@ -41,27 +41,27 @@ push this 1
 push constant 1
 add
 call Map.read 3
-or
 push constant 1
 eq
+or
 push argument 1
 push this 0
 push this 1
 push constant 1
 sub
 call Map.read 3
-or
 push constant 1
 eq
+or
 push argument 1
 push this 0
 push constant 1
 add
 push this 1
 call Map.read 3
-or
 push constant 1
 eq
+or
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
