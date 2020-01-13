@@ -155,22 +155,18 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
-push constant 63
+push constant 62
 push constant 239
-push constant 63
+push constant 59
 push argument 0
 call Playa.getLinesReceived 1
-push constant 2
-call Math.multiply 2
 call Screen.drawLine 4
 pop temp 0
-push constant 303
+push constant 302
 push constant 239
-push constant 303
+push constant 299
 push argument 1
 call Playa.getLinesReceived 1
-push constant 2
-call Math.multiply 2
 call Screen.drawLine 4
 pop temp 0
 push constant 0

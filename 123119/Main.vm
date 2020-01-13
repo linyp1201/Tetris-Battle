@@ -453,16 +453,12 @@ push constant 6
 call Random.randRange 1
 pop local 9
 push local 2
-push constant 1
-push constant 4
 push local 6
-call Block.new 4
+call Block.new 2
 pop local 4
 push local 3
-push constant 1
-push constant 4
 push local 7
-call Block.new 4
+call Block.new 2
 pop local 5
 label WHILE_EXP0
 push local 23
@@ -920,9 +916,9 @@ push constant 4
 gt
 push local 1
 call Playa.getKO 1
-or
 push constant 4
 gt
+or
 pop local 21
 goto WHILE_EXP0
 label WHILE_END0

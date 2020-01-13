@@ -170,8 +170,8 @@ class Main {
         let bNext0 = Random.randRange(6);
         do Random.setSeed(3);
         let bNext1 = Random.randRange(6);
-        let block0 = Block.new(map0, 1, 4, bType0);
-        let block1 = Block.new(map1, 1, 4, bType1);//
+        let block0 = Block.new(map0, bType0);
+        let block1 = Block.new(map1, bType1);//
 
         while(stop < 240 & (~KO)){
 
