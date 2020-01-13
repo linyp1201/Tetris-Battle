@@ -96,8 +96,8 @@ class Map{
             let gH = gH - 1;
             let countfrombot = countfrombot - 1;
         }
-
-
+        do p.setGarbageHeight(gH);
+        
         /* count */
         while(k > 0)
         {
