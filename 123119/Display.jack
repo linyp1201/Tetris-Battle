@@ -32,6 +32,10 @@ class Display{
 		do Output.printInt(P1.getKO());
 		do Output.moveCursor(18, 34);
 		do Output.printInt(P1.getLinesSent());
+		/* shows linesReceived */
+		do Screen.setColor(true);
+		do Screen.drawLine(63, 239, 63, P0.getLinesReceived()*2);
+		do Screen.drawLine(303, 239, 303, P1.getLinesReceived()*2);
 		return;
 
 	}

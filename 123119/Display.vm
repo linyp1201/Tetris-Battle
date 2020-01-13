@@ -152,6 +152,28 @@ call Playa.getLinesSent 1
 call Output.printInt 1
 pop temp 0
 push constant 0
+not
+call Screen.setColor 1
+pop temp 0
+push constant 63
+push constant 239
+push constant 63
+push argument 0
+call Playa.getLinesReceived 1
+push constant 2
+call Math.multiply 2
+call Screen.drawLine 4
+pop temp 0
+push constant 303
+push constant 239
+push constant 303
+push argument 1
+call Playa.getLinesReceived 1
+push constant 2
+call Math.multiply 2
+call Screen.drawLine 4
+pop temp 0
+push constant 0
 return
 function Display.gameScreen 6
 push constant 65
