@@ -378,6 +378,8 @@ pop local 0
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0
+pop this 1
+push constant 0
 return
 function Map.showMap 9
 push argument 0

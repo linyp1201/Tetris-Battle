@@ -5,8 +5,8 @@ class ZBlock{
     {
         //let r = 1;
         //let c = 4;
-        do B.setR(1);
-        do B.setC(4);
+        //do B.setR(1);
+        //do B.setC(4);
         /*do A.set(r-1,c-1);
         do A.set(r-1,c);
         do A.set(r,c);
@@ -19,17 +19,20 @@ class ZBlock{
       return;
     }
 
-    method void create_block(Map A, Block B){
+    method int create_block(Map A, Block B){
         do B.setR(1);
         do B.setC(4);
         let r = B.getR();
         let c = B.getC();
+        if(A.read(r-1, c-1) = 1 | A.read(r-1, c) = 1 | A.read(r, c) = 1 | A.read(r, c+1) = 1){
+            return 0;
+        }
         do A.set(r-1,c-1);
         do A.set(r-1,c);
         do A.set(r,c);
         do A.set(r, c+1);
         let type = 0;
-        return;
+        return 1;
     }
     
 

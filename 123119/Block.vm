@@ -43,7 +43,7 @@ push argument 1
 pop this 3
 push constant 0
 return
-function Block.create_block 0
+function Block.create_block 1
 push argument 0
 pop pointer 0
 push this 3
@@ -56,7 +56,7 @@ push this 7
 push argument 1
 push pointer 0
 call OBlock.create_block 3
-pop temp 0
+pop local 0
 label IF_FALSE0
 push this 3
 push constant 1
@@ -68,7 +68,7 @@ push this 4
 push argument 1
 push pointer 0
 call IBlock.create_block 3
-pop temp 0
+pop local 0
 label IF_FALSE1
 push this 3
 push constant 2
@@ -80,7 +80,7 @@ push this 10
 push argument 1
 push pointer 0
 call ZBlock.create_block 3
-pop temp 0
+pop local 0
 label IF_FALSE2
 push this 3
 push constant 3
@@ -92,7 +92,7 @@ push this 8
 push argument 1
 push pointer 0
 call SBlock.create_block 3
-pop temp 0
+pop local 0
 label IF_FALSE3
 push this 3
 push constant 4
@@ -104,7 +104,7 @@ push this 9
 push argument 1
 push pointer 0
 call TBlock.create_block 3
-pop temp 0
+pop local 0
 label IF_FALSE4
 push this 3
 push constant 5
@@ -116,7 +116,7 @@ push this 5
 push argument 1
 push pointer 0
 call JBlock.create_block 3
-pop temp 0
+pop local 0
 label IF_FALSE5
 push this 3
 push constant 6
@@ -128,9 +128,9 @@ push this 6
 push argument 1
 push pointer 0
 call LBlock.create_block 3
-pop temp 0
+pop local 0
 label IF_FALSE6
-push constant 0
+push local 0
 return
 function Block.down 0
 push argument 0

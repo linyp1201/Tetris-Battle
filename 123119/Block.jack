@@ -29,29 +29,30 @@ class Block{
         return ;
     }
 
-    method void create_block(Map A){
+    method int create_block(Map A){
+        var int alive;
         if (type = 0) {
-            do O.create_block(A,this);
+            let alive = O.create_block(A,this);
         }
         if (type = 1){
-            do I.create_block(A,this);
+            let alive = I.create_block(A,this);
         }
         if (type = 2){
-            do Z.create_block(A,this);
+            let alive = Z.create_block(A,this);
         }
         if (type = 3){
-            do S.create_block(A,this);
+            let alive = S.create_block(A,this);
         }
         if (type = 4){
-            do T.create_block(A,this);
+            let alive = T.create_block(A,this);
         }
         if (type = 5){
-            do J.create_block(A,this);
+            let alive = J.create_block(A,this);
         }
         if (type = 6){
-            do L.create_block(A,this);
+            let alive = L.create_block(A,this);
         }
-        return;
+        return alive;
     }
 
     method void down(Map A){

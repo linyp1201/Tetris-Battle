@@ -19,6 +19,47 @@ push constant 0
 pop this 0
 push constant 3
 pop this 1
+push constant 0
+pop this 2
+push argument 1
+push this 0
+push this 1
+call Map.read 3
+push constant 1
+eq
+push argument 1
+push this 0
+push this 1
+push constant 1
+add
+call Map.read 3
+or
+push constant 1
+eq
+push argument 1
+push this 0
+push this 1
+push constant 2
+add
+call Map.read 3
+or
+push constant 1
+eq
+push argument 1
+push this 0
+push this 1
+push constant 3
+add
+call Map.read 3
+or
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
 push argument 2
 push constant 0
 call Block.setR 2
@@ -53,9 +94,7 @@ push constant 3
 add
 call Map.set 3
 pop temp 0
-push constant 0
-pop this 2
-push constant 0
+push constant 1
 return
 function IBlock.I_rotate 3
 push argument 0

@@ -34,6 +34,51 @@ push this 0
 push constant 1
 sub
 push this 1
+call Map.read 3
+push constant 1
+eq
+push argument 1
+push this 0
+push constant 1
+sub
+push this 1
+push constant 1
+add
+call Map.read 3
+or
+push constant 1
+eq
+push argument 1
+push this 0
+push this 1
+push constant 1
+add
+call Map.read 3
+or
+push constant 1
+eq
+push argument 1
+push this 0
+push constant 1
+add
+push this 1
+push constant 1
+add
+call Map.read 3
+or
+push constant 1
+eq
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push constant 0
+return
+label IF_FALSE0
+push argument 1
+push this 0
+push constant 1
+sub
+push this 1
 call Map.set 3
 pop temp 0
 push argument 1
@@ -63,7 +108,7 @@ call Map.set 3
 pop temp 0
 push constant 0
 pop this 2
-push constant 0
+push constant 1
 return
 function LBlock.dispose 0
 push argument 0
