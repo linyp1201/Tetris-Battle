@@ -309,14 +309,16 @@ class Main {
             if(isAlive0 = 0){
                 do P1.incKO();
                 do map0.clear();
+                let isAlive0 = block0.create_block(map1);
             }
             if(isDead1 = -1){
                 do P0.incKO();
                 do P1.clearGarbage(map1);
             }
-            if(isAlive1 = 1){
+            if(isAlive1 = 0){
                 do P0.incKO();
                 do map1.clear();
+                let isAlive1 = block1.create_block(map1);
             }
             let KO = ((P0.getKO() > 4) | (P1.getKO() > 4));
         }
