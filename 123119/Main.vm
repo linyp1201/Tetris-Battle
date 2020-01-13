@@ -68,7 +68,7 @@ function Main.Move 2
 call Keyboard.keyPressed 0
 pop local 0
 push argument 0
-push constant 0
+push constant 1
 eq
 push local 0
 and
@@ -93,7 +93,7 @@ pop temp 0
 label IF_FALSE1
 label IF_FALSE0
 push argument 0
-push constant 1
+push constant 0
 eq
 push local 0
 and
@@ -118,7 +118,7 @@ pop temp 0
 label IF_FALSE3
 label IF_FALSE2
 push argument 0
-push constant 0
+push constant 1
 eq
 push local 0
 and
@@ -137,7 +137,7 @@ call Block.setLast 2
 pop temp 0
 label IF_FALSE4
 push argument 0
-push constant 1
+push constant 0
 eq
 push local 0
 and
@@ -156,7 +156,7 @@ call Block.setLast 2
 pop temp 0
 label IF_FALSE5
 push argument 0
-push constant 0
+push constant 1
 eq
 push local 0
 and
@@ -175,7 +175,7 @@ call Block.setLast 2
 pop temp 0
 label IF_FALSE6
 push argument 0
-push constant 1
+push constant 0
 eq
 push local 0
 and
@@ -194,7 +194,7 @@ call Block.setLast 2
 pop temp 0
 label IF_FALSE7
 push argument 0
-push constant 0
+push constant 1
 eq
 push local 0
 and
@@ -213,7 +213,7 @@ call Block.setLast 2
 pop temp 0
 label IF_FALSE8
 push argument 0
-push constant 1
+push constant 0
 eq
 push local 0
 and
@@ -231,21 +231,59 @@ push constant 0
 call Block.setLast 2
 pop temp 0
 label IF_FALSE9
-push argument 2
-push argument 1
-call Block.bottomChecker 2
+push argument 0
+push constant 1
+eq
+push local 0
+and
+push constant 32
+eq
 if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
+push argument 2
+push argument 1
+call Block.toBottom 2
+pop temp 0
+push argument 2
+push constant 0
+call Block.setLast 2
+pop temp 0
+label IF_FALSE10
+push argument 0
+push constant 0
+eq
+push local 0
+and
+push constant 9
+eq
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push argument 2
+push argument 1
+call Block.toBottom 2
+pop temp 0
+push argument 2
+push constant 0
+call Block.setLast 2
+pop temp 0
+label IF_FALSE11
+push argument 2
+push argument 1
+call Block.bottomChecker 2
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
 push argument 1
 call Map.proc 1
 return
-goto IF_END10
-label IF_FALSE10
+goto IF_END12
+label IF_FALSE12
 push constant 1
 neg
 return
-label IF_END10
+label IF_END12
 function Main.Bonus 0
 push argument 0
 push constant 0
@@ -399,6 +437,10 @@ push constant 0
 pop local 20
 call Clock.new 0
 pop local 19
+push local 19
+push constant 50
+call Clock.setTime 2
+pop temp 0
 push constant 0
 pop local 18
 push constant 0

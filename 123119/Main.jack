@@ -33,40 +33,48 @@ class Main {
         var int success;
         
         let key = Keyboard.keyPressed();
-        if(ID = 0 & key = 131){ //up:rotate
+        if(ID = 1 & key = 131){ //up:rotate
             let success = block.rotate(map);
             if(success){
                 do block.setLast(true);
             }
         }
-        if(ID = 1 & key = 87){ //up:rotate
+        if(ID = 0 & key = 87){ //up:rotate
             let success = block.rotate(map);
             if(success){
                 do block.setLast(true);
             }
         }
-        if(ID = 0 & key = 130){ //left
+        if(ID = 1 & key = 130){ //left
             do block.left(map);
             do block.setLast(false);
         }
-        if(ID = 1 & key = 65){ //left
+        if(ID = 0 & key = 65){ //left
             do block.left(map);
             do block.setLast(false);
         }
-        if(ID = 0 & key = 133){ //down
+        if(ID = 1 & key = 133){ //down
             do block.down(map);
             do block.setLast(false);
         }
-        if(ID = 1 & key = 83){ //down
+        if(ID = 0 & key = 83){ //down
             do block.down(map);
             do block.setLast(false);
         }
-        if(ID = 0 & key = 132){ //right
+        if(ID = 1 & key = 132){ //right
             do block.right(map);
             do block.setLast(false);
         }
-        if(ID = 1 & key = 68){ //right
+        if(ID = 0 & key = 68){ //right
             do block.right(map);
+            do block.setLast(false);
+        }
+        if(ID = 1 & key = 32){ //hard drop
+            do block.toBottom(map);
+            do block.setLast(false);
+        }
+        if(ID = 0 & key = 9){ //hard drop
+            do block.toBottom(map);
             do block.setLast(false);
         }
 
@@ -150,6 +158,7 @@ class Main {
 
         let stop = 0;
         let timer = Clock.new();
+        do timer.setTime(50);
         let KO = false;
         let P0 = Playa.new(0, pn0);
         let P1 = Playa.new(1, pn1);//
@@ -158,6 +167,7 @@ class Main {
         
         let prev0 = false;
         let prev1 = false;
+
 
         do Random.setSeed(0);
         let bType0 = Random.randRange(6);
