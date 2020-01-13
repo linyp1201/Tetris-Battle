@@ -106,10 +106,11 @@ class Map{
         {
             if(cells[which] > 0)
             {
-                let h = Map.pa(which);
+                let h = which / 10;
                 let h = 20 - h;
                 return h;
             }
+            let which = which + 1;
         }
         return h;
     }
