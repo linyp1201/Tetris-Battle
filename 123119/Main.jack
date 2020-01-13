@@ -193,6 +193,7 @@ class Main {
         var int cleared0, cleared1;
         var int isAlive0, isAlive1;
         var int isDead0, isDead1;
+        var int hold0, hold1;
         var boolean prev0, prev1;
         var boolean TSpin0, TSpin1;
         var boolean KO;
@@ -201,6 +202,7 @@ class Main {
         var int winID;
         var int draw;
         var int key;
+        var int tmp;
 
         let Pn0 = String.new(20);
         let Pn1 = String.new(20);
@@ -221,7 +223,8 @@ class Main {
         let P1 = Playa.new(1);//
         let map0 = Map.new();
         let map1 = Map.new();//
-        
+        let hold0 = 7;
+        let hold1 = 7;
         let prev0 = false;
         let prev1 = false;
 
@@ -262,12 +265,50 @@ class Main {
                 let stop = stop + 1;
             }
 
+            let key = Keyboard.keyPressed();
+            if(key = 67){
+                do block0.clear(map0);
+                if(hold0 = 7){
+                    do Random.setSeed(bType1+timer.getTime());
+                    let hold0 = bType0;
+                    let bType0 = bNext0;
+                    let bNext0 = Random.randRange(6);
+                }
+                else{
+                    let tmp = bType0;
+                    let bType0 = hold0;
+                    let hold0 = tmp;
+                }
+                do block0.setType(bType0);
+                let isAlive0 = block0.create_block(map0);
+            }
+            let key = Keyboard.keyPressed();
+            if(key = 47){
+                do block1.clear(map1);
+                if(hold1 = 7){
+                    do Random.setSeed(bType0+timer.getTime());
+                    let hold1 = bType1;
+                    let bType1 = bNext1;
+                    let bNext1 = Random.randRange(6);
+                }
+                else{
+                    let tmp = bType1;
+                    let bType1 = hold1;
+                    let hold1 = tmp;
+                }
+                do block1.setType(bType1);
+                let isAlive1 = block1.create_block(map1);
+            }
+
             /* showMap */
             do map0.showMap(0);
             do map1.showMap(1);
             /* showNextBlock */
             do Display.showNext(0, bNext0);
             do Display.showNext(1, bNext1);
+            /* showHold */
+            do Display.showHold(0, hold0);
+            do Display.showHold(1, hold1);
             /* showScores */
             do Display.showScores(P0, P1);
 

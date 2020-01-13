@@ -66,15 +66,19 @@ class Display{
 			do Screen.setColor(true);
 			do Screen.drawRectangle(x, y, x+121, y+231);
 			do Screen.drawRectangle(x+128, y+16, x+181, y+69);
+			do Screen.drawRectangle(x+128, y+93, x+181, y+146);
 			do Screen.drawRectangle(x-50, y+115, x-8, y+148);
 			do Screen.drawRectangle(x-50, y+182, x-8, y+213);
 			do Screen.setColor(false);
 			do Screen.drawRectangle(x+frameSize, y+frameSize, x+121-frameSize, y+231-frameSize);
 			do Screen.drawRectangle(x+131, y+19, x+178, y+66);
+			do Screen.drawRectangle(x+131, y+96, x+178, y+143);
 			do Screen.drawRectangle(x-47, y+118, x-11, y+145);
 			do Screen.drawRectangle(x-47, y+185, x-11, y+210);
 			do Output.moveCursor(1, 25 + text);
-			do Output.printString("Next");
+			do Output.printString("NEXT");
+			do Output.moveCursor(8, 25 + text);
+			do Output.printString("HOLD");
 			do Output.moveCursor(10, 3 + text);
 			do Output.printString("KO:");
 			do Output.moveCursor(15, 2 + text);
@@ -189,6 +193,84 @@ class Display{
 		}
 		do Screen.setColor(false);
 		do Screen.drawRectangle(x-3, y-3, x+44, y+44);
+		if(type = 0) //O
+		{
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x+blockSize+space, y+blockSize+space, x+(2*blockSize)+space, y+(2*blockSize)+space);
+			do Screen.drawRectangle(x+(2*blockSize)+(2*space), y+blockSize+space, x+(3*blockSize)+(2*space), y+(2*blockSize)+space);
+			do Screen.drawRectangle(x+blockSize+space, y+(2*blockSize)+(2*space), x+(2*blockSize)+space, y+(3*blockSize)+(2*space));
+			do Screen.drawRectangle(x+(2*blockSize)+(2*space), y+(2*blockSize)+(2*space), x+(3*blockSize)+(2*space), y+(3*blockSize)+(2*space));
+		}
+		if(type = 1) //I
+		{
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x, y+16, x+blockSize, y+17+blockSize);
+			do Screen.drawRectangle(x+blockSize+space, y+16, x+(2*blockSize)+space, y+17+blockSize);
+			do Screen.drawRectangle(x+(2*blockSize)+(2*space), y+16, x+(3*blockSize)+(2*space), y+17+blockSize);
+			do Screen.drawRectangle(x+(3*blockSize)+(3*space), y+16, x+(4*blockSize)+(3*space), y+17+blockSize);
+		}
+		if(type = 2) //Z
+		{
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x+4, y+blockSize+space, x+4+blockSize+1, y+(2*blockSize)+space);
+			do Screen.drawRectangle(x+16, y+blockSize+space, x+16+blockSize+1, y+(2*blockSize)+space);
+			do Screen.drawRectangle(x+16, y+(2*blockSize)+(2*space), x+16+blockSize+1, y+(3*blockSize)+(2*space));
+			do Screen.drawRectangle(x+28, y+(2*blockSize)+(2*space), x+28+blockSize+1, y+(3*blockSize)+(2*space));
+		}
+		if(type = 3) //S
+		{
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x+28, y+blockSize+space, x+28+blockSize+1, y+(2*blockSize)+space);
+			do Screen.drawRectangle(x+16, y+blockSize+space, x+16+blockSize+1, y+(2*blockSize)+space);
+			do Screen.drawRectangle(x+16, y+(2*blockSize)+(2*space), x+16+blockSize+1, y+(3*blockSize)+(2*space));
+			do Screen.drawRectangle(x+4, y+(2*blockSize)+(2*space), x+4+blockSize+1, y+(3*blockSize)+(2*space));
+		}
+		if(type = 4) //T
+		{
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x+16, y+blockSize+space, x+16+blockSize+1, y+(2*blockSize)+space);
+			do Screen.drawRectangle(x+4, y+(2*blockSize)+(2*space), x+4+blockSize+1, y+(3*blockSize)+(2*space));
+			do Screen.drawRectangle(x+16, y+(2*blockSize)+(2*space), x+16+blockSize+1, y+(3*blockSize)+(2*space));
+			do Screen.drawRectangle(x+28, y+(2*blockSize)+(2*space), x+28+blockSize+1, y+(3*blockSize)+(2*space));
+		}
+		if(type = 5) //J
+		{
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x+4, y+blockSize+space, x+4+blockSize+1, y+(2*blockSize)+space);
+			do Screen.drawRectangle(x+4, y+(2*blockSize)+(2*space), x+4+blockSize+1, y+(3*blockSize)+(2*space));
+			do Screen.drawRectangle(x+16, y+(2*blockSize)+(2*space), x+16+blockSize+1, y+(3*blockSize)+(2*space));
+			do Screen.drawRectangle(x+28, y+(2*blockSize)+(2*space), x+28+blockSize+1, y+(3*blockSize)+(2*space));
+		}
+		if(type = 6) //L
+		{
+			do Screen.setColor(true);
+			do Screen.drawRectangle(x+28, y+blockSize+space, x+28+blockSize+1, y+(2*blockSize)+space);
+			do Screen.drawRectangle(x+4, y+(2*blockSize)+(2*space), x+4+blockSize+1, y+(3*blockSize)+(2*space));
+			do Screen.drawRectangle(x+16, y+(2*blockSize)+(2*space), x+16+blockSize+1, y+(3*blockSize)+(2*space));
+			do Screen.drawRectangle(x+28, y+(2*blockSize)+(2*space), x+28+blockSize+1, y+(3*blockSize)+(2*space));
+		}
+
+		return;
+
+	}
+
+	function void showHold(int player, int type)
+	{
+		var int space, blockSize;
+		var int y, x;
+		let x = 199;
+		let y = 107;
+		let space = 3;
+		let blockSize = 8;
+		if(player = 1)
+		{
+			let x = 439;
+		}
+		do Screen.setColor(false);
+		do Screen.drawRectangle(x-3, y-3, x+44, y+44);
+		if(type = 7){
+			return;
+		}
 		if(type = 0) //O
 		{
 			do Screen.setColor(true);
