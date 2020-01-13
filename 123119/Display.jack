@@ -33,6 +33,9 @@ class Display{
 		do Output.moveCursor(18, 34);
 		do Output.printInt(P1.getLinesSent());
 		/* shows linesReceived */
+		do Screen.setColor(false);
+		do Screen.drawRectangle(59, 8, 62, 239);
+		do Screen.drawRectangle(299, 8, 302, 239);
 		do Screen.setColor(true);
 		if(P0.getLinesReceived() > 0){
 			do Screen.drawRectangle(59, 239-(P0.getLinesReceived()*20), 62, 239);

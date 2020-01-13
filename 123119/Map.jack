@@ -213,7 +213,7 @@ class Map{
                 {
                     do Screen.setColor(true);
                     do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
-                    if(i > garbageHeight){
+                    if(i > (19-garbageHeight)){
                         do Screen.setColor(false);
                         do Screen.drawRectangle(curX+2, curY+2, curX+blockSize-2, curY+blockSize-2);
                     }
