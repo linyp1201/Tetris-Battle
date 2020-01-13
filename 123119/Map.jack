@@ -56,7 +56,7 @@ class Map{
         {
             let FULL = RowIsFull(row);
             
-            if(FULL)
+            while(FULL)
             {
                 let count = count + 1;
                 let l = row; //ROW = 20, COL = 10
@@ -76,6 +76,7 @@ class Map{
                     let cells[m] = 0;
                     let m = m + 1;
                 }
+                let FULL = RowIsFull(row);
             }
             let row = row - 1;
         }
