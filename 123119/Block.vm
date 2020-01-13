@@ -675,6 +675,11 @@ label IF_TRUE7
 push this 7
 push argument 1
 push pointer 0
+call OBlock.O_isBottom 3
+pop local 0
+push this 7
+push argument 1
+push pointer 0
 call OBlock.down 3
 pop temp 0
 label IF_FALSE7
@@ -684,6 +689,11 @@ eq
 if-goto IF_TRUE8
 goto IF_FALSE8
 label IF_TRUE8
+push this 4
+push argument 1
+push pointer 0
+call IBlock.I_isBottom 3
+pop local 0
 push this 4
 push argument 1
 push pointer 0
@@ -699,6 +709,11 @@ label IF_TRUE9
 push this 10
 push argument 1
 push pointer 0
+call ZBlock.Z_isBottom 3
+pop local 0
+push this 10
+push argument 1
+push pointer 0
 call ZBlock.down 3
 pop temp 0
 label IF_FALSE9
@@ -708,6 +723,11 @@ eq
 if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
+push this 8
+push argument 1
+push pointer 0
+call SBlock.S_isBottom 3
+pop local 0
 push this 8
 push argument 1
 push pointer 0
@@ -723,6 +743,11 @@ label IF_TRUE11
 push this 9
 push argument 1
 push pointer 0
+call TBlock.T_isBottom 3
+pop local 0
+push this 9
+push argument 1
+push pointer 0
 call TBlock.down 3
 pop temp 0
 label IF_FALSE11
@@ -735,6 +760,11 @@ label IF_TRUE12
 push this 5
 push argument 1
 push pointer 0
+call JBlock.J_isBottom 3
+pop local 0
+push this 5
+push argument 1
+push pointer 0
 call JBlock.down 3
 pop temp 0
 label IF_FALSE12
@@ -744,6 +774,11 @@ eq
 if-goto IF_TRUE13
 goto IF_FALSE13
 label IF_TRUE13
+push this 6
+push argument 1
+push pointer 0
+call LBlock.L_isBottom 3
+pop local 0
 push this 6
 push argument 1
 push pointer 0

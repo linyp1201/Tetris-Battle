@@ -218,7 +218,7 @@ class Block{
                 do I.down(A,this);
             }
             if (type = 2){
-                flag = Z.Z_isBottom(A,this);
+                let flag = Z.Z_isBottom(A,this);
                 do Z.down(A,this);
             }
             if (type = 3){
