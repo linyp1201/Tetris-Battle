@@ -112,7 +112,7 @@ class SBlock{
             {return;}
 
           // implement
-          do M.reset(r, c);
+          do M.reset(r-1, c-1);
           do M.reset(r+1, c);
           do M.set(r-1, c);
           do M.set(r-1, c+1);

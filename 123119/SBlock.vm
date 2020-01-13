@@ -424,7 +424,11 @@ return
 label IF_FALSE11
 push argument 1
 push local 0
+push constant 1
+sub
 push local 1
+push constant 1
+sub
 call Map.reset 3
 pop temp 0
 push argument 1
