@@ -29,6 +29,31 @@ class Block{
         return ;
     }
 
+    method void create_block(Map A){
+        if (type = 0) {
+            do O.create_block(A,this);
+        }
+        if (type = 1){
+            do I.create_block(A,this);
+        }
+        if (type = 2){
+            do Z.create_block(A,this);
+        }
+        if (type = 3){
+            do S.create_block(A,this);
+        }
+        if (type = 4){
+            do T.create_block(A,this);
+        }
+        if (type = 5){
+            do J.create_block(A,this);
+        }
+        if (type = 6){
+            do L.create_block(A,this);
+        }
+        return;
+    }
+
     method void down(Map A){
         if (type = 0) {
             do O.down(A,this);

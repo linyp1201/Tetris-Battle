@@ -5,13 +5,26 @@ class IBlock{
     {
         //let r = 0;
         //let c = 3;
-        do B.setR(0);
-        do B.setC(3);
+        //do B.setR(0);
+        //do B.setC(3);
         /*do A.set(r,c);
         do A.set(r,c+1);
         do A.set(r,c+2);
         do A.set(r, c+3);*/
         return this;
+    }
+
+    method void create_block(Map M, Block B){
+        do B.setR(0);
+        do B.setC(3);
+        let r = B.getR();
+        let c = B.getC();
+        do M.set(r,c);
+        do M.set(r,c+1);
+        do M.set(r,c+2);
+        do M.set(r, c+3);
+
+        return;
     }
 
     method void dispose() {
