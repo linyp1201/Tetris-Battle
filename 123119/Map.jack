@@ -43,12 +43,19 @@ class Map{
     /* end for encapsulation */
     method int proc(Playa p) /* returns how many lines to be eliminated */
     {
-        var int count, k,c,i,j, countfrombot, gH;
+        var int count, k,c,i,j, countfrombot, gH, row, done, temp, tmp;
         var int FULL;
         let count = 0;
         let countfrombot = 0;
+        let done = 0;
+        let row = 19;
         let k = 19;
         let gH = p.getGarbageHeight();
+        let temp = countfrombot;
+        if(countfrombot > gH)
+            {let tmp = gH;}
+        else
+        {let tmp = countfrombot;}
         /* countfrombot */
         while(row > 0)
         {
@@ -60,16 +67,34 @@ class Map{
                 {
                     let countfrombot = countfrombot + 1;
                 }
-                if
+                else
                 {
                     let done = 1;
                 }
             }
             let row = row - 1;
         }
-        while(gH > ) //garbageHeight >= 0
+        while((gH > 0) | (countfrombot > 0)) 
         {
-            
+            let i = 19;
+            while(i > 0)
+            {
+                let j = 0;
+                while(j<10)
+                {
+                    let cells[i*10+j] = cells[i*10+j-10];
+                    let j = j + 1;
+                }
+                let i = i - 1;
+            }
+            let j = 0;
+            while(j<10)
+            {
+                let cells[j] = 0;
+                let j = j + 1;
+            }
+            let gH = gH - 1;
+            let countfrombot = countfrombot - 1;
         }
 
 
@@ -124,7 +149,7 @@ class Map{
             let k = k-1;
         }
         
-		return count;
+		return (tmp + count);
     }
     
     method boolean RowIsFull(int r)
