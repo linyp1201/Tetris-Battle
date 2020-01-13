@@ -297,11 +297,6 @@ class Main {
                 let isAlive1 = block1.create_block(map1);
             }
 
-            do Output.moveCursor(3, 0);
-            do Output.printInt(cleared0);
-            do Output.moveCursor(4, 0);
-            do Output.printInt(cleared1);
-
             if(cleared0 > 0){
                 do P1.addLinesReceived(cleared0);
             }
@@ -321,7 +316,7 @@ class Main {
             if(isAlive0 = 0){
                 do P1.incKO();
                 do map0.clear();
-                let isAlive0 = block0.create_block(map1);
+                let isAlive0 = block0.create_block(map0);
             }
             if(isDead1 = -1){
                 do P0.incKO();
