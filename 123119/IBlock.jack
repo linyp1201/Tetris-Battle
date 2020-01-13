@@ -28,6 +28,7 @@ class IBlock{
         do A.set(r,c+1);
         do A.set(r,c+2);
         do A.set(r, c+3);
+        let type = 0;
         return;
     }
     
