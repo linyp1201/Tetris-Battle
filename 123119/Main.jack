@@ -226,8 +226,8 @@ class Main {
             }
 
             /* showMap */
-            do map0.showMap(0, P0.getGarbageHeight());
-            do map1.showMap(1, P1.getGarbageHeight());
+            do map0.showMap(0);
+            do map1.showMap(1);
             /* showNextBlock */
             do Display.showNext(0, bNext0);
             do Display.showNext(1, bNext1);

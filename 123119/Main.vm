@@ -697,15 +697,11 @@ pop local 24
 label IF_FALSE2
 push local 2
 push constant 0
-push local 0
-call Playa.getGarbageHeight 1
-call Map.showMap 3
+call Map.showMap 2
 pop temp 0
 push local 3
 push constant 1
-push local 1
-call Playa.getGarbageHeight 1
-call Map.showMap 3
+call Map.showMap 2
 pop temp 0
 push constant 0
 push local 10

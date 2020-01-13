@@ -184,7 +184,7 @@ class Map{
         return;
     }
 
-    method void showMap(int player, int garbageHeight)
+    method void showMap(int player)
     {
         /* shows map */
         var int space, blockSize, frameSize;
@@ -213,10 +213,6 @@ class Map{
                 {
                     do Screen.setColor(true);
                     do Screen.drawRectangle(curX, curY, curX+blockSize, curY+blockSize);
-                    if(i > garbageHeight){
-                        do Screen.setColor(false);
-                        do Screen.drawRectangle(curX+2, curY+2, curX+blockSize-2, curY+blockSize-2);
-                    }
                 }
                 if(cells[i*10+j] = 0)
                 {
