@@ -1152,8 +1152,8 @@ pop temp 0
 push local 25
 call Output.printInt 1
 pop temp 0
-push constant 11
-push constant 28
+push constant 12
+push constant 30
 call Output.moveCursor 2
 pop temp 0
 push local 25
@@ -1176,7 +1176,7 @@ push local 5
 call Output.printString 1
 pop temp 0
 label IF_FALSE26
-push constant 12
+push constant 14
 push constant 29
 call Output.moveCursor 2
 pop temp 0
