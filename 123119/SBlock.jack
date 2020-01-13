@@ -24,7 +24,7 @@ class SBlock{
         do A.set(r,c-1);
         do A.set(r-1,c);
         do A.set(r-1, c+1);
-
+        let type = 0;
         return;
     }
 
