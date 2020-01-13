@@ -246,7 +246,8 @@ if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push local 0
-call Map.pa 1
+push constant 10
+call Math.divide 2
 pop local 1
 push constant 20
 push local 1
@@ -255,6 +256,10 @@ pop local 1
 push local 1
 return
 label IF_FALSE0
+push local 0
+push constant 1
+add
+pop local 0
 goto WHILE_EXP0
 label WHILE_END0
 push local 1

@@ -255,7 +255,7 @@ push constant 0
 eq
 push local 0
 and
-push constant 9
+push constant 88
 eq
 if-goto IF_TRUE11
 goto IF_FALSE11

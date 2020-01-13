@@ -73,7 +73,7 @@ class Main {
             do block.toBottom(map);
             do block.setLast(false);
         }
-        if(ID = 0 & key = 9){ //hard drop
+        if(ID = 0 & key = 88){ //hard drop
             do block.toBottom(map);
             do block.setLast(false);
         }
