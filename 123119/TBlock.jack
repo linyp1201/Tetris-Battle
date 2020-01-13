@@ -789,7 +789,11 @@ method void right(Map M, Block B)
       return isbottom;
     }
 	method void clear(Map M, Block B)
-{
+{	
+	var int r;
+  	var int c;
+  	let r = B.getR();
+  	let c = B.getC();
 	if ( type= 0 )
 	{
 		do M.reset(r,c);

@@ -329,6 +329,10 @@ class ZBlock{
   }
   method void clear(Map M, Block B)
 {
+  var int r;
+  var int c;
+  let r = B.getR();
+  let c = B.getC();
 	if ( type= 0 )
 	{
 		do M.reset(r-1,c-1);
