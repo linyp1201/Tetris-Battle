@@ -207,12 +207,6 @@ class Main {
             if(cleared1 > -1){
                 do P1.addLinesSent(cleared1);
             }
-            //
-            do Output.moveCursor(0, 0);
-            do Output.printInt(P0.getLinesReceived());
-            do Output.moveCursor(1, 0);
-            do Output.printInt(P1.getLinesReceived());
-            //
 
             if(Main.mod500(timer.getTime()) = 0){
                 do block0.down(map0);

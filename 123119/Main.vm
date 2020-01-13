@@ -638,22 +638,6 @@ push local 13
 call Playa.addLinesSent 2
 pop temp 0
 label IF_FALSE1
-push constant 0
-push constant 0
-call Output.moveCursor 2
-pop temp 0
-push local 0
-call Playa.getLinesReceived 1
-call Output.printInt 1
-pop temp 0
-push constant 1
-push constant 0
-call Output.moveCursor 2
-pop temp 0
-push local 1
-call Playa.getLinesReceived 1
-call Output.printInt 1
-pop temp 0
 push local 23
 call Clock.getTime 1
 call Main.mod500 1
