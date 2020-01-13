@@ -54,6 +54,8 @@ push this 1
 call Map.set 3
 pop temp 0
 push constant 0
+pop this 2
+push constant 0
 return
 function JBlock.dispose 0
 push argument 0
