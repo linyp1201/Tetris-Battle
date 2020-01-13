@@ -163,6 +163,7 @@ class Map{
             let cells[i] = 0;
             let i = i + 1;
         }
+        let dead = 0;
         return;
     }
 
