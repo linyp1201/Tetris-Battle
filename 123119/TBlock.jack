@@ -38,7 +38,7 @@ class TBlock{
 
     // Put into TBlock.jack
 
-    method void T_rotate(Map M, Block B)
+    method boolean T_rotate(Map M, Block B)
     {	
       
       var int r; 
@@ -71,129 +71,363 @@ class TBlock{
       }
 
       if (type= 0)
-      {	
-        if (r= 0)
-        {
-          // cannot collide w/ others
-          if (( M.read(r+1 ,c-1)= 1 ) | ( M.read(r+2 ,c)= 1 ))
-            {return;}
+	{
+		// test 1
+		if ( r> 0 )
+		{
+			if ( M.read(r-1, c)= 0 )
+			{
+				do M.set(r-1, c);
+				do M.reset(r, c+1);
+				let type = 1;
+				return true;
+			}
+		}
 
-          // implement
-          do M.reset(r, c-1);
-          do M.reset(r, c+1);
-          do M.set(r+1, c-1);
-          do M.set(r+2, c);
-
-          do B.setR(1);
-        }
-        else
-        {
-          // cannot collide w/ others
-          if ( M.read(r-1 ,c)= 1 )
-            {return;}
-
-          // implement
-          do M.reset(r, c+1);
-          do M.set(r-1, c);
-
-        }
+		// test 2
+		if ( r> 0 )
+		{
+			if ( (M.read(r-1, c+1)= 0) & (M.read(r+1, c+1)= 0) )
+			{
+				do M.set(r-1, c+1);
+				do M.set(r+1, c+1);
+				do M.reset(r, c-1);
+				do M.reset(r+1, c);
+				
+				do B.setC(c+1);
         let type = 1;
-        return ;
-      }
+				return true;
+			}
+		}
+
+		// test 3
+		if ( r> 1 )
+		{
+			if ( (M.read(r-1, c+1)= 0) & (M.read(r-1, c)= 0) & (M.read(r-2, c+1)= 0) )
+			{
+				do M.set(r-1, c+1);
+				do M.set(r-1, c);
+				do M.set(r-2, c+1);
+				do M.reset(r, c-1);
+				do M.reset(r, c);
+				do M.reset(r+1, c);
+				
+				do B.setR(r-1);
+				do B.setC(c+1);
+        let type = 1;
+				return true;
+			}
+		}
+
+		// test 4
+		if ( r< 17 )
+		{
+			if ( (M.read(r+2, c)= 0) & (M.read(r+2, c-1)= 0) & (M.read(r+3, c)= 0) )
+			{
+				do M.set(r+2, c);
+				do M.set(r+2, c-1);
+				do M.set(r+3, c);
+				do M.reset(r, c-1);
+				do M.reset(r, c);
+				do M.reset(r, c+1);
+				
+				do B.setR(r+2);
+        let type = 1;
+				return true;
+			}
+		}
+
+		// test 5
+		if ( r< 17 )
+		{
+			if ( (M.read(r+2, c+1)= 0) & (M.read(r+1, c+1)= 0) & (M.read(r+3, c+1)= 0) & (M.read(r+2, c)= 0) )
+			{
+				do M.set(r+2, c+1);
+				do M.set(r+1, c+1);
+				do M.set(r+3, c+1);
+				do M.set(r+2, c);
+				do M.reset(r, c-1);
+				do M.reset(r, c);
+				do M.reset(r, c+1);
+				do M.reset(r+1, c);
+				
+				do B.setR(r+2);
+				do B.setC(c+1);
+        let type = 1;
+				return true;
+			}
+		}
+    
+	}
 
       if (type= 1)
-      {	
-        if (c= 9)
-        {
-          // cannot collide w/ others
-          if (( M.read(r-1 ,c-1)= 1 ) | ( M.read(r ,c-2)= 1 ))
-            {return;}
-
-          // implement
-          do M.reset(r-1, c);
-          do M.reset(r+1, c);
-          do M.set(r-1, c-1);
-          do M.set(r, c-2);
-
-          do B.setC(8);
-
-        }
-        else
-        {
-          // cannot collide w/ others
-          if ( M.read(r ,c+1)= 1 )
-            {return;}
-
-          // implement
-          do M.reset(r+1, c);
-          do M.set(r, c+1);
-
-        }
+	{
+		// test 1
+		if ( c< 9 )
+		{
+			if ( M.read(r, c+1)= 0 )
+			{
+				do M.set(r, c+1);
+				do M.reset(r+1, c);
         let type = 2;
-        return ;
-      }
+				return true;
+			}
+		}
+
+		// test 2
+		if ( c> 1 )
+		{
+			if ( (M.read(r-1, c-1)= 0) & (M.read(r, c-2)= 0) )
+			{
+				do M.set(r-1, c-1);
+				do M.set(r, c-2);
+				do M.reset(r-1, c);
+				do M.reset(r+1, c);
+
+				do B.setC(c-1);
+        let type = 2;
+				return true;
+			}
+		}
+
+		// test 3
+		if ( c> 1 )
+		{
+			if ( (M.read(r+1, c-1)= 0) & (M.read(r+1, c-2)= 0) )
+			{
+				do M.set(r+1, c-1);
+				do M.set(r+1, c-2);
+				do M.reset(r, c);
+				do M.reset(r-1, c);
+				
+				do B.setR(r+1);
+				do B.setC(c-1);
+        let type = 2;
+				return true;
+			}
+		}
+
+		// test 4
+		if ( (r> 2) & (c< 9) )
+		{
+			if ( (M.read(r-2, c)= 0) & (M.read(r-2, c-1)= 0) & (M.read(r-2, c+1)= 0) & (M.read(r-3, c)= 0) )
+			{
+				do M.set(r-2, c);
+				do M.set(r-2, c-1);
+				do M.set(r-2, c+1);
+				do M.set(r-3, c);
+				do M.reset(r, c);
+				do M.reset(r, c-1);
+				do M.reset(r-1, c);
+				do M.reset(r+1, c);
+
+				do B.setR(r-2);
+        let type = 2;
+				return true;
+			}
+		}
+
+		// test 5
+		if ( (r> 2) & (c> 1) )
+		{
+			if ( (M.read(r-2, c-1)= 0) & (M.read(r-2, c-2)= 0) & (M.read(r-2, c)= 0) & (M.read(r-3, c-1)= 0) )
+			{
+				do M.set(r-2, c-1);
+				do M.set(r-2, c-2);
+				do M.set(r-2, c);
+				do M.set(r-3, c-1);
+				do M.reset(r, c);
+				do M.reset(r, c-1);
+				do M.reset(r-1, c);
+				do M.reset(r+1, c);
+
+				do B.setR(r-2);
+				do B.setC(c-1);
+        let type = 2;
+				return true;
+			}
+		}
+	}
 
       if (type= 2)
-      {	
-        if (r= 19)
-        {
-          // cannot collide w/ others
-          if (( M.read(r-2 ,c)= 1 ) | ( M.read(r-1 ,c+1)= 1 ))
-            {return;}
-
-          // implement
-          do M.reset(r, c-1);
-          do M.reset(r, c+1);
-          do M.set(r-2, c);
-          do M.set(r-1, c+1);
-
-          do B.setR(18);
-
-        }
-        else
-        {
-          // cannot collide w/ others
-          if ( M.read(r+1 ,c)= 1 )
-            {return;}
-
-          // implement
-          do M.reset(r, c-1);
-          do M.set(r+1, c);
-        }
+	{
+		// test 1
+		if ( r< 19 )
+		{
+			if ( M.read(r+1, c)= 0 )
+			{
+				do M.set(r+1, c);
+				do M.reset(r, c-1);
         let type = 3;
-        return ;
-      }
+				return true;
+			}
+		}
+
+		// test 2
+		if ( c> 1 )
+		{
+			if ( (M.read(r-1, c-1)= 0) & (M.read(r+1, c-1)= 0) )
+			{
+				do M.set(r-1, c-1);
+				do M.set(r+1, c-1);
+				do M.reset(r-1, c);
+				do M.reset(r, c+1);
+
+				do B.setC(c-1);
+        let type = 3;
+				return true;
+			}
+		}
+
+		// test 3
+		if ( r> 1 )
+		{
+			if ( (M.read(r-1, c-1)= 0) & (M.read(r-2, c-1)= 0) )
+			{
+				do M.set(r-1, c-1);
+				do M.set(r-2, c-1);
+				do M.reset(r, c);
+				do M.reset(r, c+1);
+				
+				do B.setR(r-1);
+				do B.setC(c-1);
+        let type = 3;
+				return true;
+			}
+		}
+
+		// test 4
+		if ( r< 17 )
+		{
+			if ( (M.read(r+2, c)= 0) & (M.read(r+2, c+1)= 0) & (M.read(r+1, c)= 0) & (M.read(r+3, c)= 0) )
+			{
+				do M.set(r+2, c);
+				do M.set(r+2, c+1);
+				do M.set(r+1, c);
+				do M.set(r+3, c);
+				do M.reset(r, c);
+				do M.reset(r, c-1);
+				do M.reset(r, c+1);
+				do M.reset(r-1, c);
+				
+				do B.setR(r+2);
+        let type = 3;
+				return true;
+			}
+		}
+
+		// test 5
+		if ( r< 17 )
+		{
+			if ( (M.read(r+2, c-1)= 0) & (M.read(r+2, c)= 0) & (M.read(r+1, c-1)= 0) & (M.read(r+3, c-1)= 0) )
+			{
+				do M.set(r+2, c-1);
+				do M.set(r+2, c);
+				do M.set(r+1, c-1);
+				do M.set(r+3, c-1);
+				do M.reset(r, c);
+				do M.reset(r, c-1);
+				do M.reset(r, c+1);
+				do M.reset(r-1, c);
+				
+				do B.setR(r+2);
+				do B.setC(c-1);
+        let type = 3;
+				return true;
+			}
+		}
+	}
+
 
       if (type= 3)
-      {	
-        if (c= 0)
-        {
-          // cannot collide w/ others
-          if (( M.read(r ,c+2)= 1 ) | ( M.read(r+1 ,c+1)= 1 ))
-            {return;}
-
-          // implement
-          do M.reset(r-1, c);
-          do M.reset(r+1, c);
-          do M.set(r, c+2);
-          do M.set(r+1, c+1);
-
-          do B.setC(1);
-        }
-        else
-        {
-          // cannot collide w/ others
-          if ( M.read(r ,c-1)= 1 )
-            {return;}
-
-          // implement
-          do M.reset(r-1, c);
-          do M.set(r, c-1);
-        }
+	{
+		// test 1
+		if ( c> 0 )
+		{
+			if ( (M.read(r, c-1)= 0) )
+			{
+				do M.set(r, c-1);
+				do M.reset(r-1, c);
         let type = 0;
-        return ;
-      }
-      return;
+				return true;
+			}
+		}
+
+		// test 2
+		if ( c< 8 )
+		{
+			if ( (M.read(r, c+2)= 0) & (M.read(r+1, c+1)= 0) )
+			{
+				do M.set(r, c+2);
+				do M.set(r+1, c+1);
+				do M.reset(r-1, c);
+				do M.reset(r+1, c);
+
+				do B.setC(c+1);
+        let type = 0;
+				return true;
+			}
+		}
+
+		// test 3
+		if ( (r< 18) & (c< 8) )
+		{
+			if ( (M.read(r+1, c+1)= 0) & (M.read(r+1, c+2)= 0) & (M.read(r+2, c+1)= 0) )
+			{
+				do M.set(r+1, c+1);
+				do M.set(r+1, c+2);
+				do M.set(r+2, c+1);
+				do M.reset(r, c);
+				do M.reset(r, c+1);
+				do M.reset(r-1, c);
+				
+				do B.setR(r+1);
+				do B.setC(c+1);
+        let type = 0;
+				return true;
+			}
+		}
+
+		// test 4
+		if ( (r> 1) & (c> 0) )
+		{
+			if ( (M.read(r-2, c)= 0) & (M.read(r-2, c-1)= 0) & (M.read(r-2, c+1)= 0) )
+			{
+				do M.set(r-2, c);
+				do M.set(r-2, c-1);
+				do M.set(r-2, c+1);
+				do M.reset(r, c);
+				do M.reset(r+1, c);
+				do M.reset(r, c+1);
+				
+				do B.setR(r-2);
+        let type = 0;
+				return true;
+			}
+		}
+
+		// test 5
+		if ( (r> 1) & (c< 8) )
+		{
+			if ( (M.read(r-2, c+1)= 0) & (M.read(r-1, c+1)= 0) & (M.read(r-2, c)= 0) & (M.read(r-2, c+2)= 0) )
+			{
+				do M.set(r-2, c+1);
+				do M.set(r-1, c+1);
+				do M.set(r-2, c);
+				do M.set(r-2, c+2);
+				do M.reset(r, c);
+				do M.reset(r-1, c);
+				do M.reset(r+1, c);
+				do M.reset(r, c+1);
+				
+				do B.setR(r-2);
+				do B.setC(c+1);
+        let type = 0;
+				return true;
+			}
+		}
+    }
+    return false;
     }
 
     method void down(Map M,Block B)
