@@ -210,24 +210,31 @@ class Block{
         while (~flag) //flag == false
         {
             if (type = 0) {
+                let flag = O.O_isBottom(A,this);
                 do O.down(A,this);
             }
             if (type = 1){
+                let flag = I.I_isBottom(A,this);
                 do I.down(A,this);
             }
             if (type = 2){
+                flag = Z.Z_isBottom(A,this);
                 do Z.down(A,this);
             }
             if (type = 3){
+                let flag = S.S_isBottom(A,this);
                 do S.down(A,this);
             }
             if (type = 4){
+                let flag = T.T_isBottom(A,this);
                 do T.down(A,this);
             }
             if (type = 5){
+                let flag = J.J_isBottom(A,this);
                 do J.down(A,this);
             }
             if (type = 6){
+                let flag = L.L_isBottom(A,this);
                 do L.down(A,this);
             }
         }
