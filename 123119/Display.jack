@@ -85,7 +85,7 @@ class Display{
 		return;
 	}
 
-	function void endScreen(Playa P0, Playa P1, int h0, int h1){
+	function void endScreen(Playa P0, Playa P1, String name0, String name1, int h0, int h1){
 		var Playa winner;
 		var int winID;
 		var int draw;
@@ -129,7 +129,12 @@ class Display{
 			do Output.printString("PLAYER ");
 			do Output.printInt(winID);
 			do Output.moveCursor(11, 28);
-			do Output.printString(winner.getName());
+			if(winID = 0){
+				do Output.printString(name0);
+			}
+			if(winID = 1){
+				do Output.printString(name1);
+			}
 			do Output.moveCursor(12, 29);
 			do Output.printString(" WINS!");
 		}
