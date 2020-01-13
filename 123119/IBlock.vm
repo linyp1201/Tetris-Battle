@@ -72,11 +72,43 @@ add
 call Map.read 3
 push constant 1
 eq
+push argument 1
+push local 0
+push local 1
+call Map.read 3
+push constant 1
+eq
+and
+push argument 1
+push local 0
+push local 1
+push constant 2
+add
+call Map.read 3
+push constant 1
+eq
+and
+push argument 1
+push local 0
+push local 1
+push constant 3
+add
+call Map.read 3
+push constant 1
+eq
+and
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
 push constant 0
 pop this 2
+push constant 1
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push this 2
+call Output.printInt 1
+pop temp 0
 label IF_FALSE0
 push argument 1
 push local 0
@@ -86,11 +118,43 @@ push local 1
 call Map.read 3
 push constant 1
 eq
+push argument 1
+push local 0
+push local 1
+call Map.read 3
+push constant 1
+eq
+and
+push argument 1
+push local 0
+push constant 2
+sub
+push local 1
+call Map.read 3
+push constant 1
+eq
+and
+push argument 1
+push local 0
+push constant 3
+sub
+push local 1
+call Map.read 3
+push constant 1
+eq
+and
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
 push constant 1
 pop this 2
+push constant 1
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push this 2
+call Output.printInt 1
+pop temp 0
 label IF_FALSE1
 push this 2
 push constant 0
@@ -178,6 +242,8 @@ sub
 push local 1
 call Map.set 3
 pop temp 0
+push constant 1
+pop this 2
 goto IF_END3
 label IF_FALSE3
 push local 0
@@ -262,7 +328,11 @@ push argument 2
 push constant 3
 call Block.setR 2
 pop temp 0
+push constant 1
+pop this 2
 label IF_END3
+push constant 0
+return
 label IF_FALSE2
 push this 2
 push constant 1
@@ -350,6 +420,8 @@ push constant 3
 add
 call Map.set 3
 pop temp 0
+push constant 0
+pop this 2
 goto IF_END8
 label IF_FALSE8
 push local 1
@@ -434,7 +506,11 @@ push argument 2
 push constant 6
 call Block.setC 2
 pop temp 0
+push constant 0
+pop this 2
 label IF_END8
+push constant 0
+return
 label IF_FALSE7
 push constant 0
 return

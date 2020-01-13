@@ -93,6 +93,8 @@ class TBlock{
           do M.set(r-1, c);
 
         }
+        let type = 1;
+        return ;
       }
 
       if (type= 1)
@@ -123,6 +125,8 @@ class TBlock{
           do M.set(r, c+1);
 
         }
+        let type = 2;
+        return ;
       }
 
       if (type= 2)
@@ -152,6 +156,8 @@ class TBlock{
           do M.reset(r, c-1);
           do M.set(r+1, c);
         }
+        let type = 3;
+        return ;
       }
 
       if (type= 3)
@@ -180,6 +186,8 @@ class TBlock{
           do M.reset(r-1, c);
           do M.set(r, c-1);
         }
+        let type = 0;
+        return ;
       }
       return;
     }

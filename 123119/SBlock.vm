@@ -325,6 +325,10 @@ push local 1
 call Map.set 3
 pop temp 0
 label IF_END5
+push constant 1
+pop this 2
+push constant 0
+return
 label IF_FALSE4
 push this 2
 push constant 1
@@ -447,6 +451,10 @@ add
 call Map.set 3
 pop temp 0
 label IF_END9
+push constant 0
+pop this 2
+push constant 0
+return
 label IF_FALSE8
 push constant 0
 return

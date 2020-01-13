@@ -99,6 +99,8 @@ class LBlock{
           do M.set(r+1, c);
 
         }
+        let type = 1;
+        return ;
       }
 
       if (type= 1)
@@ -132,6 +134,8 @@ class LBlock{
           do M.set(r, c-1);
 
         }
+        let type = 2;
+        return ;
       }
 
       if (type= 2)
@@ -166,6 +170,8 @@ class LBlock{
           do M.set(r-1, c+1);
 
         }
+        let type = 3;
+        return ;
       }
 
       if (type= 3)
@@ -199,6 +205,8 @@ class LBlock{
           do M.set(r, c+1);
           do M.set(r+1, c+1);
         }
+        let type = 0;
+        return ;
       }
 
     return ;

@@ -84,6 +84,8 @@ class SBlock{
           do M.set(r-1, c-1);
           do M.set(r+1, c);
         }
+        let type = 1;
+        return ;
       }
 
       if (type= 1)
@@ -115,6 +117,8 @@ class SBlock{
           do M.set(r-1, c);
           do M.set(r-1, c+1);
         }
+        let type = 0;
+        return ;
       }
       return ;
     }
