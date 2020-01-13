@@ -155,6 +155,13 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
+push argument 0
+call Playa.getLinesReceived 1
+push constant 0
+gt
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
 push constant 59
 push constant 239
 push argument 0
@@ -166,6 +173,14 @@ push constant 62
 push constant 239
 call Screen.drawRectangle 4
 pop temp 0
+label IF_FALSE0
+push argument 1
+call Playa.getLinesReceived 1
+push constant 0
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
 push constant 299
 push constant 239
 push argument 1
@@ -177,6 +192,7 @@ push constant 302
 push constant 239
 call Screen.drawRectangle 4
 pop temp 0
+label IF_FALSE1
 push constant 0
 return
 function Display.gameScreen 6
@@ -403,11 +419,8 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Display.endScreen 6
+function Display.endScreen 4
 push constant 1
-pop local 3
-push constant 32
-call String.new 1
 pop local 2
 call Screen.clearScreen 0
 pop temp 0
@@ -424,7 +437,7 @@ pop local 0
 push constant 0
 pop local 1
 push constant 0
-pop local 3
+pop local 2
 label IF_FALSE0
 push argument 0
 call Playa.getKO 1
@@ -439,7 +452,7 @@ pop local 0
 push constant 1
 pop local 1
 push constant 0
-pop local 3
+pop local 2
 label IF_FALSE1
 push argument 0
 call Playa.getKO 1
@@ -460,7 +473,7 @@ pop local 0
 push constant 0
 pop local 1
 push constant 0
-pop local 3
+pop local 2
 label IF_FALSE2
 push argument 0
 call Playa.getKO 1
@@ -481,7 +494,7 @@ pop local 0
 push constant 1
 pop local 1
 push constant 0
-pop local 3
+pop local 2
 label IF_FALSE3
 push argument 0
 call Playa.getKO 1
@@ -506,7 +519,7 @@ pop local 0
 push constant 0
 pop local 1
 push constant 0
-pop local 3
+pop local 2
 label IF_FALSE4
 push argument 0
 call Playa.getKO 1
@@ -531,9 +544,9 @@ pop local 0
 push constant 1
 pop local 1
 push constant 0
-pop local 3
+pop local 2
 label IF_FALSE5
-push local 3
+push local 2
 push constant 0
 eq
 if-goto IF_TRUE6
@@ -564,22 +577,13 @@ pop temp 0
 push local 1
 call Output.printInt 1
 pop temp 0
-push local 0
-call Playa.getName 1
-pop local 2
-push constant 32
-push local 2
-call String.length 1
-push constant 2
-call Math.divide 2
-sub
-pop local 5
 push constant 11
-push local 5
+push constant 28
 call Output.moveCursor 2
 pop temp 0
-push local 2
-call Output.printstring 1
+push local 0
+call Playa.getName 1
+call Output.printString 1
 pop temp 0
 push constant 12
 push constant 29
@@ -599,10 +603,7 @@ push constant 83
 call String.appendChar 2
 push constant 33
 call String.appendChar 2
-call Output.printstring 1
-pop temp 0
-push local 2
-call String.dispose 1
+call Output.printString 1
 pop temp 0
 goto IF_END6
 label IF_FALSE6
@@ -640,14 +641,14 @@ call Output.printString 1
 pop temp 0
 label IF_END6
 label WHILE_EXP0
-push local 4
+push local 3
 push constant 128
 eq
 not
 not
 if-goto WHILE_END0
 call Keyboard.readChar 0
-pop local 4
+pop local 3
 goto WHILE_EXP0
 label WHILE_END0
 push constant 0
