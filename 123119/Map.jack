@@ -51,18 +51,12 @@ class Map{
     
         let count = 0;
         let row = 19;
-        /* count */
-        while(row > -1)
+        
+        while(row > 0)
         {
-            let FULL = 1;
-            let j = 0;
-            while(j<10)
-            {
-                let FULL = FULL & cells[i*10+j];
-                let j = j + 1;
-            }
-            /* eliminate */
-            if(FULL = 1)
+            let FULL = RowIsFull(row);
+            
+            if(FULL)
             {
                 let count = count + 1;
                 let l = row; //ROW = 20, COL = 10
@@ -83,37 +77,25 @@ class Map{
                     let m = m + 1;
                 }
             }
-            
             let row = row - 1;
         }
         
 		return count;
     }
-    /*
-    function void eliminate()
+    
+    method boolean RowIsFull(int r)
     {
-        var int  i ,j;
-        let i = 19;
-        while(i > 0)
+        var int i;
+        var int isFull;
+        let i = r*10;
+        let isFull = 1;
+        while(i<((r+1)*10))
         {
-            let j = 0;
-            while(j<10)
-            {
-                let cells[i*10+j] = cells[i*10+j-10];
-                let j = j + 1;
-            }
-            let i = i - 1;
+            let isFull = isFull & cells[i];
+            let i = i+1;
         }
-        let j = 0;
-        while(j<10)
-        {
-            let cells[j] = 0;
-            let j = j + 1;
-        }
-        
-        return;
+        return isFull;
     }
-    */
 
     method int getHeight()
     {
@@ -128,7 +110,6 @@ class Map{
                 let h = 20 - h;
                 return h;
             }
-			let which = which + 1;
         }
         return h;
     }
