@@ -10,7 +10,7 @@ class Block{
     field TBlock T;
     field ZBlock Z;
     
-    constructor Block new(Map Map_A,int r,int c,int b_type){
+    constructor Block new(Map Map_A, int b_type){
         let last = false;
         let type = b_type;
         let O = OBlock.new(Map_A,this); 

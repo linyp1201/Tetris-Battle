@@ -34,8 +34,8 @@ class Display{
 		do Output.printInt(P1.getLinesSent());
 		/* shows linesReceived */
 		do Screen.setColor(true);
-		do Screen.drawLine(63, 239, 63, P0.getLinesReceived()*2);
-		do Screen.drawLine(303, 239, 303, P1.getLinesReceived()*2);
+		do Screen.drawLine(62, 239, 59, P0.getLinesReceived());
+		do Screen.drawLine(302, 239, 299, P1.getLinesReceived());
 		return;
 
 	}
