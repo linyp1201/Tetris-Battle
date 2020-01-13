@@ -1,17 +1,15 @@
 class Playa {
 
 	field int id;
-	field String name;
 	field int linesSent;
 	field int linesReceived;
 	field int KO;
 	field int combo;
 	field int garbageHeight;
 	
-	constructor Playa new(int ID, String name)
+	constructor Playa new(int ID)
 	{
 		let ID = ID;
-		let name = name;
 		let linesSent = 0;
 		let linesReceived = 0;
 		let KO = 0;
@@ -160,8 +158,4 @@ class Playa {
 		return id;
 	}
 
-	method String getName()
-	{
-		return name;
-	}
 }

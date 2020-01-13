@@ -137,12 +137,13 @@ class Main {
         return 0;
     }
 
-    function void Play(String pn0, String pn1){
+    function void Play(){
 
         /* A Game */
 
         var Playa P0, P1;
         var Map map0, map1;
+        var String Pn0, Pn1;
         var Block block0, block1;
         var int bType0, bType1;
         var int bNext0, bNext1;
@@ -154,15 +155,27 @@ class Main {
         var boolean KO;
         var Clock timer;
         var int stop;
+        var int winID;
+        var int draw;
+        var int key;
+
+        let Pn0 = String.new(20);
+        let Pn1 = String.new(20);
+
+        do Screen.clearScreen();
+        do Output.moveCursor(9, 22);
+        let Pn0 = Keyboard.readLine("PLAYER ZERO NAME : ");
+        do Output.moveCursor(12, 22);
+        let Pn1 = Keyboard.readLine("PLAYER ONE NAME : ");
 
         do Display.gameScreen();
 
         let stop = 0;
         let timer = Clock.new();
-        do timer.setTime(50);
+        do timer.setTime(100);
         let KO = false;
-        let P0 = Playa.new(0, pn0);
-        let P1 = Playa.new(1, pn1);//
+        let P0 = Playa.new(0);
+        let P1 = Playa.new(1);//
         let map0 = Map.new();
         let map1 = Map.new();//
         
@@ -222,7 +235,7 @@ class Main {
             /* If toBottom, Calculate combo & sent/received lines ; else add received */
             if(cleared0 > -1){
         
-                do Random.setSeed(bType1+timer.getTime());
+                do Random.setSeed(bType1+bType0+timer.getTime());
                 let bType0 = bNext0;
                 let bNext0 = Random.randRange(6);
                 do block0.setType(bType0);
@@ -257,7 +270,7 @@ class Main {
             }
             if(cleared1 > -1){
                 
-                do Random.setSeed(bType0+timer.getTime());
+                do Random.setSeed(bType0+bType1+timer.getTime());
                 let bType1 = bNext1;
                 let bNext1 = Random.randRange(6);
                 do block1.setType(bType1);
@@ -299,7 +312,7 @@ class Main {
             }
 
             /* tick */
-            do timer.tick(50);
+            do timer.tick(100);
 
             /* check if KO */ 
             if(isDead0 = -1){
@@ -322,7 +335,55 @@ class Main {
             }
             let KO = ((P0.getKO() > 4) | (P1.getKO() > 4));
         }
-        do Display.endScreen(P0, P1, map0.getHeight(), map1.getHeight());
+
+        let draw = 1;
+        do Screen.clearScreen();
+
+        if(P0.getKO() > P1.getKO()){
+            let winID = 0;
+            let draw = 0;
+        }
+        if(P0.getKO() < P1.getKO()){
+            let winID = 1;
+            let draw = 0;
+        }
+        if(P0.getKO() = P1.getKO() & P0.getLinesSent() > P1.getLinesSent()){
+            let winID = 0;
+            let draw = 0;
+        }
+        if(P0.getKO() = P1.getKO() & P0.getLinesSent() < P1.getLinesSent()){
+            let winID = 1;
+            let draw = 0;
+        }
+        if(P0.getKO() = P1.getKO() & P0.getLinesSent() = P1.getLinesSent() & map0.getHeight() < map1.getHeight()){
+            let winID = 0;
+            let draw = 0;
+        }
+        if(P0.getKO() = P1.getKO() & P0.getLinesSent() = P1.getLinesSent() & map0.getHeight() > map1.getHeight()){
+            let winID = 1;
+            let draw = 0;
+        }
+        if(draw = 0){
+            do Output.moveCursor(10, 28);
+            do Output.printString("PLAYER ");
+            do Output.printInt(winID);
+            do Output.moveCursor(12, 30);
+            if(winID = 0){
+                do Output.printString(Pn0);
+            }
+            if(winID = 1){
+                do Output.printString(Pn1);
+            }
+            do Output.moveCursor(14, 29);
+            do Output.printString(" WINS!");
+        }
+        else{
+            do Output.moveCursor(10, 26);
+            do Output.printString("IT'S A DRAW!");
+        }
+        while(~(key = 128)){
+            let key = Keyboard.readChar();
+        }
         return;
     }
 
@@ -346,12 +407,7 @@ class Main {
         }
 
         if(curOption = 0){
-            do Screen.clearScreen();
-            do Output.moveCursor(9, 22);
-            let pn0 = Keyboard.readLine("PLAYER ZERO NAME : ");
-            do Output.moveCursor(12, 22);
-            let pn1 = Keyboard.readLine("PLAYER ONE NAME : ");
-            do Main.Play(pn0, pn1);
+            do Main.Play();
         }
         else{
             let endGame = 1;
