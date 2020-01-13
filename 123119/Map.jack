@@ -41,13 +41,35 @@ class Map{
 		return k;
 	}
     /* end for encapsulation */
-    method int proc() /* returns how many lines to be eliminated */
+    method int proc(Playa p) /* returns how many lines to be eliminated */
     {
-        var int count, k,c,i,j;
+        var int count, k,c,i,j, countfrombot, gH;
         var int FULL;
         let count = 0;
+        let countfrombot = 0;
         let k = 19;
-        
+        let gH = p.getGarbageHeight();
+        /* countfrombot */
+        while(row > 0)
+        {
+            if(done = 0)
+            {
+                let FULL = RowIsFull(row);
+                
+                if(FULL)
+                {
+                    let countfrombot = countfrombot + 1;
+                }
+                if
+                {
+                    let done = 1;
+                }
+            }
+            let row = row - 1;
+        }
+
+
+        /* count */
         while(k > 0)
         {
             let FULL = 1;
