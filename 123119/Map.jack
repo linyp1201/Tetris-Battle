@@ -67,6 +67,10 @@ class Map{
             }
             let row = row - 1;
         }
+        while(gH > ) //garbageHeight >= 0
+        {
+            
+        }
 
 
         /* count */
