@@ -318,6 +318,7 @@ class Main {
             if(isDead0 = -1){
                 do P1.incKO();
                 do P0.clearGarbage(map0);
+                let isDead0 = 0;
             }
             if(isAlive0 = 0){
                 do P1.incKO();
@@ -327,6 +328,7 @@ class Main {
             if(isDead1 = -1){
                 do P0.incKO();
                 do P1.clearGarbage(map1);
+                let isDead1 = 0;
             }
             if(isAlive1 = 0){
                 do P0.incKO();

@@ -941,6 +941,8 @@ push local 0
 push local 2
 call Playa.clearGarbage 2
 pop temp 0
+push constant 0
+pop local 16
 label IF_FALSE14
 push local 14
 push constant 0
@@ -973,6 +975,8 @@ push local 1
 push local 3
 call Playa.clearGarbage 2
 pop temp 0
+push constant 0
+pop local 17
 label IF_FALSE16
 push local 15
 push constant 0
