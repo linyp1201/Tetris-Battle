@@ -62,6 +62,8 @@ add
 call Map.set 3
 pop temp 0
 push constant 0
+pop this 2
+push constant 0
 return
 function LBlock.dispose 0
 push argument 0

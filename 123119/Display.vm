@@ -155,6 +155,28 @@ push constant 0
 not
 call Screen.setColor 1
 pop temp 0
+push constant 59
+push constant 239
+push argument 0
+call Playa.getLinesReceived 1
+push constant 20
+call Math.multiply 2
+sub
+push constant 62
+push constant 239
+call Screen.drawRectangle 4
+pop temp 0
+push constant 299
+push constant 239
+push argument 1
+call Playa.getLinesReceived 1
+push constant 20
+call Math.multiply 2
+sub
+push constant 302
+push constant 239
+call Screen.drawRectangle 4
+pop temp 0
 push constant 0
 return
 function Display.gameScreen 6
@@ -381,9 +403,12 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function Display.endScreen 5
+function Display.endScreen 6
 push constant 1
 pop local 3
+push constant 32
+call String.new 1
+pop local 2
 call Screen.clearScreen 0
 pop temp 0
 push argument 0
@@ -542,17 +567,18 @@ pop temp 0
 push local 0
 call Playa.getName 1
 pop local 2
-push constant 11
 push constant 32
 push local 2
 call String.length 1
-sub
 push constant 2
 call Math.divide 2
+sub
+pop local 5
+push constant 11
+push local 5
 call Output.moveCursor 2
 pop temp 0
-push local 0
-call Playa.getName 1
+push local 2
 call Output.printstring 1
 pop temp 0
 push constant 12
@@ -574,6 +600,9 @@ call String.appendChar 2
 push constant 33
 call String.appendChar 2
 call Output.printstring 1
+pop temp 0
+push local 2
+call String.dispose 1
 pop temp 0
 goto IF_END6
 label IF_FALSE6

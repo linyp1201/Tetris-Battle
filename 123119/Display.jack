@@ -34,8 +34,8 @@ class Display{
 		do Output.printInt(P1.getLinesSent());
 		/* shows linesReceived */
 		do Screen.setColor(true);
-		//do Screen.drawRectangle(62, 239, 59, P0.getLinesReceived()/200);
-		//do Screen.drawRectangle(302, 239, 299, P1.getLinesReceived()/200);
+		do Screen.drawRectangle(59, 239-(P0.getLinesReceived()*20), 62, 239);
+		do Screen.drawRectangle(299, 239-(P1.getLinesReceived()*20), 302, 239);
 		return;
 
 	}
@@ -87,8 +87,10 @@ class Display{
 		var String name;
 		var int draw;
 		var int key;
+		var int nameLen;
 
 		let draw = 1;
+		let name = String.new(32);
 		do Screen.clearScreen();
 
 		if(P0.getKO() > P1.getKO()){
@@ -126,10 +128,12 @@ class Display{
 			do Output.printString("PLAYER ");
 			do Output.printInt(winID);
 			let name = winner.getName();
-			do Output.moveCursor(11, (32 - name.length() / 2));
-			do Output.printstring(winner.getName());
+			let nameLen = 32 - (name.length() / 2);
+			do Output.moveCursor(11, nameLen);
+			do Output.printstring(name);
 			do Output.moveCursor(12, 29);
 			do Output.printstring(" WINS!");
+			do name.dispose();
 		}
 		else{
 			do Output.moveCursor(10, 26);

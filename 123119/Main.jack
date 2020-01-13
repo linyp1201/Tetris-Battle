@@ -184,15 +184,6 @@ class Main {
 
         while(stop < 240 & (~KO)){
 
-            /* showMap */
-            do map0.showMap(0);
-            do map1.showMap(1);
-            /* showNextBlock */
-            do Display.showNext(0, bNext0);
-            do Display.showNext(1, bNext1);
-            /* showScores */
-            do Display.showScores(P0, P1);
-
             /* One Move */
             let cleared0 = Main.Move(0, map0, block0);
             if(cleared0 > -1){
@@ -218,10 +209,19 @@ class Main {
                 let stop = stop + 1;
             }
 
+            /* showMap */
+            do map0.showMap(0);
+            do map1.showMap(1);
+            /* showNextBlock */
+            do Display.showNext(0, bNext0);
+            do Display.showNext(1, bNext1);
+            /* showScores */
+            do Display.showScores(P0, P1);
+
             /* If toBottom, Calculate combo & sent/received lines ; else add received */
             if(cleared0 > -1){
         
-                do Random.setSeed(timer.getTime());
+                do Random.setSeed(bType1+timer.getTime());
                 let bType0 = bNext0;
                 let bNext0 = Random.randRange(6);
                 do block0.setType(bType0);
@@ -256,12 +256,10 @@ class Main {
             }
             if(cleared1 > -1){
                 
-                do Random.setSeed(timer.getTime()+99);
+                do Random.setSeed(bType0+timer.getTime());
                 let bType1 = bNext1;
                 let bNext1 = Random.randRange(6);
                 do block1.setType(bType1);
-                do block1.setR(1);
-                do block1.setC(4);
                 do block1.create_block(map1);
 
                 if(cleared1 = 0){

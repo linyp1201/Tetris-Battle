@@ -508,26 +508,6 @@ not
 and
 not
 if-goto WHILE_END0
-push local 2
-push constant 0
-call Map.showMap 2
-pop temp 0
-push local 3
-push constant 1
-call Map.showMap 2
-pop temp 0
-push constant 0
-push local 8
-call Display.showNext 2
-pop temp 0
-push constant 1
-push local 9
-call Display.showNext 2
-pop temp 0
-push local 0
-push local 1
-call Display.showScores 2
-pop temp 0
 push constant 0
 push local 2
 push local 4
@@ -611,6 +591,26 @@ push constant 1
 add
 pop local 20
 label IF_FALSE2
+push local 2
+push constant 0
+call Map.showMap 2
+pop temp 0
+push local 3
+push constant 1
+call Map.showMap 2
+pop temp 0
+push constant 0
+push local 8
+call Display.showNext 2
+pop temp 0
+push constant 1
+push local 9
+call Display.showNext 2
+pop temp 0
+push local 0
+push local 1
+call Display.showScores 2
+pop temp 0
 push local 10
 push constant 1
 neg
@@ -618,8 +618,10 @@ gt
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
+push local 7
 push local 19
 call Clock.getTime 1
+add
 call Random.setSeed 1
 pop temp 0
 push local 8
@@ -711,9 +713,9 @@ gt
 if-goto IF_TRUE8
 goto IF_FALSE8
 label IF_TRUE8
+push local 6
 push local 19
 call Clock.getTime 1
-push constant 99
 add
 call Random.setSeed 1
 pop temp 0
@@ -725,14 +727,6 @@ pop local 9
 push local 5
 push local 7
 call Block.setType 2
-pop temp 0
-push local 5
-push constant 1
-call Block.setR 2
-pop temp 0
-push local 5
-push constant 4
-call Block.setC 2
 pop temp 0
 push local 5
 push local 3
