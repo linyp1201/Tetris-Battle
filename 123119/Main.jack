@@ -129,30 +129,51 @@ class Main {
         }
     }
 
-    function int Bonus(int prev, int TSpin, int cleared){
+    function int Bonus(int prev, int TSpin, int cleared, int player){
+        var int text;
+        let text = 0;
+        if(player = 1){
+            let text = 30;
+        }
+        do Output.moveCursor(15, 25 + text);
         if(prev = 0){
             if(TSpin = 0){
                 if(cleared = 2){
+                    do Output.printString("DOUBLE");
                     return 1;
                 }
                 if(cleared = 3){
+                    do Output.printString("TRIPLE");
                     return 2;
                 }
                 if(cleared = 4){
+                    do Output.printString("TETRIS!");
                     return 4;
                 }
             }
             if(TSpin = 1){
                 if(cleared = 0){
+                    do Output.printString("T-SPIN");
+                    do Output.moveCursor(16, 25 + text);
+                    do Output.printSting("MINI");
                     return 1;
                 }
                 if(cleared = 1){
+                    do Output.printString("T-SPIN");
+                    do Output.moveCursor(16, 25 + text);
+                    do Output.printSting("MINI");
                     return 2;
                 }
                 if(cleared = 2){
+                    do Output.printString("T-SPIN");
+                    do Output.moveCursor(16, 25 + text);
+                    do Output.printSting("MINI");
                     return 4;
                 }
                 if(cleared = 3){
+                    do Output.printString("T-SPIN");
+                    do Output.moveCursor(16, 25 + text);
+                    do Output.printSting("MINI");
                     return 6;
                 }
             }
@@ -259,6 +280,11 @@ class Main {
                 do block0.setLast(false);
                 do block1.down(map1);
                 do block1.setLast(false);
+
+                do Screen.setColor(false);
+                do Screen.drawRectangle(193, 160, 246, 180);
+                do Screen.drawRectangle(433, 160, 486, 180);
+
                 if(timer.getTime() = 30000){
                     do timer.setTime(0);
                 }
@@ -325,7 +351,7 @@ class Main {
                 if(cleared0 > 0){
                     let TSpin0 = block0.Tspin(map0);
                     let prev0 = (TSpin0 | (cleared0 > 3));
-                    let cleared0 = Main.comboScore(P0.getCombo()) + Main.Bonus(prev0, TSpin0, cleared0);
+                    let cleared0 = Main.comboScore(P0.getCombo()) + Main.Bonus(prev0, TSpin0, cleared0, 0);
                     if(map0.getHeight() = 0){
                         let cleared0 = cleared0 + 10;
                     }
@@ -359,7 +385,7 @@ class Main {
                 if(cleared1 > 0){
                     let TSpin1 = block1.Tspin(map1);
                     let prev1 = (TSpin1 | (cleared1 > 3));
-                    let cleared1 = Main.comboScore(P1.getCombo()) + Main.Bonus(prev1, TSpin1, cleared1);
+                    let cleared1 = Main.comboScore(P1.getCombo()) + Main.Bonus(prev1, TSpin1, cleared1, 1);
                     if(map1.getHeight() = 1){
                         let cleared0 = cleared0 + 10;
                     }
