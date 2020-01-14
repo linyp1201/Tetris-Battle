@@ -121,7 +121,12 @@ class Main {
                 }
                 let for = for + 1;
             }
-            return map.proc();
+            if(block.bottomChecker(map)){
+                return map.proc();
+            }
+            else{
+                return -1;
+            }
         }
         else{
             return -1;
@@ -358,16 +363,21 @@ class Main {
                 if(cleared0 > 0){
                     let TSpin0 = block0.Tspin(map0);
                     
-                    // for debug
+                    /* for debug
                     do Output.moveCursor(0,0);
                     do Output.printInt(cleared0);
-                    //
+                    */
                     let cleared0 = Main.comboScore(P0.getCombo()) + Main.Bonus(prev0, TSpin0, cleared0, 0);
-                    // for debug
+                    /* for debug
                     do Output.moveCursor(1,0);
                     do Output.printInt(cleared0);
-                    //
-                    let prev0 = (TSpin0 | (cleared0 > 3));
+                    */
+                    if((TSpin0) | (cleared0 > 3)){
+                        let prev0 = 1;
+                    }
+                    else{
+                        let prev0 = 0;
+                    }
                     if(map0.getHeight() = 0){
                         let cleared0 = cleared0 + 10;
                     }
@@ -405,16 +415,21 @@ class Main {
                 if(cleared1 > 0){
                     let TSpin1 = block1.Tspin(map1);
                     
-                    // for debug
+                    /* for debug
                     do Output.moveCursor(2,0);
                     do Output.printInt(cleared1);
-                    //
+                    */
                     let cleared1 = Main.comboScore(P1.getCombo()) + Main.Bonus(prev1, TSpin1, cleared1, 1);
-                    // for debug
+                    /* for debug
                     do Output.moveCursor(3,0);
                     do Output.printInt(cleared1);
-                    //
-                    let prev1 = (TSpin1 | (cleared1 > 3));
+                    */
+                    if((TSpin1) | (cleared1 > 3)){
+                        let prev1 = 1;
+                    }
+                    else{
+                        let prev1 = 0;
+                    }
                     if(map1.getHeight() = 1){
                         let cleared1 = cleared1 + 10;
                     }
