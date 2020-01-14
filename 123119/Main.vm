@@ -1016,7 +1016,6 @@ call Main.Move 3
 pop local 12
 push local 12
 push constant 1
-neg
 gt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -1033,7 +1032,6 @@ call Main.Move 3
 pop local 13
 push local 13
 push constant 1
-neg
 gt
 if-goto IF_TRUE1
 goto IF_FALSE1
@@ -1249,6 +1247,13 @@ push constant 3
 gt
 or
 pop local 20
+push constant 0
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push local 12
+call Output.printInt 1
+pop temp 0
 push local 0
 call Playa.getCombo 1
 call Main.comboScore 1
@@ -1259,6 +1264,13 @@ push constant 0
 call Main.Bonus 4
 add
 pop local 12
+push constant 1
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push local 12
+call Output.printInt 1
+pop temp 0
 push local 2
 call Map.getHeight 1
 push constant 0
@@ -1372,6 +1384,13 @@ push constant 3
 gt
 or
 pop local 21
+push constant 2
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push local 13
+call Output.printInt 1
+pop temp 0
 push local 1
 call Playa.getCombo 1
 call Main.comboScore 1
@@ -1382,6 +1401,13 @@ push constant 1
 call Main.Bonus 4
 add
 pop local 13
+push constant 3
+push constant 0
+call Output.moveCursor 2
+pop temp 0
+push local 13
+call Output.printInt 1
+pop temp 0
 push local 3
 call Map.getHeight 1
 push constant 1
@@ -1389,10 +1415,10 @@ eq
 if-goto IF_TRUE16
 goto IF_FALSE16
 label IF_TRUE16
-push local 12
+push local 13
 push constant 10
 add
-pop local 12
+pop local 13
 label IF_FALSE16
 label IF_FALSE15
 push local 1
