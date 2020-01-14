@@ -489,7 +489,7 @@ push constant 30
 pop local 0
 label IF_FALSE0
 push constant 15
-push constant 25
+push constant 24
 push local 0
 add
 call Output.moveCursor 2
@@ -1222,9 +1222,9 @@ label IF_TRUE8
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push constant 193
+push constant 191
 push constant 160
-push constant 246
+push constant 247
 push constant 180
 call Screen.drawRectangle 4
 pop temp 0
@@ -1354,9 +1354,9 @@ label IF_TRUE14
 push constant 0
 call Screen.setColor 1
 pop temp 0
-push constant 433
+push constant 431
 push constant 160
-push constant 486
+push constant 487
 push constant 180
 call Screen.drawRectangle 4
 pop temp 0
@@ -1814,7 +1814,6 @@ label WHILE_EXP1
 push local 29
 push constant 128
 eq
-not
 not
 if-goto WHILE_END1
 call Keyboard.keyPressed 0

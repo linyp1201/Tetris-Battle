@@ -139,7 +139,7 @@ class Main {
         if(player = 1){
             let text = 30;
         }
-        do Output.moveCursor(15, 25 + text);
+        do Output.moveCursor(15, 24 + text);
         if(prev = 0){
             if(TSpin = 0){
                 if(cleared = 2){
@@ -351,7 +351,7 @@ class Main {
             if(cleared0 > -1){
 
                 do Screen.setColor(false);
-                do Screen.drawRectangle(193, 160, 246, 180);
+                do Screen.drawRectangle(191, 160, 247, 180);
                 
                 if(cleared0 = 0){
                     do P0.resetCombo();
@@ -403,7 +403,7 @@ class Main {
             if(cleared1 > -1){
 
                 do Screen.setColor(false);
-                do Screen.drawRectangle(433, 160, 486, 180);
+                do Screen.drawRectangle(431, 160, 487, 180);
                 
                 if(cleared1 = 0){
                     do P1.resetCombo();
@@ -531,7 +531,7 @@ class Main {
             do Output.moveCursor(10, 26);
             do Output.printString("IT'S A DRAW!");
         }
-        while(~(key = 128)){
+        while(key = 128){
             let key = Keyboard.keyPressed();
         }
         return;
