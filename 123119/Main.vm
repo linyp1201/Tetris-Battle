@@ -1241,12 +1241,6 @@ push local 6
 push local 2
 call Block.Tspin 2
 pop local 22
-push local 22
-push local 12
-push constant 3
-gt
-or
-pop local 20
 push constant 0
 push constant 0
 call Output.moveCursor 2
@@ -1271,6 +1265,12 @@ pop temp 0
 push local 12
 call Output.printInt 1
 pop temp 0
+push local 22
+push local 12
+push constant 3
+gt
+or
+pop local 20
 push local 2
 call Map.getHeight 1
 push constant 0
@@ -1378,12 +1378,6 @@ push local 7
 push local 3
 call Block.Tspin 2
 pop local 23
-push local 23
-push local 13
-push constant 3
-gt
-or
-pop local 21
 push constant 2
 push constant 0
 call Output.moveCursor 2
@@ -1408,6 +1402,12 @@ pop temp 0
 push local 13
 call Output.printInt 1
 pop temp 0
+push local 23
+push local 13
+push constant 3
+gt
+or
+pop local 21
 push local 3
 call Map.getHeight 1
 push constant 1
