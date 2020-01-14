@@ -2070,6 +2070,9 @@ call String.appendChar 2
 call Output.printString 1
 pop temp 0
 label IF_END32
+push constant 1000
+call Sys.wait 1
+pop temp 0
 label WHILE_EXP1
 push local 29
 push constant 128

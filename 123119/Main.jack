@@ -253,7 +253,7 @@ class Main {
         let hold1 = 7;
         let prev0 = false;
         let prev1 = false;
-
+        /*
         do map0.set(19,2);
         do map0.set(19,7);
         do map0.set(18,2);
@@ -307,7 +307,7 @@ class Main {
         do map1.set(13,6);
         do map1.set(13,7);
         do map1.set(13,8);
-        
+        */
         do Random.setSeed(0);
         let bType0 = Random.randRange(6);
         do Random.setSeed(1);
@@ -584,6 +584,7 @@ class Main {
             do Output.moveCursor(10, 26);
             do Output.printString("IT'S A DRAW!");
         }
+        do  Sys.wait(1000);
         while(key = 128){
             let key = Keyboard.keyPressed();
         }

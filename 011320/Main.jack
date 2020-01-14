@@ -584,6 +584,7 @@ class Main {
             do Output.moveCursor(10, 26);
             do Output.printString("IT'S A DRAW!");
         }
+        do  Sys.wait(1000);
         while(key = 128){
             let key = Keyboard.keyPressed();
         }
