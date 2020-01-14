@@ -121,44 +121,70 @@ class Main {
                 }
                 let for = for + 1;
             }
-
-            return map.proc();
+            if(block.bottomChecker(map)){
+                return map.proc();
+            }
+            else{
+                return -1;
+            }
         }
         else{
             return -1;
         }
     }
 
-    function int Bonus(int prev, int TSpin, int cleared){
+    function int Bonus(int prev, int TSpin, int cleared, int player){
+        var int text;
+        let text = 0;
+        if(player = 1){
+            let text = 30;
+        }
+        do Output.moveCursor(15, 24 + text);
         if(prev = 0){
             if(TSpin = 0){
                 if(cleared = 2){
+                    do Output.printString("DOUBLE");
                     return 1;
                 }
                 if(cleared = 3){
+                    do Output.printString("TRIPLE");
                     return 2;
                 }
                 if(cleared = 4){
+                    do Output.printString("TETRIS!");
                     return 4;
                 }
             }
             if(TSpin = 1){
                 if(cleared = 0){
+                    do Output.printString("T-SPIN");
+                    do Output.moveCursor(16, 25 + text);
+                    do Output.printSting("MINI");
                     return 1;
                 }
                 if(cleared = 1){
+                    do Output.printString("T-SPIN");
+                    do Output.moveCursor(16, 25 + text);
+                    do Output.printSting("MINI");
                     return 2;
                 }
                 if(cleared = 2){
+                    do Output.printString("T-SPIN");
+                    do Output.moveCursor(16, 25 + text);
+                    do Output.printSting("MINI");
                     return 4;
                 }
                 if(cleared = 3){
+                    do Output.printString("T-SPIN");
+                    do Output.moveCursor(16, 25 + text);
+                    do Output.printSting("MINI");
                     return 6;
                 }
             }
         }
         if(prev = 1){
             /* B2B */
+            do Output.printString("B2B");
             if(cleared = 4){
                 return 6;
             }
@@ -173,7 +199,7 @@ class Main {
                     return 6;
                 }
                 if(cleared = 3){
-                return 9;
+                    return 9;
                 }
             }
         }
@@ -242,15 +268,18 @@ class Main {
         let isAlive0 = block0.create_block(map0);
         let isAlive1 = block1.create_block(map1);
 
+        do Display.showNext(0, bNext0);
+        do Display.showNext(1, bNext1);
+
         while(stop < 240 & (~KO)){
 
             /* One Move */
             let cleared0 = Main.Move(0, map0, block0);
-            if(cleared0 > -1){
+            if(cleared0 > 1){
                 do P0.addLinesSent(cleared0);
             }
             let cleared1 = Main.Move(1, map1, block1);
-            if(cleared1 > -1){
+            if(cleared1 > 1){
                 do P1.addLinesSent(cleared1);
             }
 
@@ -259,6 +288,8 @@ class Main {
                 do block0.setLast(false);
                 do block1.down(map1);
                 do block1.setLast(false);
+
+
                 if(timer.getTime() = 30000){
                     do timer.setTime(0);
                 }
@@ -281,6 +312,7 @@ class Main {
                 }
                 do block0.setType(bType0);
                 let isAlive0 = block0.create_block(map0);
+                do Display.showHold(0, hold0);
             }
             let key = Keyboard.keyPressed();
             if(key = 47){
@@ -298,22 +330,28 @@ class Main {
                 }
                 do block1.setType(bType1);
                 let isAlive1 = block1.create_block(map1);
+                do Display.showHold(1, hold1);
             }
 
             /* showMap */
             do map0.showMap(0);
             do map1.showMap(1);
-            /* showNextBlock */
+            /*
+            // showNextBlock
             do Display.showNext(0, bNext0);
             do Display.showNext(1, bNext1);
-            /* showHold */
+            // showHold
             do Display.showHold(0, hold0);
             do Display.showHold(1, hold1);
+            */
             /* showScores */
             do Display.showScores(P0, P1);
 
             /* If toBottom, Calculate combo & sent/received lines ; else add received */
             if(cleared0 > -1){
+
+                do Screen.setColor(false);
+                do Screen.drawRectangle(191, 160, 247, 180);
                 
                 if(cleared0 = 0){
                     do P0.resetCombo();
@@ -324,8 +362,22 @@ class Main {
 
                 if(cleared0 > 0){
                     let TSpin0 = block0.Tspin(map0);
-                    let prev0 = (TSpin0 | (cleared0 > 3));
-                    let cleared0 = Main.comboScore(P0.getCombo()) + Main.Bonus(prev0, TSpin0, cleared0);
+                    
+                    /* for debug
+                    do Output.moveCursor(0,0);
+                    do Output.printInt(cleared0);
+                    */
+                    let cleared0 = Main.comboScore(P0.getCombo()) + Main.Bonus(prev0, TSpin0, cleared0, 0);
+                    /* for debug
+                    do Output.moveCursor(1,0);
+                    do Output.printInt(cleared0);
+                    */
+                    if((TSpin0) | (cleared0 > 3)){
+                        let prev0 = 1;
+                    }
+                    else{
+                        let prev0 = 0;
+                    }
                     if(map0.getHeight() = 0){
                         let cleared0 = cleared0 + 10;
                     }
@@ -345,9 +397,13 @@ class Main {
                 let bNext0 = Random.randRange(6);
                 do block0.setType(bType0);
                 let isAlive0 = block0.create_block(map0);
+                do Display.showNext(0, bNext0);
 
             }
             if(cleared1 > -1){
+
+                do Screen.setColor(false);
+                do Screen.drawRectangle(431, 160, 487, 180);
                 
                 if(cleared1 = 0){
                     do P1.resetCombo();
@@ -358,10 +414,24 @@ class Main {
 
                 if(cleared1 > 0){
                     let TSpin1 = block1.Tspin(map1);
-                    let prev1 = (TSpin1 | (cleared1 > 3));
-                    let cleared1 = Main.comboScore(P1.getCombo()) + Main.Bonus(prev1, TSpin1, cleared1);
+                    
+                    /* for debug
+                    do Output.moveCursor(2,0);
+                    do Output.printInt(cleared1);
+                    */
+                    let cleared1 = Main.comboScore(P1.getCombo()) + Main.Bonus(prev1, TSpin1, cleared1, 1);
+                    /* for debug
+                    do Output.moveCursor(3,0);
+                    do Output.printInt(cleared1);
+                    */
+                    if((TSpin1) | (cleared1 > 3)){
+                        let prev1 = 1;
+                    }
+                    else{
+                        let prev1 = 0;
+                    }
                     if(map1.getHeight() = 1){
-                        let cleared0 = cleared0 + 10;
+                        let cleared1 = cleared1 + 10;
                     }
                 }
 
@@ -379,6 +449,7 @@ class Main {
                 let bNext1 = Random.randRange(6);
                 do block1.setType(bType1);
                 let isAlive1 = block1.create_block(map1);
+                do Display.showNext(1, bNext1);
             }
 
             if(cleared0 > 0){
@@ -460,7 +531,7 @@ class Main {
             do Output.moveCursor(10, 26);
             do Output.printString("IT'S A DRAW!");
         }
-        while(~(key = 128)){
+        while(key = 128){
             let key = Keyboard.keyPressed();
         }
         return;

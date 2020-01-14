@@ -455,159 +455,384 @@ add
 pop local 2
 goto WHILE_EXP0
 label WHILE_END0
+push argument 2
+push argument 1
+call Block.bottomChecker 2
+if-goto IF_TRUE23
+goto IF_FALSE23
+label IF_TRUE23
 push argument 1
 call Map.proc 1
 return
+goto IF_END23
+label IF_FALSE23
+push constant 1
+neg
+return
+label IF_END23
 goto IF_END12
 label IF_FALSE12
 push constant 1
 neg
 return
 label IF_END12
-function Main.Bonus 0
-push argument 0
+function Main.Bonus 1
 push constant 0
+pop local 0
+push argument 3
+push constant 1
 eq
 if-goto IF_TRUE0
 goto IF_FALSE0
 label IF_TRUE0
-push argument 1
+push constant 30
+pop local 0
+label IF_FALSE0
+push constant 15
+push constant 24
+push local 0
+add
+call Output.moveCursor 2
+pop temp 0
+push argument 0
 push constant 0
 eq
 if-goto IF_TRUE1
 goto IF_FALSE1
 label IF_TRUE1
-push argument 2
-push constant 2
+push argument 1
+push constant 0
 eq
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
-push constant 1
-return
-label IF_FALSE2
 push argument 2
-push constant 3
+push constant 2
 eq
 if-goto IF_TRUE3
 goto IF_FALSE3
 label IF_TRUE3
-push constant 2
+push constant 6
+call String.new 1
+push constant 68
+call String.appendChar 2
+push constant 79
+call String.appendChar 2
+push constant 85
+call String.appendChar 2
+push constant 66
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 1
 return
 label IF_FALSE3
 push argument 2
-push constant 4
+push constant 3
 eq
 if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
-push constant 4
+push constant 6
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 76
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 2
 return
 label IF_FALSE4
-label IF_FALSE1
-push argument 1
-push constant 1
+push argument 2
+push constant 4
 eq
 if-goto IF_TRUE5
 goto IF_FALSE5
 label IF_TRUE5
-push argument 2
-push constant 0
+push constant 7
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 69
+call String.appendChar 2
+push constant 84
+call String.appendChar 2
+push constant 82
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 33
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 4
+return
+label IF_FALSE5
+label IF_FALSE2
+push argument 1
+push constant 1
 eq
 if-goto IF_TRUE6
 goto IF_FALSE6
 label IF_TRUE6
-push constant 1
-return
-label IF_FALSE6
 push argument 2
-push constant 1
+push constant 0
 eq
 if-goto IF_TRUE7
 goto IF_FALSE7
 label IF_TRUE7
-push constant 2
+push constant 6
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 16
+push constant 25
+push local 0
+add
+call Output.moveCursor 2
+pop temp 0
+push constant 4
+call String.new 1
+push constant 77
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+call Output.printSting 1
+pop temp 0
+push constant 1
 return
 label IF_FALSE7
 push argument 2
-push constant 2
+push constant 1
 eq
 if-goto IF_TRUE8
 goto IF_FALSE8
 label IF_TRUE8
+push constant 6
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 16
+push constant 25
+push local 0
+add
+call Output.moveCursor 2
+pop temp 0
 push constant 4
+call String.new 1
+push constant 77
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+call Output.printSting 1
+pop temp 0
+push constant 2
 return
 label IF_FALSE8
 push argument 2
-push constant 3
+push constant 2
 eq
 if-goto IF_TRUE9
 goto IF_FALSE9
 label IF_TRUE9
 push constant 6
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 16
+push constant 25
+push local 0
+add
+call Output.moveCursor 2
+pop temp 0
+push constant 4
+call String.new 1
+push constant 77
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+call Output.printSting 1
+pop temp 0
+push constant 4
 return
 label IF_FALSE9
-label IF_FALSE5
-label IF_FALSE0
-push argument 0
-push constant 1
+push argument 2
+push constant 3
 eq
 if-goto IF_TRUE10
 goto IF_FALSE10
 label IF_TRUE10
-push argument 2
+push constant 6
+call String.new 1
+push constant 84
+call String.appendChar 2
+push constant 45
+call String.appendChar 2
+push constant 83
+call String.appendChar 2
+push constant 80
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push constant 16
+push constant 25
+push local 0
+add
+call Output.moveCursor 2
+pop temp 0
 push constant 4
+call String.new 1
+push constant 77
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+push constant 78
+call String.appendChar 2
+push constant 73
+call String.appendChar 2
+call Output.printSting 1
+pop temp 0
+push constant 6
+return
+label IF_FALSE10
+label IF_FALSE6
+label IF_FALSE1
+push argument 0
+push constant 1
 eq
 if-goto IF_TRUE11
 goto IF_FALSE11
 label IF_TRUE11
-push constant 6
-return
-label IF_FALSE11
-push argument 1
-push constant 1
+push constant 3
+call String.new 1
+push constant 66
+call String.appendChar 2
+push constant 50
+call String.appendChar 2
+push constant 66
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
+push argument 2
+push constant 4
 eq
 if-goto IF_TRUE12
 goto IF_FALSE12
 label IF_TRUE12
-push argument 2
-push constant 0
+push constant 6
+return
+label IF_FALSE12
+push argument 1
+push constant 1
 eq
 if-goto IF_TRUE13
 goto IF_FALSE13
 label IF_TRUE13
-push constant 2
-return
-label IF_FALSE13
 push argument 2
-push constant 1
+push constant 0
 eq
 if-goto IF_TRUE14
 goto IF_FALSE14
 label IF_TRUE14
-push constant 3
+push constant 2
 return
 label IF_FALSE14
 push argument 2
-push constant 2
+push constant 1
 eq
 if-goto IF_TRUE15
 goto IF_FALSE15
 label IF_TRUE15
-push constant 6
+push constant 3
 return
 label IF_FALSE15
 push argument 2
-push constant 3
+push constant 2
 eq
 if-goto IF_TRUE16
 goto IF_FALSE16
 label IF_TRUE16
-push constant 9
+push constant 6
 return
 label IF_FALSE16
-label IF_FALSE12
-label IF_FALSE10
+push argument 2
+push constant 3
+eq
+if-goto IF_TRUE17
+goto IF_FALSE17
+label IF_TRUE17
+push constant 9
+return
+label IF_FALSE17
+label IF_FALSE13
+label IF_FALSE11
 push constant 0
 return
 function Main.Play 31
@@ -779,6 +1004,14 @@ push local 7
 push local 3
 call Block.create_block 2
 pop local 15
+push constant 0
+push local 10
+call Display.showNext 2
+pop temp 0
+push constant 1
+push local 11
+call Display.showNext 2
+pop temp 0
 label WHILE_EXP0
 push local 26
 push constant 240
@@ -795,7 +1028,6 @@ call Main.Move 3
 pop local 12
 push local 12
 push constant 1
-neg
 gt
 if-goto IF_TRUE0
 goto IF_FALSE0
@@ -812,7 +1044,6 @@ call Main.Move 3
 pop local 13
 push local 13
 push constant 1
-neg
 gt
 if-goto IF_TRUE1
 goto IF_FALSE1
@@ -911,6 +1142,10 @@ push local 6
 push local 2
 call Block.create_block 2
 pop local 14
+push constant 0
+push local 18
+call Display.showHold 2
+pop temp 0
 label IF_FALSE4
 call Keyboard.keyPressed 0
 pop local 29
@@ -960,6 +1195,10 @@ push local 7
 push local 3
 call Block.create_block 2
 pop local 15
+push constant 1
+push local 19
+call Display.showHold 2
+pop temp 0
 label IF_FALSE6
 push local 2
 push constant 0
@@ -968,22 +1207,6 @@ pop temp 0
 push local 3
 push constant 1
 call Map.showMap 2
-pop temp 0
-push constant 0
-push local 10
-call Display.showNext 2
-pop temp 0
-push constant 1
-push local 11
-call Display.showNext 2
-pop temp 0
-push constant 0
-push local 18
-call Display.showHold 2
-pop temp 0
-push constant 1
-push local 19
-call Display.showHold 2
 pop temp 0
 push local 0
 push local 1
@@ -996,6 +1219,15 @@ gt
 if-goto IF_TRUE8
 goto IF_FALSE8
 label IF_TRUE8
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push constant 191
+push constant 160
+push constant 247
+push constant 180
+call Screen.drawRectangle 4
+pop temp 0
 push local 12
 push constant 0
 eq
@@ -1021,41 +1253,51 @@ push local 6
 push local 2
 call Block.Tspin 2
 pop local 22
-push local 22
-push local 12
-push constant 3
-gt
-or
-pop local 20
 push local 0
 call Playa.getCombo 1
 call Main.comboScore 1
 push local 20
 push local 22
 push local 12
-call Main.Bonus 3
+push constant 0
+call Main.Bonus 4
 add
 pop local 12
+push local 22
+push local 12
+push constant 3
+gt
+or
+if-goto IF_TRUE11
+goto IF_FALSE11
+label IF_TRUE11
+push constant 1
+pop local 20
+goto IF_END11
+label IF_FALSE11
+push constant 0
+pop local 20
+label IF_END11
 push local 2
 call Map.getHeight 1
 push constant 0
 eq
-if-goto IF_TRUE11
-goto IF_FALSE11
-label IF_TRUE11
+if-goto IF_TRUE12
+goto IF_FALSE12
+label IF_TRUE12
 push local 12
 push constant 10
 add
 pop local 12
-label IF_FALSE11
+label IF_FALSE12
 label IF_FALSE10
 push local 0
 call Playa.getLinesReceived 1
 push local 12
 gt
-if-goto IF_TRUE12
-goto IF_FALSE12
-label IF_TRUE12
+if-goto IF_TRUE13
+goto IF_FALSE13
+label IF_TRUE13
 push local 0
 push local 12
 neg
@@ -1065,14 +1307,14 @@ push local 0
 push local 2
 call Playa.getGarbage 2
 pop local 16
-goto IF_END12
-label IF_FALSE12
+goto IF_END13
+label IF_FALSE13
 push local 12
 push local 0
 call Playa.getLinesReceived 1
 sub
 pop local 12
-label IF_END12
+label IF_END13
 push local 0
 call Playa.resetLinesReceived 1
 pop temp 0
@@ -1097,74 +1339,97 @@ push local 6
 push local 2
 call Block.create_block 2
 pop local 14
+push constant 0
+push local 10
+call Display.showNext 2
+pop temp 0
 label IF_FALSE8
 push local 13
 push constant 1
 neg
 gt
-if-goto IF_TRUE13
-goto IF_FALSE13
-label IF_TRUE13
-push local 13
-push constant 0
-eq
 if-goto IF_TRUE14
 goto IF_FALSE14
 label IF_TRUE14
-push local 1
-call Playa.resetCombo 1
+push constant 0
+call Screen.setColor 1
 pop temp 0
-goto IF_END14
-label IF_FALSE14
-push local 1
-call Playa.incCombo 1
+push constant 431
+push constant 160
+push constant 487
+push constant 180
+call Screen.drawRectangle 4
 pop temp 0
-label IF_END14
 push local 13
 push constant 0
-gt
+eq
 if-goto IF_TRUE15
 goto IF_FALSE15
 label IF_TRUE15
+push local 1
+call Playa.resetCombo 1
+pop temp 0
+goto IF_END15
+label IF_FALSE15
+push local 1
+call Playa.incCombo 1
+pop temp 0
+label IF_END15
+push local 13
+push constant 0
+gt
+if-goto IF_TRUE16
+goto IF_FALSE16
+label IF_TRUE16
 push local 7
 push local 3
 call Block.Tspin 2
 pop local 23
-push local 23
-push local 13
-push constant 3
-gt
-or
-pop local 21
 push local 1
 call Playa.getCombo 1
 call Main.comboScore 1
 push local 21
 push local 23
 push local 13
-call Main.Bonus 3
+push constant 1
+call Main.Bonus 4
 add
 pop local 13
+push local 23
+push local 13
+push constant 3
+gt
+or
+if-goto IF_TRUE17
+goto IF_FALSE17
+label IF_TRUE17
+push constant 1
+pop local 21
+goto IF_END17
+label IF_FALSE17
+push constant 0
+pop local 21
+label IF_END17
 push local 3
 call Map.getHeight 1
 push constant 1
 eq
-if-goto IF_TRUE16
-goto IF_FALSE16
-label IF_TRUE16
-push local 12
+if-goto IF_TRUE18
+goto IF_FALSE18
+label IF_TRUE18
+push local 13
 push constant 10
 add
-pop local 12
+pop local 13
+label IF_FALSE18
 label IF_FALSE16
-label IF_FALSE15
 push local 1
 call Playa.getLinesReceived 1
 push local 13
 gt
-if-goto IF_TRUE17
-goto IF_FALSE17
-label IF_TRUE17
+if-goto IF_TRUE19
+goto IF_FALSE19
+label IF_TRUE19
 push local 1
 push local 13
 neg
@@ -1174,14 +1439,14 @@ push local 1
 push local 3
 call Playa.getGarbage 2
 pop local 17
-goto IF_END17
-label IF_FALSE17
+goto IF_END19
+label IF_FALSE19
 push local 13
 push local 1
 call Playa.getLinesReceived 1
 sub
 pop local 13
-label IF_END17
+label IF_END19
 push local 1
 call Playa.resetLinesReceived 1
 pop temp 0
@@ -1206,29 +1471,33 @@ push local 7
 push local 3
 call Block.create_block 2
 pop local 15
-label IF_FALSE13
+push constant 1
+push local 11
+call Display.showNext 2
+pop temp 0
+label IF_FALSE14
 push local 12
 push constant 0
 gt
-if-goto IF_TRUE18
-goto IF_FALSE18
-label IF_TRUE18
+if-goto IF_TRUE20
+goto IF_FALSE20
+label IF_TRUE20
 push local 1
 push local 12
 call Playa.addLinesReceived 2
 pop temp 0
-label IF_FALSE18
+label IF_FALSE20
 push local 13
 push constant 0
 gt
-if-goto IF_TRUE19
-goto IF_FALSE19
-label IF_TRUE19
+if-goto IF_TRUE21
+goto IF_FALSE21
+label IF_TRUE21
 push local 0
 push local 13
 call Playa.addLinesReceived 2
 pop temp 0
-label IF_FALSE19
+label IF_FALSE21
 push local 25
 push constant 100
 call Clock.tick 2
@@ -1237,9 +1506,9 @@ push local 16
 push constant 1
 neg
 eq
-if-goto IF_TRUE20
-goto IF_FALSE20
-label IF_TRUE20
+if-goto IF_TRUE22
+goto IF_FALSE22
+label IF_TRUE22
 push local 1
 call Playa.incKO 1
 pop temp 0
@@ -1249,13 +1518,13 @@ call Playa.clearGarbage 2
 pop temp 0
 push constant 0
 pop local 16
-label IF_FALSE20
+label IF_FALSE22
 push local 14
 push constant 0
 eq
-if-goto IF_TRUE21
-goto IF_FALSE21
-label IF_TRUE21
+if-goto IF_TRUE23
+goto IF_FALSE23
+label IF_TRUE23
 push local 1
 call Playa.incKO 1
 pop temp 0
@@ -1266,14 +1535,14 @@ push local 6
 push local 2
 call Block.create_block 2
 pop local 14
-label IF_FALSE21
+label IF_FALSE23
 push local 17
 push constant 1
 neg
 eq
-if-goto IF_TRUE22
-goto IF_FALSE22
-label IF_TRUE22
+if-goto IF_TRUE24
+goto IF_FALSE24
+label IF_TRUE24
 push local 0
 call Playa.incKO 1
 pop temp 0
@@ -1283,13 +1552,13 @@ call Playa.clearGarbage 2
 pop temp 0
 push constant 0
 pop local 17
-label IF_FALSE22
+label IF_FALSE24
 push local 15
 push constant 0
 eq
-if-goto IF_TRUE23
-goto IF_FALSE23
-label IF_TRUE23
+if-goto IF_TRUE25
+goto IF_FALSE25
+label IF_TRUE25
 push local 0
 call Playa.incKO 1
 pop temp 0
@@ -1300,7 +1569,7 @@ push local 7
 push local 3
 call Block.create_block 2
 pop local 15
-label IF_FALSE23
+label IF_FALSE25
 push local 0
 call Playa.getKO 1
 push constant 4
@@ -1322,38 +1591,6 @@ call Playa.getKO 1
 push local 1
 call Playa.getKO 1
 gt
-if-goto IF_TRUE24
-goto IF_FALSE24
-label IF_TRUE24
-push constant 0
-pop local 27
-push constant 0
-pop local 28
-label IF_FALSE24
-push local 0
-call Playa.getKO 1
-push local 1
-call Playa.getKO 1
-lt
-if-goto IF_TRUE25
-goto IF_FALSE25
-label IF_TRUE25
-push constant 1
-pop local 27
-push constant 0
-pop local 28
-label IF_FALSE25
-push local 0
-call Playa.getKO 1
-push local 1
-call Playa.getKO 1
-eq
-push local 0
-call Playa.getLinesSent 1
-push local 1
-call Playa.getLinesSent 1
-gt
-and
 if-goto IF_TRUE26
 goto IF_FALSE26
 label IF_TRUE26
@@ -1366,13 +1603,7 @@ push local 0
 call Playa.getKO 1
 push local 1
 call Playa.getKO 1
-eq
-push local 0
-call Playa.getLinesSent 1
-push local 1
-call Playa.getLinesSent 1
 lt
-and
 if-goto IF_TRUE27
 goto IF_FALSE27
 label IF_TRUE27
@@ -1390,13 +1621,7 @@ push local 0
 call Playa.getLinesSent 1
 push local 1
 call Playa.getLinesSent 1
-eq
-and
-push local 2
-call Map.getHeight 1
-push local 3
-call Map.getHeight 1
-lt
+gt
 and
 if-goto IF_TRUE28
 goto IF_FALSE28
@@ -1415,13 +1640,7 @@ push local 0
 call Playa.getLinesSent 1
 push local 1
 call Playa.getLinesSent 1
-eq
-and
-push local 2
-call Map.getHeight 1
-push local 3
-call Map.getHeight 1
-gt
+lt
 and
 if-goto IF_TRUE29
 goto IF_FALSE29
@@ -1431,12 +1650,62 @@ pop local 27
 push constant 0
 pop local 28
 label IF_FALSE29
-push local 28
-push constant 0
+push local 0
+call Playa.getKO 1
+push local 1
+call Playa.getKO 1
 eq
+push local 0
+call Playa.getLinesSent 1
+push local 1
+call Playa.getLinesSent 1
+eq
+and
+push local 2
+call Map.getHeight 1
+push local 3
+call Map.getHeight 1
+lt
+and
 if-goto IF_TRUE30
 goto IF_FALSE30
 label IF_TRUE30
+push constant 0
+pop local 27
+push constant 0
+pop local 28
+label IF_FALSE30
+push local 0
+call Playa.getKO 1
+push local 1
+call Playa.getKO 1
+eq
+push local 0
+call Playa.getLinesSent 1
+push local 1
+call Playa.getLinesSent 1
+eq
+and
+push local 2
+call Map.getHeight 1
+push local 3
+call Map.getHeight 1
+gt
+and
+if-goto IF_TRUE31
+goto IF_FALSE31
+label IF_TRUE31
+push constant 1
+pop local 27
+push constant 0
+pop local 28
+label IF_FALSE31
+push local 28
+push constant 0
+eq
+if-goto IF_TRUE32
+goto IF_FALSE32
+label IF_TRUE32
 push constant 10
 push constant 28
 call Output.moveCursor 2
@@ -1469,23 +1738,23 @@ pop temp 0
 push local 27
 push constant 0
 eq
-if-goto IF_TRUE31
-goto IF_FALSE31
-label IF_TRUE31
+if-goto IF_TRUE33
+goto IF_FALSE33
+label IF_TRUE33
 push local 4
 call Output.printString 1
 pop temp 0
-label IF_FALSE31
+label IF_FALSE33
 push local 27
 push constant 1
 eq
-if-goto IF_TRUE32
-goto IF_FALSE32
-label IF_TRUE32
+if-goto IF_TRUE34
+goto IF_FALSE34
+label IF_TRUE34
 push local 5
 call Output.printString 1
 pop temp 0
-label IF_FALSE32
+label IF_FALSE34
 push constant 14
 push constant 29
 call Output.moveCursor 2
@@ -1506,8 +1775,8 @@ push constant 33
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-goto IF_END30
-label IF_FALSE30
+goto IF_END32
+label IF_FALSE32
 push constant 10
 push constant 26
 call Output.moveCursor 2
@@ -1540,12 +1809,11 @@ push constant 33
 call String.appendChar 2
 call Output.printString 1
 pop temp 0
-label IF_END30
+label IF_END32
 label WHILE_EXP1
 push local 29
 push constant 128
 eq
-not
 not
 if-goto WHILE_END1
 call Keyboard.keyPressed 0
