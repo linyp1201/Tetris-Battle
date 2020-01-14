@@ -121,7 +121,6 @@ class Main {
                 }
                 let for = for + 1;
             }
-
             return map.proc();
         }
         else{
@@ -180,6 +179,7 @@ class Main {
         }
         if(prev = 1){
             /* B2B */
+            do Output.printString("B2B");
             if(cleared = 4){
                 return 6;
             }
@@ -263,6 +263,9 @@ class Main {
         let isAlive0 = block0.create_block(map0);
         let isAlive1 = block1.create_block(map1);
 
+        do Display.showNext(0, bNext0);
+        do Display.showNext(1, bNext1);
+
         while(stop < 240 & (~KO)){
 
             /* One Move */
@@ -281,9 +284,6 @@ class Main {
                 do block1.down(map1);
                 do block1.setLast(false);
 
-                do Screen.setColor(false);
-                do Screen.drawRectangle(193, 160, 246, 180);
-                do Screen.drawRectangle(433, 160, 486, 180);
 
                 if(timer.getTime() = 30000){
                     do timer.setTime(0);
@@ -307,6 +307,7 @@ class Main {
                 }
                 do block0.setType(bType0);
                 let isAlive0 = block0.create_block(map0);
+                do Display.showHold(0, hold0);
             }
             let key = Keyboard.keyPressed();
             if(key = 47){
@@ -324,22 +325,28 @@ class Main {
                 }
                 do block1.setType(bType1);
                 let isAlive1 = block1.create_block(map1);
+                do Display.showHold(1, hold1);
             }
 
             /* showMap */
             do map0.showMap(0);
             do map1.showMap(1);
-            /* showNextBlock */
+            /*
+            // showNextBlock
             do Display.showNext(0, bNext0);
             do Display.showNext(1, bNext1);
-            /* showHold */
+            // showHold
             do Display.showHold(0, hold0);
             do Display.showHold(1, hold1);
+            */
             /* showScores */
             do Display.showScores(P0, P1);
 
             /* If toBottom, Calculate combo & sent/received lines ; else add received */
             if(cleared0 > -1){
+
+                do Screen.setColor(false);
+                do Screen.drawRectangle(193, 160, 246, 180);
                 
                 if(cleared0 = 0){
                     do P0.resetCombo();
@@ -371,9 +378,13 @@ class Main {
                 let bNext0 = Random.randRange(6);
                 do block0.setType(bType0);
                 let isAlive0 = block0.create_block(map0);
+                do Display.showNext(0, bNext0);
 
             }
             if(cleared1 > -1){
+
+                do Screen.setColor(false);
+                do Screen.drawRectangle(433, 160, 486, 180);
                 
                 if(cleared1 = 0){
                     do P1.resetCombo();
@@ -405,6 +416,7 @@ class Main {
                 let bNext1 = Random.randRange(6);
                 do block1.setType(bType1);
                 let isAlive1 = block1.create_block(map1);
+                do Display.showNext(1, bNext1);
             }
 
             if(cleared0 > 0){

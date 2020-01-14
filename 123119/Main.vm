@@ -758,6 +758,16 @@ eq
 if-goto IF_TRUE11
 goto IF_FALSE11
 label IF_TRUE11
+push constant 3
+call String.new 1
+push constant 66
+call String.appendChar 2
+push constant 50
+call String.appendChar 2
+push constant 66
+call String.appendChar 2
+call Output.printString 1
+pop temp 0
 push argument 2
 push constant 4
 eq
@@ -982,6 +992,14 @@ push local 7
 push local 3
 call Block.create_block 2
 pop local 15
+push constant 0
+push local 10
+call Display.showNext 2
+pop temp 0
+push constant 1
+push local 11
+call Display.showNext 2
+pop temp 0
 label WHILE_EXP0
 push local 26
 push constant 240
@@ -1049,21 +1067,6 @@ push local 7
 push constant 0
 call Block.setLast 2
 pop temp 0
-push constant 0
-call Screen.setColor 1
-pop temp 0
-push constant 193
-push constant 160
-push constant 246
-push constant 180
-call Screen.drawRectangle 4
-pop temp 0
-push constant 433
-push constant 160
-push constant 486
-push constant 180
-call Screen.drawRectangle 4
-pop temp 0
 push local 25
 call Clock.getTime 1
 push constant 30000
@@ -1129,6 +1132,10 @@ push local 6
 push local 2
 call Block.create_block 2
 pop local 14
+push constant 0
+push local 18
+call Display.showHold 2
+pop temp 0
 label IF_FALSE4
 call Keyboard.keyPressed 0
 pop local 29
@@ -1178,6 +1185,10 @@ push local 7
 push local 3
 call Block.create_block 2
 pop local 15
+push constant 1
+push local 19
+call Display.showHold 2
+pop temp 0
 label IF_FALSE6
 push local 2
 push constant 0
@@ -1186,22 +1197,6 @@ pop temp 0
 push local 3
 push constant 1
 call Map.showMap 2
-pop temp 0
-push constant 0
-push local 10
-call Display.showNext 2
-pop temp 0
-push constant 1
-push local 11
-call Display.showNext 2
-pop temp 0
-push constant 0
-push local 18
-call Display.showHold 2
-pop temp 0
-push constant 1
-push local 19
-call Display.showHold 2
 pop temp 0
 push local 0
 push local 1
@@ -1214,6 +1209,15 @@ gt
 if-goto IF_TRUE8
 goto IF_FALSE8
 label IF_TRUE8
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push constant 193
+push constant 160
+push constant 246
+push constant 180
+call Screen.drawRectangle 4
+pop temp 0
 push local 12
 push constant 0
 eq
@@ -1316,6 +1320,10 @@ push local 6
 push local 2
 call Block.create_block 2
 pop local 14
+push constant 0
+push local 10
+call Display.showNext 2
+pop temp 0
 label IF_FALSE8
 push local 13
 push constant 1
@@ -1324,6 +1332,15 @@ gt
 if-goto IF_TRUE13
 goto IF_FALSE13
 label IF_TRUE13
+push constant 0
+call Screen.setColor 1
+pop temp 0
+push constant 433
+push constant 160
+push constant 486
+push constant 180
+call Screen.drawRectangle 4
+pop temp 0
 push local 13
 push constant 0
 eq
@@ -1426,6 +1443,10 @@ push local 7
 push local 3
 call Block.create_block 2
 pop local 15
+push constant 1
+push local 11
+call Display.showNext 2
+pop temp 0
 label IF_FALSE13
 push local 12
 push constant 0
